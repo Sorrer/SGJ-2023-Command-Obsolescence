@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,11 +6,12 @@ using UnityEngine;
 [Serializable]
 public enum TowerType
 {
-	TT_Unknown = 0,
-	TT_GenericTurret = 1,
-	TT_BombermanBlast = 2,
-	TT_BigSucc = 3,
-	TT_Pickaxe = 4
+	TowT_Unknown = 0,
+	TowT_GenericTurret = 1,
+	TowT_BombermanBlast = 2,
+	TowT_BigSucc = 3,
+	TowT_Pickaxe = 4,
+	TowT_MissleLauncher = 5
 };
 
 public class Tower : MonoBehaviour
