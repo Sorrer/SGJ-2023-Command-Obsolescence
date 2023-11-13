@@ -30,22 +30,32 @@ public class TileComponent : MonoBehaviour, IPointerDownHandler
 		yPos = y;
 	}
 
+	/**
+	 * @brief Function that gets fired when the mouse clicks on this object.
+	 * @param eventData Idk man!
+	 */
 	public void OnPointerDown(PointerEventData eventData)
 	{
 		Debug.Log("Clicked tile x:" + xPos.ToString() + " y:" + yPos.ToString());
 		
 		if (towerObj == null)
 		{
-			towerObj = Instantiate(TowerManager.Instance.towerDictionary[TowerType.TowT_GenericTurret], transform.position, transform.rotation);
+			Vector3 newPos = new Vector3(transform.position.x, transform.position.y, transform.position.z - 0.1f);
+			towerObj = Instantiate(TowerManager.Instance.towerDictionary[TowerType.TowT_GenericTurret], newPos, transform.rotation);
+			towerObj.transform.parent = transform;
 		}
 	}
 
+	/**
+	 * @brief Needed for IPointerDownHandler related functions. Find the Physics2DRaycaster component that
+	 * exists in the world, or add one to the main camera GameObject if one does not exist.
+	 */
 	private void AddPhysics2DRaycaster()
-    {
-        Physics2DRaycaster physicsRaycaster = FindFirstObjectByType<Physics2DRaycaster>();
-        if (physicsRaycaster == null)
-        {
-            Camera.main.gameObject.AddComponent<Physics2DRaycaster>();
-        }
-    }
+	{
+		Physics2DRaycaster physicsRaycaster = FindFirstObjectByType<Physics2DRaycaster>();
+		if (physicsRaycaster == null)
+		{
+			Camera.main.gameObject.AddComponent<Physics2DRaycaster>();
+		}
+	}
 }

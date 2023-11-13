@@ -152,6 +152,8 @@ MonoBehaviour:
   tileObj: {fileID: 1419944257841796828, guid: 96d02b0a1cc8b9a4f9e33b3c25ab3176, type: 3}
   levelWidth: 15
   levelHeight: 15
+  offsetSpawnXStart: -4.615
+  offsetSpawnYStart: -4.615
   testTilemap:
   - type: 0
     sprite: {fileID: -434777327421271562, guid: 0594ef3f861de564f891e13f8c4b6efa, type: 3}

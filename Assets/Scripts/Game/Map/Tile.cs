@@ -14,6 +14,7 @@ public enum TileType
 public class Tile// : MonoBehaviour
 {
 	public TileType type = TileType.TT_Empty;
+	public TileComponent tileComponent;
 	public int xPos;
 	public int yPos;
 
@@ -29,9 +30,10 @@ public class Tile// : MonoBehaviour
 		
 	}*/
 
-	public void SetupTile(TileType tt, int x, int y)
+	public void SetupTile(TileType tt, TileComponent tc, int x, int y)
 	{
 		type = tt;
+		tileComponent = tc;
 		xPos = x;
 		yPos = y;
 	}

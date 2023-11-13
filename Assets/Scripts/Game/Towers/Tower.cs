@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 [Serializable]
 public enum TowerType
@@ -14,7 +15,7 @@ public enum TowerType
 	TowT_MissleLauncher = 5
 };
 
-public class Tower : MonoBehaviour
+public class Tower : MonoBehaviour, IPointerDownHandler
 {
 	// Internal values
 	public string towerName;		/**< String name of the tower. */
@@ -24,13 +25,22 @@ public class Tower : MonoBehaviour
 	// Start is called before the first frame update
 	protected virtual void Start()
 	{
-		
+		AddPhysics2DRaycaster();
 	}
 
 	// Update is called once per frame
 	void Update()
 	{
 		
+	}
+
+	/**
+	 * @brief Function that gets fired when the mouse clicks on this object.
+	 * @param eventData Idk man!
+	 */
+	public virtual void OnPointerDown(PointerEventData eventData)
+	{
+
 	}
 
 	/**
@@ -47,5 +57,18 @@ public class Tower : MonoBehaviour
 	public virtual void OnTowerDestroy()
 	{
 
+	}
+
+	/**
+	 * @brief Needed for IPointerDownHandler related functions. Find the Physics2DRaycaster component that
+	 * exists in the world, or add one to the main camera GameObject if one does not exist.
+	 */
+	private void AddPhysics2DRaycaster()
+	{
+		Physics2DRaycaster physicsRaycaster = FindFirstObjectByType<Physics2DRaycaster>();
+		if (physicsRaycaster == null)
+		{
+			Camera.main.gameObject.AddComponent<Physics2DRaycaster>();
+		}
 	}
 }

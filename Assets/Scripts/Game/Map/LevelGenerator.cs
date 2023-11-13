@@ -16,6 +16,11 @@ public class LevelGenerator : MonoBehaviour
 	[SerializeField]
 	private int levelHeight = 15;
 
+	[SerializeField]
+	private float offsetSpawnXStart = -15.0f;
+	[SerializeField]
+	private float offsetSpawnYStart = -15.0f;
+
 	[Serializable]
 	public struct TilemapEntry
 	{
@@ -76,7 +81,7 @@ public class LevelGenerator : MonoBehaviour
 			for (int j = 0; j < levelHeight; j++)
 			{
 				levelGrid[i, j] = new Tile();
-				levelGrid[i, j].SetupTile(TileType.TT_Floor, i, j);
+				levelGrid[i, j].SetupTile(TileType.TT_Floor, null, i, j);
 			}
 		}
 	}
@@ -117,7 +122,7 @@ public class LevelGenerator : MonoBehaviour
 					}
 					//Vector3 newPos = new Vector3(i+tileObj.GetComponent<SpriteRenderer>().sprite.rect.width, 
 					//	j+tileObj.GetComponent<SpriteRenderer>().sprite.rect.height, 0);
-					Vector3 newPos = new Vector3(i*offsetX, j*offsetY, 0);
+					Vector3 newPos = new Vector3(i*offsetX + offsetSpawnXStart, j*offsetY + offsetSpawnYStart, 0);
 					GameObject _tileObj = Instantiate(tileObj, newPos, transform.rotation);
 					SpriteRenderer sr = _tileObj.GetComponent<SpriteRenderer>();
 					if (sr == null)
@@ -134,6 +139,7 @@ public class LevelGenerator : MonoBehaviour
 						col.enabled = false;*/
 					TileComponent _tile = _tileObj.GetComponent<TileComponent>();
 					_tile.SetupTileComponent(levelGrid[i, j].type, i, j);
+					levelGrid[i, j].tileComponent = _tile;
 				//}
 			}
 		}
