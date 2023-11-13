@@ -164,7 +164,8 @@ namespace Game.Enemies
                 // Deviance should not be added by weight, but instead the best path should bias towards different length of paths (shorter, mid-range, longer paths)
                     // So some enemies would want to take the longer path, while some want to take the shorter path
                 // This will have to be scaled and check against the if statement
-                
+            // TODO: In order to implement proper A Star (best first search) there would need to be the addition of heuristics that is min'd against. Aka the min heap instead of being the shortest path, would be the a best heuristic score (min(f))
+                // Everything stays the stay in terms of logic, but the sortset will be sorting based on heuristic weight. (If statement weight/distance check still stays the same), but instead it infers the next node to chose based on heuristics)
                 
             return node.weight;
         }
