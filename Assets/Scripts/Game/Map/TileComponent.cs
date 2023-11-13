@@ -6,7 +6,8 @@ using UnityEngine.EventSystems;
 public class TileComponent : MonoBehaviour, IPointerDownHandler
 {
 	public TileType type = TileType.TT_Empty;
-	public GameObject towerObj; /**< Tower currently on the tile */
+	[SerializeField]
+	private GameObject towerObj = null; /**< Tower currently on the tile */
 	public int xPos;
 	public int yPos;
 	
@@ -32,6 +33,11 @@ public class TileComponent : MonoBehaviour, IPointerDownHandler
 	public void OnPointerDown(PointerEventData eventData)
 	{
 		Debug.Log("Clicked tile x:" + xPos.ToString() + " y:" + yPos.ToString());
+		
+		if (towerObj == null)
+		{
+			towerObj = Instantiate(TowerManager.Instance.towerDictionary[TowerType.TowT_GenericTurret], transform.position, transform.rotation);
+		}
 	}
 
 	private void AddPhysics2DRaycaster()
