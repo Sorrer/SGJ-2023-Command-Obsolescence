@@ -1,4 +1,5 @@
 using System;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class EnemyBehaviour : MonoBehaviour
@@ -15,10 +16,11 @@ public class EnemyBehaviour : MonoBehaviour
     public Transform EndTarget;
     public Transform RootPosition;
     public float StopRadius;
-    public bool reached; // Has destination been reached
-
+    public bool reached = false; // Has destination been reached
+    public bool attacking = false;
+    public bool attackEndTarget = false;
     [SerializeField]
-    private EnemyStates state;
+    private EnemyStates state = EnemyStates.Idle;
     
     public float WalkSpeed = 5.0f;
 
@@ -27,7 +29,8 @@ public class EnemyBehaviour : MonoBehaviour
         switch (state)
         {
             case EnemyStates.Attacking:
-                
+                // TODO: Do stuff with attack
+                    // Chunk health every so often
                 break;
             case EnemyStates.Walking:
                 var currentPosition = RootPosition.position;
@@ -40,8 +43,16 @@ public class EnemyBehaviour : MonoBehaviour
                 {
                     // We have finished our walking
                     // TODO: If this enemy wants to attack, then we would have to specify what happens during an attack here
-                    this.state = EnemyStates.Idle;
                     this.reached = true;
+
+                    if (attackEndTarget)
+                    {
+                        this.state = EnemyStates.Attacking;
+                    }
+                    else
+                    {
+                        this.state = EnemyStates.Idle;
+                    }
                     break;
                 }
 
@@ -69,6 +80,14 @@ public class EnemyBehaviour : MonoBehaviour
         EndTarget = target;
         this.state = EnemyStates.Walking;
         this.reached = false;
+    }
+
+    public void SetAttackTarget(Transform target)
+    {
+        // TODO: Set what the end target's entity is so this can attack it properly
+        EndTarget = target;
+        this.state = EnemyStates.Walking;
+        attackEndTarget = true;
     }
 
 }
