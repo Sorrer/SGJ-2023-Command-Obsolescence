@@ -40,7 +40,8 @@ public class Tower : MonoBehaviour, IPointerDownHandler
 	 */
 	public virtual void OnPointerDown(PointerEventData eventData)
 	{
-
+		Debug.Log("Clicked on name:" + gameObject.name);
+		// maybe remove these on click functions... they might interfere with the on click functions fired by the tiles
 	}
 
 	/**

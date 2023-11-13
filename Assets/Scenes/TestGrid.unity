@@ -188,6 +188,8 @@ GameObject:
   - component: {fileID: 290352156}
   - component: {fileID: 290352155}
   - component: {fileID: 290352158}
+  - component: {fileID: 290352160}
+  - component: {fileID: 290352159}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -313,6 +315,56 @@ MonoBehaviour:
     mipBias: 0
     varianceClampScale: 0.9
     contrastAdaptiveSharpening: 0
+--- !u!114 &290352159
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 290352154}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fc649346bb06a8f48b0761549e294ccb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  xMax: 10
+  yMax: 10
+  xMin: -10
+  yMin: -10
+  minOrthographicSize: 3
+  maxOrthographicSize: 10
+  scrollSensitivity: 2
+  scrollSpeed: 30
+  moveSpeed: 0.125
+  horizontalAxis: Horizontal
+  verticalAxis: Vertical
+--- !u!50 &290352160
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 290352154}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &1086455794
 GameObject:
   m_ObjectHideFlags: 0
