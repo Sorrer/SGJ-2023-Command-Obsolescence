@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -15,27 +16,33 @@ public class LevelGenerator : MonoBehaviour
 	[SerializeField]
 	private int levelHeight = 15;
 
-	private bool canGenerateLevel = true;
+	[Serializable]
+	public struct TilemapEntry
+	{
+		public TileType type;
+		public Sprite sprite;
+	}
+	[SerializeField]
+	private TilemapEntry[] testTilemap;
+	public Dictionary<TileType, Sprite> testTilemapDict;
 
 	// Start is called before the first frame update
 	void Start()
 	{
+		testTilemapDict = new Dictionary<TileType, Sprite>();
+		foreach (TilemapEntry te in testTilemap)
+		{
+			testTilemapDict.Add(te.type, te.sprite);
+		}
+
 		LevelGridInit();
-		// test, delete later
-		levelGrid[0, 0].type = TileType.TT_Floor;
-		levelGrid[1, 1].type = TileType.TT_Floor;
-		levelGrid[2, 2].type = TileType.TT_Floor;
-		//SpawnTileObjects();
+		SpawnTileObjects();
 	}
 
 	// Update is called once per frame
 	void Update()
 	{
-		if (Input.GetMouseButtonDown(1) && canGenerateLevel)
-		{
-			SpawnTileObjects();
-			canGenerateLevel = false;
-		}
+
 	}
 
 	/**
@@ -111,20 +118,22 @@ public class LevelGenerator : MonoBehaviour
 					//Vector3 newPos = new Vector3(i+tileObj.GetComponent<SpriteRenderer>().sprite.rect.width, 
 					//	j+tileObj.GetComponent<SpriteRenderer>().sprite.rect.height, 0);
 					Vector3 newPos = new Vector3(i*offsetX, j*offsetY, 0);
-					GameObject _tile = Instantiate(tileObj, newPos, transform.rotation);
-					SpriteRenderer sr = _tile.GetComponent<SpriteRenderer>();
+					GameObject _tileObj = Instantiate(tileObj, newPos, transform.rotation);
+					SpriteRenderer sr = _tileObj.GetComponent<SpriteRenderer>();
 					if (sr == null)
 						Debug.Log("sr was null!");
-					sr.sprite = TilemapManager.Instance.testTilemapDict[levelGrid[i, j].type];
-					_tile.transform.parent = levelGenerator.transform;
-					Collider2D col = _tile.GetComponent<Collider2D>();
-					if (levelGrid[i, j].type == TileType.TT_Wall) // Enable colliders for walls
+					sr.sprite = testTilemapDict[levelGrid[i, j].type];
+					_tileObj.transform.parent = levelGenerator.transform;
+					Collider2D col = _tileObj.GetComponent<Collider2D>();
+					/*if (levelGrid[i, j].type == TileType.TT_Wall) // Enable colliders for walls
 					{
 						col.enabled = true;
-						_tile.tag = "Wall";
+						_tileObj.tag = "Wall";
 					}
 					else
-						col.enabled = false;
+						col.enabled = false;*/
+					TileComponent _tile = _tileObj.GetComponent<TileComponent>();
+					_tile.SetupTileComponent(levelGrid[i, j].type, i, j);
 				//}
 			}
 		}

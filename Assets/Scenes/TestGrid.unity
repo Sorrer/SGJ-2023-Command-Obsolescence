@@ -152,6 +152,13 @@ MonoBehaviour:
   tileObj: {fileID: 1419944257841796828, guid: 96d02b0a1cc8b9a4f9e33b3c25ab3176, type: 3}
   levelWidth: 15
   levelHeight: 15
+  testTilemap:
+  - type: 0
+    sprite: {fileID: -434777327421271562, guid: 0594ef3f861de564f891e13f8c4b6efa, type: 3}
+  - type: 1
+    sprite: {fileID: 6216195340116013520, guid: 0594ef3f861de564f891e13f8c4b6efa, type: 3}
+  - type: 2
+    sprite: {fileID: 3255160988658757246, guid: 0594ef3f861de564f891e13f8c4b6efa, type: 3}
 --- !u!4 &84593916
 Transform:
   m_ObjectHideFlags: 0
@@ -161,7 +168,7 @@ Transform:
   m_GameObject: {fileID: 84593914}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -5, y: -5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -304,7 +311,7 @@ MonoBehaviour:
     mipBias: 0
     varianceClampScale: 0.9
     contrastAdaptiveSharpening: 0
---- !u!1 &1661265993
+--- !u!1 &1699461147
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -312,41 +319,58 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 1661265995}
-  - component: {fileID: 1661265994}
+  - component: {fileID: 1699461150}
+  - component: {fileID: 1699461149}
+  - component: {fileID: 1699461148}
   m_Layer: 0
-  m_Name: TilemapManager
+  m_Name: EventSystem
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1661265994
+--- !u!114 &1699461148
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1661265993}
+  m_GameObject: {fileID: 1699461147}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 85355afacd667914cbf508de63d99166, type: 3}
+  m_Script: {fileID: 11500000, guid: 4f231c4fb786f3946a6b90b886c48677, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  testTilemap:
-  - type: 0
-    sprite: {fileID: -434777327421271562, guid: 0594ef3f861de564f891e13f8c4b6efa, type: 3}
-  - type: 1
-    sprite: {fileID: 6216195340116013520, guid: 0594ef3f861de564f891e13f8c4b6efa, type: 3}
-  - type: 2
-    sprite: {fileID: 3255160988658757246, guid: 0594ef3f861de564f891e13f8c4b6efa, type: 3}
---- !u!4 &1661265995
+  m_SendPointerHoverToParent: 1
+  m_HorizontalAxis: Horizontal
+  m_VerticalAxis: Vertical
+  m_SubmitButton: Submit
+  m_CancelButton: Cancel
+  m_InputActionsPerSecond: 10
+  m_RepeatDelay: 0.5
+  m_ForceModuleActive: 0
+--- !u!114 &1699461149
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1699461147}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 76c392e42b5098c458856cdf6ecaaaa1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_FirstSelected: {fileID: 0}
+  m_sendNavigationEvents: 1
+  m_DragThreshold: 10
+--- !u!4 &1699461150
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1661265993}
+  m_GameObject: {fileID: 1699461147}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
@@ -360,5 +384,5 @@ SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 290352157}
-  - {fileID: 1661265995}
   - {fileID: 84593916}
+  - {fileID: 1699461150}

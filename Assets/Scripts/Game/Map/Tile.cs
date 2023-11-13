@@ -14,9 +14,8 @@ public enum TileType
 public class Tile// : MonoBehaviour
 {
 	public TileType type = TileType.TT_Empty;
-    public GameObject towerObj; /**< Tower currently on the tile */
-    public int xPos;
-    public int yPos;
+	public int xPos;
+	public int yPos;
 
 	// Start is called before the first frame update
 	/*void Start()
@@ -33,7 +32,7 @@ public class Tile// : MonoBehaviour
 	public void SetupTile(TileType tt, int x, int y)
 	{
 		type = tt;
-        xPos = x;
-        yPos = y;
+		xPos = x;
+		yPos = y;
 	}
 }
