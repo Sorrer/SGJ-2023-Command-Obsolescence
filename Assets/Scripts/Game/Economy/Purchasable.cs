@@ -11,4 +11,7 @@ public class Purchasable : ScriptableObject
     public int BasePrice;
     [Tooltip("The list of prices for each level of upgrade available for this purchasable.")]
     public int[] UpgradePrices;   
+    [TextArea(minLines: 10, maxLines: 30)]
+    [Tooltip("The description of the item in the shop.")]
+    public string Description;
 }

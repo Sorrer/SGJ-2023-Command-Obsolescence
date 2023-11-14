@@ -15,3 +15,4 @@ MonoBehaviour:
   Name: C
   BasePrice: 100
   UpgradePrices: 
+  Description: Test Description
