@@ -6,9 +6,9 @@ using UnityEngine;
 public class Purchasable : ScriptableObject
 {
     [Tooltip("The name of the purchasable.")]
-    public readonly string Name;
+    public string Name;
     [Tooltip("The base price of the purchasable.")]
-    public readonly int BasePrice;
+    public int BasePrice;
     [Tooltip("The list of prices for each level of upgrade available for this purchasable.")]
-    public readonly int[] UpgradePrices;   
+    public int[] UpgradePrices;   
 }
