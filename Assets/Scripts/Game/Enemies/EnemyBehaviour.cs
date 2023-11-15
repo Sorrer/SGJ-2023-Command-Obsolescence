@@ -1,4 +1,6 @@
 using System;
+using System.Collections.Generic;
+using Game.Enemies;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -88,6 +90,14 @@ public class EnemyBehaviour : MonoBehaviour
         EndTarget = target;
         this.state = EnemyStates.Walking;
         attackEndTarget = true;
+    }
+
+
+    private int counter = 0;
+    public void SetPath(List<Vector2Int> path)
+    {
+        counter++;
+        Debug.Log("Got new path " + path + " processed " + counter + " jobs");
     }
 
 }

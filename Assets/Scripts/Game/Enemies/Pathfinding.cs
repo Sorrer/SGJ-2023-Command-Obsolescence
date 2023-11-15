@@ -7,7 +7,7 @@ using UnityEngine;
 
 namespace Game.Enemies
 {
-    public class PathFindingScheduler : MonoBehaviour
+    public class Pathfinding : MonoBehaviour
     {
         public List<EnemyBehaviour> enemyBehaviours = new List<EnemyBehaviour>();
         
@@ -34,6 +34,11 @@ namespace Game.Enemies
             // 7 8 9
             public TempNode nextNode = null;
             public IPriorityQueueHandle<TempNode> handler;
+
+            public Vector2Int GetPosition()
+            {
+                return new Vector2Int(x, y);
+            }
             
             public override bool Equals(object obj)
             {
@@ -89,22 +94,23 @@ namespace Game.Enemies
                     }
                 }
             }
+            //Debug.Log(xWidth + " " + yHeight + " " + startingPosition);
             unvisitedNodes.Add(ref world[startingPosition.x, startingPosition.y].handler, world[startingPosition.x, startingPosition.y]);
 
             bool found = false;
             
             while (unvisitedNodes.Count > 0)
             {
-                Debug.Log("DOING AN ITERATION");
+                //Debug.Log("DOING AN ITERATION");
                 // Traverse the shortest constant path
                 var node = unvisitedNodes.DeleteMin();
-                Debug.Log("Unvisited count: " + unvisitedNodes.Count);
+                //Debug.Log("Unvisited count: " + unvisitedNodes.Count);
                 node.visited = true;
 
                 
                 if (node.x == finishPosition.x && node.y == finishPosition.y)
                 {
-                    Debug.Log("Found solution");
+                    //Debug.Log("Found solution");
                     // Solution found
                     found = true;
                     break;
@@ -177,7 +183,7 @@ namespace Game.Enemies
             }
             
             var distScore = world[curX, curY].distScore + GetWeight(world[neighborX, neighborY]) + addedWeight;
-            Debug.Log($"{world[curX, curY].distScore} - {world[neighborX, neighborY].distScore} ({curX},{curY}) ({neighborX},{neighborY}) {distScore}");
+            //Debug.Log($"{world[curX, curY].distScore} - {world[neighborX, neighborY].distScore} ({curX},{curY}) ({neighborX},{neighborY}) {distScore}");
             if (distScore < world[neighborX, neighborY].distScore)
             {
                 // Resort this item, since it has a new weight now (2(log n), but this will happen o(b) b=best path length)

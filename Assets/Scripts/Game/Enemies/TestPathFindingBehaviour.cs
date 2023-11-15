@@ -11,12 +11,12 @@ namespace Game.Enemies
         public int width = 15;
         public int height = 15;
 
-        private PathFindingScheduler.TempNode[,] cleanMaze = null;
-        private PathFindingScheduler.TempNode[,] maze = null;
+        private Pathfinding.TempNode[,] cleanMaze = null;
+        private Pathfinding.TempNode[,] maze = null;
         private Vector2Int startPosition;
         private Vector2Int endPosition;
-        private List<PathFindingScheduler.TempNode> path;
-        private List<PathFindingScheduler.TempNode> bestPath;
+        private List<Pathfinding.TempNode> path;
+        private List<Pathfinding.TempNode> bestPath;
 
         private void Start()
         {
@@ -33,14 +33,14 @@ namespace Game.Enemies
         {
 
             List<Vector2Int> validPosition = new List<Vector2Int>();
-            PathFindingScheduler.TempNode[,] nodes = new PathFindingScheduler.TempNode[width, height];
-            PathFindingScheduler.TempNode[,] cleanNodes = new PathFindingScheduler.TempNode[width, height];
+            Pathfinding.TempNode[,] nodes = new Pathfinding.TempNode[width, height];
+            Pathfinding.TempNode[,] cleanNodes = new Pathfinding.TempNode[width, height];
             for(int x = 0; x < width; x++)
             {
                 for (int y = 0; y < height; y++)
                 {
                     var val =  Random.value > 0.8 ? -1 : 1 + Random.Range(2,1000);
-                    var node = new PathFindingScheduler.TempNode();
+                    var node = new Pathfinding.TempNode();
                     node.x = x;
                     node.y = y;
                     node.weight = val;
@@ -51,7 +51,7 @@ namespace Game.Enemies
                         validPosition.Add(new Vector2Int(x,y));
                     }
                     
-                    node = new PathFindingScheduler.TempNode();
+                    node = new Pathfinding.TempNode();
                     node.x = x;
                     node.y = y;
                     node.weight = val >= 1 ? 1 : -1;
@@ -65,11 +65,11 @@ namespace Game.Enemies
             maze = nodes;
             cleanMaze = cleanNodes;
 
-            var data = PathFindingScheduler.GeneratePath(ref maze, startPosition, endPosition);
+            var data = Pathfinding.GeneratePath(ref maze, startPosition, endPosition);
 
             path = data.path;
             
-            data = PathFindingScheduler.GeneratePath(ref cleanMaze, startPosition, endPosition);
+            data = Pathfinding.GeneratePath(ref cleanMaze, startPosition, endPosition);
 
             bestPath = data.path;
 

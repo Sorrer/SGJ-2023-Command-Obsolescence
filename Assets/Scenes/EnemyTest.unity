@@ -128,7 +128,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 892734223}
-  - component: {fileID: 892734222}
+  - component: {fileID: 892734226}
+  - component: {fileID: 892734225}
+  - component: {fileID: 892734224}
   m_Layer: 0
   m_Name: TestPathfinding
   m_TagString: Untagged
@@ -136,20 +138,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &892734222
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 892734221}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 537ffa4b4e2440409af01f3967166e33, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  width: 15
-  height: 15
 --- !u!4 &892734223
 Transform:
   m_ObjectHideFlags: 0
@@ -165,6 +153,54 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &892734224
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 892734221}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 370e164c379b4e85bed801935c0d525a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  width: 15
+  height: 15
+  enemy: {fileID: 892734226}
+  scheduler: {fileID: 892734225}
+--- !u!114 &892734225
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 892734221}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2a6cf092159e41f5bbab2fa0122e72d5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &892734226
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 892734221}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ece74a0a3014264da7940ce47daff16, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  EndTarget: {fileID: 0}
+  RootPosition: {fileID: 0}
+  StopRadius: 0
+  reached: 0
+  attacking: 0
+  attackEndTarget: 0
+  state: 2
+  WalkSpeed: 5
 --- !u!1 &1274611542
 GameObject:
   m_ObjectHideFlags: 0
