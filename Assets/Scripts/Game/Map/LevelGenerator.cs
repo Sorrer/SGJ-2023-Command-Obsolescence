@@ -5,6 +5,23 @@ using UnityEngine;
 
 public class LevelGenerator : MonoBehaviour
 {
+	//get the LevelGenerator instance
+	private static LevelGenerator instance;
+	public static LevelGenerator Instance
+	{
+		get
+		{
+			if (instance == null)
+			{
+				instance = FindFirstObjectByType<LevelGenerator>();
+			}
+			return instance;
+		}
+	}
+
+	private BoxCollider2D box2d;
+	private float offsetX = 1.0f, offsetY = 1.0f;
+
 	[SerializeField]
 	private GameObject levelGenerator;
 	[SerializeField]
@@ -16,10 +33,10 @@ public class LevelGenerator : MonoBehaviour
 	[SerializeField]
 	private int levelHeight = 15;
 
-	[SerializeField]
-	private float offsetSpawnXStart = -15.0f;
-	[SerializeField]
-	private float offsetSpawnYStart = -15.0f;
+	//[SerializeField]
+	//private float offsetSpawnXStart = -15.0f;
+	//[SerializeField]
+	//private float offsetSpawnYStart = -15.0f;
 
 	[Serializable]
 	public struct TilemapEntry
@@ -38,6 +55,14 @@ public class LevelGenerator : MonoBehaviour
 		foreach (TilemapEntry te in testTilemap)
 		{
 			testTilemapDict.Add(te.type, te.sprite);
+		}
+
+		if (tileObj)
+			box2d = tileObj.GetComponent<BoxCollider2D>();
+		if (box2d != null)
+		{
+			offsetX = box2d.size.x;
+			offsetY = box2d.size.y;
 		}
 
 		LevelGridInit();
@@ -113,16 +138,9 @@ public class LevelGenerator : MonoBehaviour
 			{
 				//if (levelGrid[i, j].type == TileType.TT_Floor || levelGrid[i, j].type == TileType.TT_Wall)
 				//{
-					BoxCollider2D box2d = tileObj.GetComponent<BoxCollider2D>();
-					float offsetX = 1.0f, offsetY = 1.0f;
-					if (box2d != null)
-					{
-						offsetX = box2d.size.x/* * 2*/;
-						offsetY = box2d.size.y;
-					}
 					//Vector3 newPos = new Vector3(i+tileObj.GetComponent<SpriteRenderer>().sprite.rect.width, 
 					//	j+tileObj.GetComponent<SpriteRenderer>().sprite.rect.height, 0);
-					Vector3 newPos = new Vector3(i*offsetX + offsetSpawnXStart, j*offsetY + offsetSpawnYStart, 0);
+					Vector3 newPos = new Vector3(i*offsetX /*+ offsetSpawnXStart*/, j*offsetY /*+ offsetSpawnYStart*/, 0);
 					GameObject _tileObj = Instantiate(tileObj, newPos, transform.rotation);
 					SpriteRenderer sr = _tileObj.GetComponent<SpriteRenderer>();
 					if (sr == null)
@@ -140,8 +158,37 @@ public class LevelGenerator : MonoBehaviour
 					TileComponent _tile = _tileObj.GetComponent<TileComponent>();
 					_tile.SetupTileComponent(levelGrid[i, j].type, i, j);
 					levelGrid[i, j].tileComponent = _tile;
+
+					// Test functions
+					//Debug.Log("Testing tile i:" + i.ToString() + " j:" + j.ToString() + " at pos:" + _tile.transform.position.ToString());
+					//Vector2Int gridPos = GetGridPosition(_tile.transform.position);
+					//Debug.Log("Calculated grid pos:" + gridPos.ToString());
+					//Vector3 worldPos = GetWorldPosition(gridPos);
+					//Debug.Log("Calculated world pos:" + worldPos.ToString());
 				//}
 			}
 		}
+	}
+
+	/**
+	 * @brief Given coords in world position, calculate which Tile on the grid it would be a part of, in x,y coords.
+	 * @brief worldPosition Vector3 of the object's world position (not local position relative to its parent).
+	 * @returns Vector2Int of (x,y) coords on the grid.
+	 */
+	public Vector2Int GetGridPosition(Vector3 worldPosition)
+	{
+		Vector2Int value = new((int)(worldPosition.x * 100) / (int)(offsetX * 100), (int)(worldPosition.y * 100) / (int)(offsetY * 100));
+		return value;
+	}
+
+	/**
+	 * @brief Given coords on the grid, calculate the world position that Tile would reside on.
+	 * @param gridPosition Vector2Int of (x,y) coords on the grid.
+	 * @returns Vector3 coords in world position.
+	 */
+	public Vector3 GetWorldPosition(Vector2Int gridPosition)
+	{
+		Vector3 value = new(gridPosition.x * offsetX, gridPosition.y * offsetY, 0);
+		return value;
 	}
 }

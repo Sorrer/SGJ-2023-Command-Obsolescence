@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class Projectile : MonoBehaviour
 {
-	private GameObject target = null;
+	[SerializeField]
+	private GameObject target;
 	private int power;
 	private float speed;
 
@@ -15,13 +16,13 @@ public class Projectile : MonoBehaviour
 	}
 
 	// Update is called once per frame
-	void Update()
+	void FixedUpdate()
 	{
-		if (target == null)
-			Destroy(gameObject);
-		
-		transform.position = Vector3.MoveTowards(transform.position, target.transform.position, speed * Time.deltaTime);
-		transform.LookAt(target.transform);
+		if (target != null)
+		{
+			transform.position = Vector3.MoveTowards(transform.position, target.transform.position, speed * Time.deltaTime);
+			transform.LookAt(target.transform);
+		}
 	}
 
 	public void SetupProjectile(GameObject _target, int _power, float _speed)

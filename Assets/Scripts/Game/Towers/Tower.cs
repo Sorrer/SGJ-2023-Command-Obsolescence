@@ -29,11 +29,12 @@ public class Tower : MonoBehaviour, IPointerDownHandler
 	public string towerName;		/**< String name of the tower. */
 	[SerializeField]
 	protected TowerType towerType;	/**< Type of tower. */
+	[SerializeField]
 	protected TowerState towerState;	/**< State the tower is currently in. */
 
 	[Header("Tower Settings")]
 	[SerializeField]
-	protected int towerLevel = 0;	/**< Level of tower, for upgrades. Base is level 0. */
+	protected int towerLevel;	/**< Level of tower, for upgrades. Base is level 0. */
 	[SerializeField]
 	protected int maxTowerLevel = 3; /**< Maximum level the tower can be upgraded to. */
 	[SerializeField]
@@ -45,6 +46,7 @@ public class Tower : MonoBehaviour, IPointerDownHandler
 	protected virtual void Start()
 	{
 		towerState = TowerState.TS_Idle;
+		towerLevel = 0;
 		AddPhysics2DRaycaster();
 	}
 
@@ -85,7 +87,7 @@ public class Tower : MonoBehaviour, IPointerDownHandler
 	/**
 	 * @brief Upgrades the tower by one level. Cannot go past max tower level.
 	 */
-	public void UpgradeTower()
+	public virtual void UpgradeTower()
 	{
 		if (towerLevel < maxTowerLevel)
 			towerLevel++;
@@ -118,7 +120,7 @@ public class Tower : MonoBehaviour, IPointerDownHandler
 	{
 		if (towerState == TowerState.TS_PerformingAction || towerState == TowerState.TS_Broken)
 			return; // Do not perform an action if tower is broken or is currently performing an action
-		
+
 		if (other.tag == "Enemy")
 		{
 			//EnemyBehavior eb = other.gameObject.GetComponent<EnemyBehavior>();
