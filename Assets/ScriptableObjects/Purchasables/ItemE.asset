@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: E
   BasePrice: 500
-  UpgradePrices: 
+  UpgradePrices: bc020000
   Description: "    Leo vel fringilla est ullamcorper eget nulla facilisi etiam dignissim.
     Et netus et malesuada fames ac turpis egestas maecenas. Feugiat vivamus at augue
     eget arcu dictum varius duis at. Ac tincidunt vitae semper quis lectus. Aliquet

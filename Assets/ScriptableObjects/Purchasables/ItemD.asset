@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: D
   BasePrice: 200
-  UpgradePrices: 
+  UpgradePrices: fa0000002c01000090010000
   Description: Secret!!!!

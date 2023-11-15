@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: B
   BasePrice: 50
-  UpgradePrices: 
+  UpgradePrices: 96000000
   Description: Hi.

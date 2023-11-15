@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: F
   BasePrice: 1000
-  UpgradePrices: 
+  UpgradePrices: dc050000d0070000
   Description: fuck you

@@ -27,7 +27,6 @@ public class ShopOpenClose : MonoBehaviour
 
     void Update()
     {
-        Debug.Log(_animationDirection);
         if (_animationDirection > 0)
         {
             _animationFactor += _animationSpeed * Time.deltaTime;
