@@ -28,10 +28,10 @@ public class CameraController : MonoBehaviour
 
 	[SerializeField]
 	private float moveSpeed = 0.125f;
-	[SerializeField]
-	private string horizontalAxis = "Horizontal";
-	[SerializeField]
-	private string verticalAxis = "Vertical";
+	//[SerializeField]
+	//private string horizontalAxis = "Horizontal";
+	//[SerializeField]
+	//private string verticalAxis = "Vertical";
 
 	// Start is called before the first frame update
 	void Start()

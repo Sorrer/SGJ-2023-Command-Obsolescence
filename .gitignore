@@ -24,6 +24,7 @@
 
 # VS Code cache directory
 .vscode/
+.vscode - Copy/
 
 # Gradle cache directory
 .gradle/

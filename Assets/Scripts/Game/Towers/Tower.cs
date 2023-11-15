@@ -15,21 +15,43 @@ public enum TowerType
 	TowT_MissleLauncher = 5
 };
 
+[Serializable]
+public enum TowerState
+{
+	TS_Idle = 0,
+	TS_PerformingAction = 1,
+	TS_Broken = 2
+}
+
 public class Tower : MonoBehaviour, IPointerDownHandler
 {
-	// Internal values
+	[Header("Internal Values")]
 	public string towerName;		/**< String name of the tower. */
 	[SerializeField]
 	protected TowerType towerType;	/**< Type of tower. */
+	[SerializeField]
+	protected TowerState towerState;	/**< State the tower is currently in. */
+
+	[Header("Tower Settings")]
+	[SerializeField]
+	protected int towerLevel;	/**< Level of tower, for upgrades. Base is level 0. */
+	[SerializeField]
+	protected int maxTowerLevel = 3; /**< Maximum level the tower can be upgraded to. */
+	[SerializeField]
+	protected GameObject projectileObj;	/**< Projectile spawned by the tower.*/
+	[SerializeField]
+	protected bool destroyOnBreak = false;	/**< Whether or not to delete self after the tower performs an action. */
 	
 	// Start is called before the first frame update
 	protected virtual void Start()
 	{
+		towerState = TowerState.TS_Idle;
+		towerLevel = 0;
 		AddPhysics2DRaycaster();
 	}
 
 	// Update is called once per frame
-	void Update()
+	protected virtual void Update()
 	{
 		
 	}
@@ -47,17 +69,38 @@ public class Tower : MonoBehaviour, IPointerDownHandler
 	/**
 	 * @brief Overrideable function proto for executing the action of a tower. Such as firing a bullet, etc.
 	 */
-	public virtual void ExecuteTowerAction()
+	public virtual void ExecuteTowerAction(GameObject target)
 	{
-
+		towerState = TowerState.TS_PerformingAction;
 	}
 
 	/**
-	 * @brief Overrideable function proto for an action that can occur when the tower is destroyed.
+	 * @brief Resets a tower back to the "TS_Idle" state after a delay.
+	 * @param waitTime Time to wait before going to the "TS_Idle" state, in seconds.
 	 */
-	public virtual void OnTowerDestroy()
+	protected IEnumerator ResetTower(float waitTime)
 	{
+		yield return new WaitForSeconds(waitTime);
+		towerState = TowerState.TS_Idle;
+	} 
 
+	/**
+	 * @brief Upgrades the tower by one level. Cannot go past max tower level.
+	 */
+	public virtual void UpgradeTower()
+	{
+		if (towerLevel < maxTowerLevel)
+			towerLevel++;
+	}
+
+	/**
+	 * @brief Overrideable function proto for an action that can occur when the tower is broken.
+	 */
+	public virtual void BreakTower()
+	{
+		towerState = TowerState.TS_Broken;
+		if (destroyOnBreak)
+			Destroy(gameObject);
 	}
 
 	/**
@@ -70,6 +113,22 @@ public class Tower : MonoBehaviour, IPointerDownHandler
 		if (physicsRaycaster == null)
 		{
 			Camera.main.gameObject.AddComponent<Physics2DRaycaster>();
+		}
+	}
+
+	private void OnTriggerEnter2D(Collider2D other)
+	{
+		if (towerState == TowerState.TS_PerformingAction || towerState == TowerState.TS_Broken)
+			return; // Do not perform an action if tower is broken or is currently performing an action
+
+		if (other.tag == "Enemy")
+		{
+			//EnemyBehavior eb = other.gameObject.GetComponent<EnemyBehavior>();
+			//if (eb != null)
+			//{
+			//	
+			//}
+			ExecuteTowerAction(other.gameObject);
 		}
 	}
 }
