@@ -3899,6 +3899,7 @@ GameObject:
   - component: {fileID: 3022356067443175336}
   - component: {fileID: 2650521869226065269}
   - component: {fileID: 8164428000475549356}
+  - component: {fileID: 6394314794197428748}
   m_Layer: 5
   m_Name: Balance
   m_TagString: Untagged
@@ -4024,6 +4025,19 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &6394314794197428748
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8649879438005931377}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ef2e6e2f52715e84daa1619fa2c6a9a6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _textbox: {fileID: 8164428000475549356}
 --- !u!1 &9089090352827246817
 GameObject:
   m_ObjectHideFlags: 0
