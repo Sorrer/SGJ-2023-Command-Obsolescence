@@ -36,6 +36,8 @@ public class GenericTurret : Tower
 			GameObject newProjectileObj = Instantiate(projectileObj, transform.position, transform.rotation);
 			if (newProjectileObj.TryGetComponent<Projectile>(out var p))
 				p.SetupProjectile(target, powerLevels[towerLevel], speedLevels[towerLevel]);
+			BreakTower();
+			StartCoroutine(ResetTower(2.0f));
 		}
 	}
 

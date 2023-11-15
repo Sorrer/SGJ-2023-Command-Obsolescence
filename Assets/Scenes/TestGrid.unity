@@ -152,8 +152,6 @@ MonoBehaviour:
   tileObj: {fileID: 1419944257841796828, guid: 96d02b0a1cc8b9a4f9e33b3c25ab3176, type: 3}
   levelWidth: 15
   levelHeight: 15
-  offsetSpawnXStart: 0
-  offsetSpawnYStart: 0
   testTilemap:
   - type: 0
     sprite: {fileID: -434777327421271562, guid: 0594ef3f861de564f891e13f8c4b6efa, type: 3}
@@ -444,10 +442,12 @@ MonoBehaviour:
   towerName: GenericTurret
   towerType: 1
   towerState: 0
+  idleColor: {r: 1, g: 1, b: 1, a: 1}
+  brokenColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
   towerLevel: 1
   maxTowerLevel: 3
   projectileObj: {fileID: 3160107558040692346, guid: 9baba51819a4d4049b7e13881e255b21, type: 3}
-  destroyOnBreak: 1
+  destroyOnBreak: 0
   powerLevels: 01000000020000000300000004000000
   speedLevels: 01000000020000000300000004000000
   rangeLevels: 06000000080000000a0000000c000000
