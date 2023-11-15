@@ -1,0 +1,39 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: af2870f903b8f754e9cbdd48ef954816, type: 3}
+  m_Name: ItemE
+  m_EditorClassIdentifier: 
+  Name: E
+  BasePrice: 500
+  UpgradePrices: bc020000
+  Description: "    Leo vel fringilla est ullamcorper eget nulla facilisi etiam dignissim.
+    Et netus et malesuada fames ac turpis egestas maecenas. Feugiat vivamus at augue
+    eget arcu dictum varius duis at. Ac tincidunt vitae semper quis lectus. Aliquet
+    lectus proin nibh nisl. Nam libero justo laoreet sit amet cursus sit amet. Maecenas
+    volutpat blandit aliquam etiam. Tortor consequat id porta nibh venenatis cras
+    sed felis eget. Nibh praesent tristique magna sit amet purus gravida. Et leo
+    duis ut diam quam nulla porttitor. Est velit egestas dui id ornare arcu odio
+    ut sem. Ultrices gravida dictum fusce ut placerat orci nulla pellentesque.     
+    \n    Id neque aliquam vestibulum morbi blandit cursus risus at. Hendrerit gravida
+    rutrum quisque non. Risus at ultrices mi tempus. Vitae ultricies leo integer
+    malesuada nunc vel risus commodo. Aliquet lectus proin nibh nisl condimentum
+    id venenatis a. Scelerisque varius morbi enim nunc faucibus a. Sit amet est placerat
+    in egestas erat imperdiet. Neque convallis a cras semper auctor neque vitae.
+    Egestas purus viverra accumsan in nisl nisi scelerisque eu ultrices. Sit amet
+    commodo nulla facilisi nullam. At quis risus sed vulputate odio ut enim. Ut sem
+    viverra aliquet eget sit. Ornare lectus sit amet est placerat in egestas erat.
+    Leo urna molestie at elementum eu facilisis sed odio morbi. Nulla pharetra diam
+    sit amet nisl suscipit adipiscing bibendum. Tempus urna et pharetra pharetra
+    massa massa ultricies mi. Ridiculus mus mauris vitae ultricies leo integer malesuada.
+    Dui accumsan sit amet nulla facilisi. Pulvinar neque laoreet suspendisse interdum
+    consectetur libero id faucibus nisl."
+  StoreSprite: {fileID: -2427832084704946237, guid: 71b3af72e0f774e418956de5c0ff9aaf, type: 3}
