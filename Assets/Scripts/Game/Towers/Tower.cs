@@ -32,7 +32,7 @@ public enum TowerTargetPriority
 	TTP_Close = 3
 }
 
-public class Tower : MonoBehaviour, IPointerDownHandler
+public class Tower : MonoBehaviour/*, IPointerDownHandler*/
 {
 	[Header("Internal Values")]
 	public string towerName;		/**< String name of the tower. */
@@ -88,11 +88,11 @@ public class Tower : MonoBehaviour, IPointerDownHandler
 	 * @brief Function that gets fired when the mouse clicks on this object.
 	 * @param eventData Idk man!
 	 */
-	public virtual void OnPointerDown(PointerEventData eventData)
+	/*public virtual void OnPointerDown(PointerEventData eventData)
 	{
 		Debug.Log("Clicked on name:" + gameObject.name);
 		// maybe remove these on click functions... they might interfere with the on click functions fired by the tiles
-	}
+	}*/
 
 	/**
 	 * @brief Overrideable function proto for executing the action of a tower. Such as firing a bullet, etc.

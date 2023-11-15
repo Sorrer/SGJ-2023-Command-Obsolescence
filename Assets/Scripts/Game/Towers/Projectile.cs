@@ -4,25 +4,33 @@ using UnityEngine;
 
 public class Projectile : MonoBehaviour
 {
+	//protected Rigidbody2D rb;
+
 	[SerializeField]
-	private GameObject target;
-	private int power;
-	private float speed;
+	protected GameObject target;
+	protected int power;
+	protected float speed;
+	[SerializeField]
+	protected float timeAlive;
 
 	// Start is called before the first frame update
-	void Start()
+	protected virtual void Start()
 	{
-		
+		//rb = GetComponent<Rigidbody2D>();
 	}
 
 	// Update is called once per frame
-	void FixedUpdate()
+	protected virtual void FixedUpdate()
 	{
 		if (target != null)
 		{
 			transform.position = Vector3.MoveTowards(transform.position, target.transform.position, speed * Time.deltaTime);
 			transform.LookAt(target.transform);
 		}
+
+		timeAlive -= Time.deltaTime;
+		if (timeAlive <= 0.0f)
+			Destroy(gameObject);
 	}
 
 	public void SetupProjectile(GameObject _target, int _power, float _speed)
