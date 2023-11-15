@@ -19,6 +19,8 @@ public class ShopLoadDetails : MonoBehaviour
     [SerializeField] private PriceInfoItem _priceInfoPrefab;
     [Tooltip("The UI element under which the price info entries will be added.")]
     [SerializeField] private RectTransform _priceInfoArea;
+    [Tooltip("The image containing the sprite of the item.")]
+    [SerializeField] private Image _image;
 
     public void LoadDetails(Purchasable item)
     {
@@ -26,6 +28,7 @@ public class ShopLoadDetails : MonoBehaviour
         _subheader.text = item.Name;
         _description.text = item.Description;
         _descriptionScroll.value = 1;
+        _image.sprite = item.StoreSprite;
 
         int childCount = _priceInfoArea.childCount;
         Debug.Log(childCount);

@@ -16,3 +16,4 @@ MonoBehaviour:
   BasePrice: 200
   UpgradePrices: fa0000002c01000090010000
   Description: Secret!!!!
+  StoreSprite: {fileID: -2427832084704946237, guid: 71b3af72e0f774e418956de5c0ff9aaf, type: 3}

@@ -14,4 +14,6 @@ public class Purchasable : ScriptableObject
     [TextArea(minLines: 10, maxLines: 30)]
     [Tooltip("The description of the item in the shop.")]
     public string Description;
+    [Tooltip("The sprite that will be used for this item in the store.")]
+    public Sprite StoreSprite;
 }

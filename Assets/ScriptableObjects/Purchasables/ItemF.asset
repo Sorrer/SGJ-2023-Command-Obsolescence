@@ -16,3 +16,4 @@ MonoBehaviour:
   BasePrice: 1000
   UpgradePrices: dc050000d0070000
   Description: fuck you
+  StoreSprite: {fileID: -2550837036898868518, guid: 3dc3906f6347f4d419033922bf6fad6e, type: 3}
