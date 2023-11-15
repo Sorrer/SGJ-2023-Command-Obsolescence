@@ -10,7 +10,7 @@ namespace Game.Enemies
     {
         public int width;
         public int height;
-        public EnemyBehaviour enemy;
+        public EnemyPathProcesser enemy;
         public EnemyPathScheduler scheduler;
 
         private void FixedUpdate()
@@ -37,7 +37,7 @@ namespace Game.Enemies
                     node.x = x;
                     node.y = y;
                     node.weight = val;
-                    nodes[x + y  * height] = node;
+                    nodes[x + y  * width] = node;
 
                     if (node.weight >= 1)
                     {

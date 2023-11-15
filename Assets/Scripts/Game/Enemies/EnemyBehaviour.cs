@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Game.Enemies;
 using Unity.VisualScripting;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class EnemyBehaviour : MonoBehaviour
 {
@@ -15,7 +16,7 @@ public class EnemyBehaviour : MonoBehaviour
         Idle
     }
 
-    public Transform EndTarget;
+    public Vector3 EndTargetPosition;
     public Transform RootPosition;
     public float StopRadius;
     public bool reached = false; // Has destination been reached
@@ -25,6 +26,17 @@ public class EnemyBehaviour : MonoBehaviour
     private EnemyStates state = EnemyStates.Idle;
     
     public float WalkSpeed = 5.0f;
+
+    private void Awake()
+    {
+        var sprite = this.GetComponent<SpriteRenderer>();
+        if (sprite)
+        {
+            sprite.color = Random.ColorHSV();
+        }
+
+        this.WalkSpeed = 0.5f + (Random.value * 5);
+    }
 
     public void Update()
     {
@@ -36,7 +48,7 @@ public class EnemyBehaviour : MonoBehaviour
                 break;
             case EnemyStates.Walking:
                 var currentPosition = RootPosition.position;
-                var endGoalPosition = EndTarget.position;
+                var endGoalPosition = EndTargetPosition;
 
                 var directionVector = endGoalPosition - currentPosition;
                 var mag = directionVector.magnitude;
@@ -77,9 +89,9 @@ public class EnemyBehaviour : MonoBehaviour
     /// Used by an exterior system to plan this enemy's path
     /// </summary>
     /// <param name="target"></param>
-    public void SetWalkTarget(Transform target)
+    public void SetWalkTarget(Vector2 position, Transform target = null)
     {
-        EndTarget = target;
+        EndTargetPosition = position;
         this.state = EnemyStates.Walking;
         this.reached = false;
     }
@@ -87,7 +99,7 @@ public class EnemyBehaviour : MonoBehaviour
     public void SetAttackTarget(Transform target)
     {
         // TODO: Set what the end target's entity is so this can attack it properly
-        EndTarget = target;
+        EndTargetPosition= target.position; // TODO: Change this line
         this.state = EnemyStates.Walking;
         attackEndTarget = true;
     }
@@ -100,4 +112,8 @@ public class EnemyBehaviour : MonoBehaviour
         Debug.Log("Got new path " + path + " processed " + counter + " jobs");
     }
 
+    public Vector2Int GetGridPosition()
+    {
+        return new Vector2Int(Mathf.FloorToInt(this.transform.position.x), Mathf.FloorToInt(this.transform.position.y));
+    }
 }

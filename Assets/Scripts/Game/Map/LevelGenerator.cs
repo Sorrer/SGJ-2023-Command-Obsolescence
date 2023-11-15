@@ -144,4 +144,16 @@ public class LevelGenerator : MonoBehaviour
 			}
 		}
 	}
+
+
+	public int GetWidth()
+	{
+		return levelWidth;
+	}
+	public int GetHeight()
+	{
+		return levelWidth;
+	}
+
+	
 }

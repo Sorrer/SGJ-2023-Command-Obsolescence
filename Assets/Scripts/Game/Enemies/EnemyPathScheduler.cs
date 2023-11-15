@@ -10,11 +10,27 @@ namespace Game.Enemies
 {
     public class EnemyPathScheduler : MonoBehaviour
     {
+
+        public static EnemyPathScheduler instance;
+
+        private void Awake()
+        {
+            if (instance != null)
+            {
+                DestroyImmediate(this);   
+                Debug.LogError("Found multiple enemy path schedulers, please only have one");
+            }
+            else
+            {
+                instance = this;
+            }
+        }
+
         public Queue<ScheduledJob> jobs = new Queue<ScheduledJob>();
         
         public struct ScheduledJob
         {
-            public EnemyBehaviour target;
+            public EnemyPathProcesser target;
             public ProcessEnemyPathJob job;
             public NativeList<Vector2Int> results;
             public NativeArray<MapInfo.TileInfo> tiles;
@@ -57,24 +73,24 @@ namespace Game.Enemies
                         Pathfinding.TempNode newNode = new Pathfinding.TempNode();
                         newNode.x = x;
                         newNode.y = y;
-                        newNode.weight = tiles[x + (y * height)].weight;
+                        newNode.weight = tiles[x + (y * width)].weight;
 
                         copiedMap[x, y] = newNode;
                     }
                 }
+
                 
                 var bestPath = Pathfinding.GeneratePath(ref copiedMap, startPosition, endPosition);
 
-                pathResults.ResizeUninitialized(bestPath.path.Count);
                 for (int i = 0; i < bestPath.path.Count; i++)
                 {
-                    pathResults.Add(bestPath.path[i].GetPosition());
+                    pathResults.Add(new Vector2Int(bestPath.path[i].x, bestPath.path[i].y));
                 }
 
             }
         }
 
-        public void Schedule(MapInfo map, EnemyBehaviour enemy, Vector2Int startPosition, Vector2Int endPosition)
+        public void Schedule(MapInfo map, EnemyPathProcesser enemy, Vector2Int startPosition, Vector2Int endPosition)
         {
             
             ScheduledJob schedule = new ScheduledJob()
@@ -103,11 +119,12 @@ namespace Game.Enemies
 
         public void Update()
         {
-            ProcessFinishedJobs();
+            ProcessJobs();
         }
 
-        public void ProcessFinishedJobs()
+        private void ProcessJobs()
         {
+            // TODO: Have jobs get scheduled here, and only allow x amount of jobs to be scheduled at a time
             Queue<ScheduledJob> toBeQueued = new Queue<ScheduledJob>();
             while (jobs.Count > 0)
             {
@@ -120,10 +137,10 @@ namespace Game.Enemies
 
                     foreach (var result in scheduledJob.results)
                     {
-                        path.Add(result);
+                        path.Add(new Vector2Int(result.x, result.y));
                     }
-                    
-                    scheduledJob.target.SetPath(path);
+
+                    scheduledJob.target.StartPath(path);
                     
                     scheduledJob.results.Dispose(); // Clean up the memory leak
                     scheduledJob.tiles.Dispose(); // Clean up the memory leak
