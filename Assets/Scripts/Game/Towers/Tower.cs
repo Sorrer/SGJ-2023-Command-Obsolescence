@@ -124,6 +124,7 @@ public class Tower : MonoBehaviour/*, IPointerDownHandler*/
 		towerState = TowerState.TS_Idle;
 		if (sr)
 			sr.color = idleColor;
+		ExecuteTowerAction();
 	} 
 
 	/**

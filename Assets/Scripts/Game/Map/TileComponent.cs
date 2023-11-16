@@ -99,6 +99,7 @@ public class TileComponent : MonoBehaviour, IPointerDownHandler
 		{
 			Camera.main.gameObject.AddComponent<Physics2DRaycaster>();
 		}
-		physicsRaycaster.eventMask = LayerMask.GetMask("Tile");
+		if (physicsRaycaster != null)
+			physicsRaycaster.eventMask = LayerMask.GetMask("Tile");
 	}
 }

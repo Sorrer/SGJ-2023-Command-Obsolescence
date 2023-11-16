@@ -510,6 +510,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: GenericTurret
       objectReference: {fileID: 0}
+    - target: {fileID: 3150720847394188103, guid: 0666e210c7beaac4ba5800afcb49b2ca, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
