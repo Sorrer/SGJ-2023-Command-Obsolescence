@@ -16,4 +16,6 @@ public class Purchasable : ScriptableObject
     public string Description;
     [Tooltip("The sprite that will be used for this item in the store.")]
     public Sprite StoreSprite;
+    [Tooltip("The GameObject prefab this item will correlate to.")]
+    public GameObject ItemObject;
 }

@@ -40,9 +40,14 @@ public class TileComponent : MonoBehaviour, IPointerDownHandler
 		
 		if (towerObj == null)
 		{
-			Vector3 newPos = new Vector3(transform.position.x, transform.position.y, transform.position.z - 0.1f);
-			towerObj = Instantiate(TowerManager.Instance.towerDictionary[TowerType.TowT_GenericTurret], newPos, transform.rotation);
-			towerObj.transform.parent = transform;
+			// Find which tower is currently selected
+			Purchasable p = ShopInventory.Instance.PurchaseCurrentSelectedItem();
+			if (p != null)
+			{
+				Vector3 newPos = new Vector3(transform.position.x, transform.position.y, transform.position.z - 0.1f);
+				towerObj = Instantiate(p.ItemObject, /*TowerManager.Instance.towerDictionary[TowerType.TowT_GenericTurret],*/ newPos, transform.rotation);
+				towerObj.transform.parent = transform;
+			}
 		}
 	}
 

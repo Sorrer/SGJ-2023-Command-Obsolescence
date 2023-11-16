@@ -30,6 +30,8 @@ public class ShopLoadDetails : MonoBehaviour
         _descriptionScroll.value = 1;
         _image.sprite = item.StoreSprite;
 
+        ShopInventory.Instance.SetCurrentSelectedItem(item);
+
         int childCount = _priceInfoArea.childCount;
         Debug.Log(childCount);
         for (int i = 0; i < childCount; i++)

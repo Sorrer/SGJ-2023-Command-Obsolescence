@@ -333,7 +333,9 @@ MonoBehaviour:
   maxOrthographicSize: 10
   scrollSensitivity: 2
   scrollSpeed: 30
+  scrollInverted: 1
   moveSpeed: 0.125
+  LockScroll: 0
 --- !u!50 &290352160
 Rigidbody2D:
   serializedVersion: 4
