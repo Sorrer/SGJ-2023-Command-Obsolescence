@@ -80,7 +80,7 @@ public class Tower : MonoBehaviour/*, IPointerDownHandler*/
 		{
 			GameObject searchTarget = GetTarget();
 			if (searchTarget != null)
-				ExecuteTowerAction(searchTarget);
+				ExecuteTowerAction();
 		}
 	}
 
@@ -97,22 +97,10 @@ public class Tower : MonoBehaviour/*, IPointerDownHandler*/
 	/**
 	 * @brief Overrideable function proto for executing the action of a tower. Such as firing a bullet, etc.
 	 */
-	public virtual void ExecuteTowerAction(GameObject target)
+	public virtual void ExecuteTowerAction()
 	{
 		towerState = TowerState.TS_PerformingAction;
 	}
-
-	/**
-	 * @brief Resets a tower back to the "TS_Idle" state after a delay.
-	 * @param waitTime Time to wait before going to the "TS_Idle" state, in seconds.
-	 */
-	protected IEnumerator ResetTower(float waitTime)
-	{
-		yield return new WaitForSeconds(waitTime);
-		towerState = TowerState.TS_Idle;
-		if (sr)
-			sr.color = idleColor;
-	} 
 
 	/**
 	 * @brief Upgrades the tower by one level. Cannot go past max tower level.
@@ -120,7 +108,10 @@ public class Tower : MonoBehaviour/*, IPointerDownHandler*/
 	public virtual void UpgradeTower()
 	{
 		if (towerLevel < maxTowerLevel)
+		{
 			towerLevel++;
+			Debug.Log("Upgraded to level " + towerLevel);
+		}
 	}
 
 	/**
@@ -148,6 +139,7 @@ public class Tower : MonoBehaviour/*, IPointerDownHandler*/
 		}
 	}
 
+	// Thinking of moving this to a specific Tower class that has targeting (like the missiles)
 	protected GameObject GetTarget()
 	{
 		GameObject ret = null;

@@ -38,16 +38,31 @@ public class TileComponent : MonoBehaviour, IPointerDownHandler
 	{
 		Debug.Log("Clicked tile x:" + xPos.ToString() + " y:" + yPos.ToString());
 		
-		if (towerObj == null)
+		PointerModes mode = PointerMode.Instance.Mode;
+
+		if (mode == PointerModes.ADD && towerObj == null)
 		{
 			// Find which tower is currently selected
 			Purchasable p = ShopInventory.Instance.PurchaseCurrentSelectedItem();
-			if (p != null)
+			if (p != null && p.ItemObject != null)
 			{
 				Vector3 newPos = new Vector3(transform.position.x, transform.position.y, transform.position.z - 0.1f);
 				towerObj = Instantiate(p.ItemObject, /*TowerManager.Instance.towerDictionary[TowerType.TowT_GenericTurret],*/ newPos, transform.rotation);
 				towerObj.transform.parent = transform;
 			}
+		}
+		else if (mode == PointerModes.DESTROY && towerObj != null)
+		{
+			Destroy(towerObj);
+			towerObj = null;
+		}
+		else if (mode == PointerModes.UPGRADE && towerObj != null)
+		{
+			Tower tower = towerObj.GetComponent<Tower>();
+			if (tower)
+			{
+				tower.UpgradeTower();
+			} 
 		}
 	}
 

@@ -214,6 +214,14 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1002104009051200837, guid: 1ea4602a0f3a10246aebbb68d06dbb30, type: 3}
+      propertyPath: '_inventory.Array.data[0]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 210183f9806704f4e9ea803693e3af26, type: 2}
+    - target: {fileID: 1002104009051200837, guid: 1ea4602a0f3a10246aebbb68d06dbb30, type: 3}
+      propertyPath: '_inventory.Array.data[1]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 7bac1077ea3bad54c850d38d60904ab2, type: 2}
     - target: {fileID: 1069807476152804834, guid: 1ea4602a0f3a10246aebbb68d06dbb30, type: 3}
       propertyPath: m_Pivot.x
       value: 1
@@ -601,10 +609,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 4649492789639812651, guid: 1ea4602a0f3a10246aebbb68d06dbb30, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 512233228}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1ea4602a0f3a10246aebbb68d06dbb30, type: 3}
 --- !u!1 &290352154
 GameObject:
@@ -973,29 +978,11 @@ RectTransform:
   m_AnchoredPosition: {x: -20, y: 20}
   m_SizeDelta: {x: 20, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!1 &512233222 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4649492789639812651, guid: 1ea4602a0f3a10246aebbb68d06dbb30, type: 3}
-  m_PrefabInstance: {fileID: 280287472}
-  m_PrefabAsset: {fileID: 0}
 --- !u!224 &512233223 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 1069807476152804834, guid: 1ea4602a0f3a10246aebbb68d06dbb30, type: 3}
   m_PrefabInstance: {fileID: 280287472}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &512233228
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 512233222}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d26521f444842034d95e8c14b2f6dd50, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _camControls: {fileID: 290352159}
 --- !u!1 &538790701
 GameObject:
   m_ObjectHideFlags: 0
