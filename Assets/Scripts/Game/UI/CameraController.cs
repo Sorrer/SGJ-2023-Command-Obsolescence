@@ -33,10 +33,10 @@ public class CameraController : MonoBehaviour
 
 	[SerializeField]
 	private float moveSpeed = 0.125f;
-	[SerializeField]
-	private string horizontalAxis = "Horizontal";
-	[SerializeField]
-	private string verticalAxis = "Vertical";
+	//[SerializeField]
+	//private string horizontalAxis = "Horizontal";
+	//[SerializeField]
+	//private string verticalAxis = "Vertical";
 
 	[HideInInspector] public bool LockScroll;
 
