@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1496963088884385075}
   - component: {fileID: 5462816880846830745}
   - component: {fileID: 2431567925679524348}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: GenericTurret
   m_TagString: Turret
   m_Icon: {fileID: 0}
@@ -100,19 +100,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61c2825db5c84314cab3d5dc7ba0795a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  towerName: GenericTurret
   towerType: 1
   towerState: 0
   idleColor: {r: 1, g: 1, b: 1, a: 1}
   brokenColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
   towerTargetPriority: 0
+  currentDirection: 0
   towerLevel: 1
   maxTowerLevel: 3
   projectileObj: {fileID: 3160107558040692346, guid: 9baba51819a4d4049b7e13881e255b21, type: 3}
   destroyOnBreak: 0
   powerLevels: 01000000020000000300000004000000
-  speedLevels: 01000000020000000300000004000000
+  speedLevels: 02000000040000000600000008000000
   rangeLevels: 06000000080000000a0000000c000000
+  bulletNumberLevels: 0a0000000c0000000e00000010000000
+  bulletDelayLevels:
+  - 5
+  - 4
+  - 3
+  - 1
 --- !u!58 &2431567925679524348
 CircleCollider2D:
   m_ObjectHideFlags: 0
