@@ -10,11 +10,32 @@ public class TileComponent : MonoBehaviour, IPointerDownHandler
 	private GameObject towerObj = null; /**< Tower currently on the tile */
 	public int xPos;
 	public int yPos;
+	private SpriteRenderer sr;
+	private bool checkerboardTiles;
 	
 	// Start is called before the first frame update
 	private void Start()
 	{
+		sr = GetComponent<SpriteRenderer>();
 		AddPhysics2DRaycaster();
+
+		if (checkerboardTiles && sr != null)
+		{
+			if (yPos % 2 == 0)
+			{
+				if (xPos % 2 == 1)
+					sr.color = Color.gray;
+				else
+					sr.color = Color.white;
+			}
+			else
+			{
+				if (xPos % 2 == 0)
+					sr.color = Color.gray;
+				else
+					sr.color = Color.white;
+			}
+		}
 	}
 
 	// Update is called once per frame
@@ -23,11 +44,12 @@ public class TileComponent : MonoBehaviour, IPointerDownHandler
 		
 	}
 
-	public void SetupTileComponent(TileType tt, int x, int y)
+	public void SetupTileComponent(TileType tt, int x, int y, bool _checkerboardTiles)
 	{
 		type = tt;
 		xPos = x;
 		yPos = y;
+		checkerboardTiles = _checkerboardTiles;
 	}
 
 	/**
@@ -77,5 +99,6 @@ public class TileComponent : MonoBehaviour, IPointerDownHandler
 		{
 			Camera.main.gameObject.AddComponent<Physics2DRaycaster>();
 		}
+		physicsRaycaster.eventMask = LayerMask.GetMask("Tile");
 	}
 }
