@@ -352,7 +352,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 228965678972481593}
         m_TargetAssemblyTypeName: ShopInventoryItem, Assembly-CSharp
-        m_MethodName: LoadThis
+        m_MethodName: ClickThis
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

@@ -26,6 +26,12 @@ public class ShopInventoryItem : MonoBehaviour
         _image.sprite = item.StoreSprite;
     }
 
+    public void ClickThis()
+    {
+        PointerMode.Instance.Mode = PointerModes.ADD;
+        LoadThis();
+    }
+
     public void LoadThis()
     {
         _shopLoader.LoadDetails(_item);

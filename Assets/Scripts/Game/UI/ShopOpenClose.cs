@@ -53,11 +53,13 @@ public class ShopOpenClose : MonoBehaviour
     private void Open()
     {
         _animationDirection = -1;
+        PointerMode.Instance.Mode = PointerModes.ADD;
     }
 
     private void Close()
     {
         _animationDirection = 1;
+        PointerMode.Instance.Mode = PointerModes.NONE;
     }
 
     public void Toggle()
