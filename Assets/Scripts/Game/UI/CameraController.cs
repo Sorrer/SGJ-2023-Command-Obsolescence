@@ -1,6 +1,9 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using NUnit.Framework.Interfaces;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class CameraController : MonoBehaviour
 {
@@ -24,6 +27,8 @@ public class CameraController : MonoBehaviour
 	private float scrollSensitivity = 2.0f;
 	[SerializeField]
 	private float scrollSpeed = 30.0f;
+	[SerializeField]
+	private bool scrollInverted = false;
 	private float currentScrollDelta;
 
 	[SerializeField]
@@ -32,6 +37,8 @@ public class CameraController : MonoBehaviour
 	private string horizontalAxis = "Horizontal";
 	[SerializeField]
 	private string verticalAxis = "Vertical";
+
+	[HideInInspector] public bool LockScroll;
 
 	// Start is called before the first frame update
 	void Start()
@@ -44,8 +51,20 @@ public class CameraController : MonoBehaviour
 	void Update()
 	{
 		// Zoom
-		currentScrollDelta += Input.mouseScrollDelta.y * scrollSensitivity;
+		PointerEventData eventData = new PointerEventData(EventSystem.current);
+		eventData.position = Input.mousePosition;
+		List<RaycastResult> raycastResults = new List<RaycastResult>();
+		EventSystem.current.RaycastAll(eventData, raycastResults);
+
+		foreach (RaycastResult result in raycastResults)
+		{
+			if (result.gameObject.layer == LayerMask.NameToLayer("UI")) return;
+		}
+
+		if (scrollInverted) currentScrollDelta -= Input.mouseScrollDelta.y * scrollSensitivity;
+		else currentScrollDelta += Input.mouseScrollDelta.y * scrollSensitivity;
 		currentScrollDelta = Mathf.Clamp(currentScrollDelta, minOrthographicSize, maxOrthographicSize);
+		
 		float newZoomSize = Mathf.MoveTowards(cam.orthographicSize, currentScrollDelta, scrollSpeed * Time.deltaTime);
 		cam.orthographicSize = newZoomSize;
 	}
