@@ -2980,6 +2980,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 294f8260a72876143a191ffde0546f8d, type: 2}
   _listItemPrefab: {fileID: 228965678972481593, guid: afe61f60241cda247895bae7ff537bf5, type: 3}
   _shopLoader: {fileID: 742599851254057198}
+  _currentSelectedItem: {fileID: 0}
 --- !u!1 &6840216098443258402
 GameObject:
   m_ObjectHideFlags: 0

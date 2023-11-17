@@ -14,6 +14,8 @@ public class TileEntity : MonoBehaviour
 	[Tooltip("The name of the building that can be used to replace this entity.")]
 	[SerializeField] protected string _replacement;
 
+	[HideInInspector] public TileComponent tileComponent;
+	
 	/// <summary>
 	/// The destroy cost for all entities. 
 	/// 

@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 4722093692229023939}
   - component: {fileID: 6274621892375403835}
   - component: {fileID: 8382931428862548598}
+  - component: {fileID: -1552465828924333535}
   m_Layer: 0
   m_Name: forest_0
   m_TagString: Untagged
@@ -101,7 +102,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _entityName: 
   _sr: {fileID: 0}
-  _canBeDestroyed: 0
+  _canBeDestroyed: 1
   _isWall: 0
   _replacement: 
-  isInteractable: 0
+  isInteractable: 1
+--- !u!114 &-1552465828924333535
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7538971716997726966}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d3ab1bfa1044c68ae69aae5bea72907, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SpawnInterval: 10
+  types: 0

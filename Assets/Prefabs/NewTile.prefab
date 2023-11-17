@@ -147,12 +147,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 0
-  towerObj: {fileID: 0}
-  obstacleObj: {fileID: 0}
+  tileEntity: {fileID: 0}
   obstaclePrefabList:
   - prefab: {fileID: 627327839048676976, guid: 56e9f283547913540ac62cadf4d77da7, type: 3}
-    isTraversable: 0
+    weight: 6
   - prefab: {fileID: 7538971716997726966, guid: 3607650c096f29e41aec9cf61d58bd8a, type: 3}
-    isTraversable: 1
+    weight: 2
+  - prefab: {fileID: 4051547301631845733, guid: 677bca27e86607147964e3549350e195, type: 3}
+    weight: 2
   xPos: 0
   yPos: 0
