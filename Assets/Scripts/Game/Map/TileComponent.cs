@@ -4,16 +4,28 @@ using System.Collections.Generic;
 using Game.Enemies;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using Random = UnityEngine.Random;
 
 public class TileComponent : MonoBehaviour, IPointerDownHandler
 {
 	public TileType type = TileType.TT_Empty;
+	
+	/**< Tower currently on the tile */
 	[SerializeField]
-	private GameObject towerObj = null; /**< Tower currently on the tile */
+	private GameObject towerObj = null;
+	
+	[SerializeField] 
+	private GameObject obstacleObj;
+
+	[SerializeField] public GameObject[] obstaclePrefabList;
+	
 	public int xPos;
 	public int yPos;
 	private SpriteRenderer sr;
 	private bool checkerboardTiles;
+
+	private bool isInteractable = true;
+	private bool isTraversable = true;
 	
 	// Start is called before the first frame update
 	private void Start()
@@ -46,13 +58,31 @@ public class TileComponent : MonoBehaviour, IPointerDownHandler
 		
 	}
 
-	public void SetupTileComponent(TileType tt, int x, int y, bool _checkerboardTiles)
+	public void SetupTileComponent(TileType tt, int x, int y, bool _checkerboardTiles, bool isObstacle)
 	{
 		type = tt;
 		xPos = x;
 		yPos = y;
 		checkerboardTiles = _checkerboardTiles;
+
+		if (isObstacle)
+		{
+			isInteractable = false;
+			isTraversable = false;
+			
+			this.obstacleObj = Instantiate(obstaclePrefabList[Random.Range(0, obstaclePrefabList.Length)]);
+			this.obstacleObj.transform.position = this.transform.position;
+		}
+		else
+		{
+			isInteractable = true;
+			isTraversable = true;
+		}
+
+
 	}
+	
+
 
 	/**
 	 * @brief Function that gets fired when the mouse clicks on this object.
@@ -60,6 +90,8 @@ public class TileComponent : MonoBehaviour, IPointerDownHandler
 	 */
 	public void OnPointerDown(PointerEventData eventData)
 	{
+		if (!isInteractable) return;
+		
 		PointerModes mode = PointerMode.Instance.Mode;
 		int balance = Bank.Instance.CurrentBalance;
 
@@ -127,7 +159,7 @@ public class TileComponent : MonoBehaviour, IPointerDownHandler
 
 	public bool IsTraversal() 
 	{
-		return true;
+		return isTraversable;
 	}
 
 	public IAttackable GetAttackable()

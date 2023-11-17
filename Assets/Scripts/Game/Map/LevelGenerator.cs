@@ -3,9 +3,11 @@ using System.Collections;
 using System.Collections.Generic;
 using Game.Enemies;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class LevelGenerator : MonoBehaviour
 {
+	public float obstacleDensity = 0.1f;
 	public EnemyMapReference mapReference;
 	//get the LevelGenerator instance
 	private static LevelGenerator instance;
@@ -168,7 +170,7 @@ public class LevelGenerator : MonoBehaviour
 					else
 						col.enabled = false;*/
 					TileComponent _tile = _tileObj.GetComponent<TileComponent>();
-					_tile.SetupTileComponent(levelGrid[i, j].type, i, j, checkerboardTiles);
+					_tile.SetupTileComponent(levelGrid[i, j].type, i, j, checkerboardTiles, Random.value < obstacleDensity);
 					levelGrid[i, j].tileComponent = _tile;
 
 					// Test functions
