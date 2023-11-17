@@ -101,13 +101,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _entityName: GunTurret
-  _entityType: 1
   _sr: {fileID: 1496963088884385075}
   _canBeDestroyed: 1
+  _isWall: 0
+  _replacement: 
   _towerState: 0
   _idleColor: {r: 1, g: 1, b: 1, a: 1}
   _brokenColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
-  _towerTargetPriority: 0
   _towerLevel: 0
   _maxTowerLevel: 3
   _purchaseInfo: {fileID: 11400000, guid: 210183f9806704f4e9ea803693e3af26, type: 2}
