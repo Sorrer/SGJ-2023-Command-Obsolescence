@@ -12,7 +12,7 @@ public class BigBlaster : Building
 	[Tooltip("Size of the spawned projectile, index is the tower's current level.")]
 	[SerializeField] private int[] sizeLevels = new int[] {2, 4, 6, 8};
 	[Tooltip("Range of the tower, index is the tower's current level.")]
-	[SerializeField] private int[] rangeLevels = new int[] {6, 8, 10, 12};
+	[SerializeField] private int[] timeAliveLevels = new int[] {3, 5, 7, 9};
 
 	private BoxCollider2D col;
 
@@ -49,7 +49,7 @@ public class BigBlaster : Building
 			};
 			GameObject newProjectileObj = Instantiate(_bulletPrefab, pos, rot);
 			if (newProjectileObj.TryGetComponent<BigBlastBullet>(out var p))
-					p.SetupBigBlastBullet(gameObject, powerLevels[_towerLevel], sizeLevels[_towerLevel]);
+					p.SetupBigBlastBullet(gameObject, powerLevels[_towerLevel], sizeLevels[_towerLevel], timeAliveLevels[_towerLevel]);
 			BreakTower();
 		}
 	}

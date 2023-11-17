@@ -16,5 +16,5 @@ MonoBehaviour:
   BasePrice: 100
   UpgradePrices: c80000002c01000090010000
   Description: Fires a BIG blast!
-  StoreSprite: {fileID: 9152297428566660960, guid: 71b9726b1d3f45c4ebccc13c9cd97c02, type: 3}
+  StoreSprite: {fileID: 8791539599514056937, guid: cb1c599b1531a994eaa7d237a3bd00a6, type: 3}
   ItemObject: {fileID: 7501146054962545587, guid: 23d110fe65e74f74092ad42fbfb84951, type: 3}

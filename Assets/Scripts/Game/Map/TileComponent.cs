@@ -146,7 +146,8 @@ public class TileComponent : MonoBehaviour, IPointerDownHandler
 			if (tower && tower.CanBeDestroyed)
 			{
 				Bank.Instance.RemoveFromBalance(TileEntity.STANDARD_DESTROY_COST);
-				Destroy(tileEntity);
+				//Debug.Log("Destroy tile entity");
+				Destroy(tileEntity.gameObject);
 				tileEntity = null;
 			}
 		}
