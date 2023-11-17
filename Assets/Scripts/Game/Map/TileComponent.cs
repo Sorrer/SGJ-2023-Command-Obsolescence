@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Game.Enemies;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -90,6 +91,8 @@ public class TileComponent : MonoBehaviour, IPointerDownHandler
 				tower.TryUpgradeTower();
 			} 
 		}
+		
+		LevelGenerator.Instance.UpdateTile(new Vector2Int(xPos,yPos), this);
 	}
 
 	/**
@@ -111,5 +114,10 @@ public class TileComponent : MonoBehaviour, IPointerDownHandler
 	public int GetWeight() // Can support negatives up to a point
 	{
 		return 1;
+	}
+
+	public IAttackable GetAttackable()
+	{
+		return towerObj.GetComponent<IAttackable>(); // Expensive but fuck we ball
 	}
 }

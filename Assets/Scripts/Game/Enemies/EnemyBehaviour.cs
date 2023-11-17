@@ -7,7 +7,7 @@ using Random = UnityEngine.Random;
 
 public class EnemyBehaviour : MonoBehaviour
 {
-
+    public int damage = 5;
     // States on how exactly our enemies will go forward (Attack, walking)
     public enum EnemyStates
     {
@@ -21,7 +21,9 @@ public class EnemyBehaviour : MonoBehaviour
     public float StopRadius;
     public bool reached = false; // Has destination been reached
     public bool attacking = false;
+    public IAttackable attackTarget;
     public bool attackEndTarget = false;
+    private Vector2 finishAttackMove;
     [SerializeField]
     private EnemyStates state = EnemyStates.Idle;
     
@@ -43,6 +45,23 @@ public class EnemyBehaviour : MonoBehaviour
         switch (state)
         {
             case EnemyStates.Attacking:
+                attacking = true;
+
+                if (attackTarget != null && !attackTarget.isDead())
+                {
+                    attackTarget.Attack(damage);
+
+
+                    if (attackTarget.isDead())
+                    {
+                        FinishAttack();
+                    }
+                }
+                else
+                {
+                    FinishAttack();
+                }
+                
                 // TODO: Do stuff with attack
                     // Chunk health every so often
                 break;
@@ -96,10 +115,11 @@ public class EnemyBehaviour : MonoBehaviour
         this.reached = false;
     }
 
-    public void SetAttackTarget(Transform target)
+    public void SetAttackTarget(IAttackable attackable, Vector2 startAttackPosition, Vector2 finishAttackMove)
     {
         // TODO: Set what the end target's entity is so this can attack it properly
-        EndTargetPosition= target.position; // TODO: Change this line
+        finishAttackMove = finishAttackMove;
+        EndTargetPosition= attackable.GetWorldPosition(); // TODO: Change this line
         this.state = EnemyStates.Walking;
         attackEndTarget = true;
     }
@@ -117,6 +137,13 @@ public class EnemyBehaviour : MonoBehaviour
         return new Vector2Int(Mathf.FloorToInt(this.transform.position.x), Mathf.FloorToInt(this.transform.position.y));
     }
 
+    private void FinishAttack()
+    {
+        this.attackTarget = null;
+        this.attacking = false;
+        this.attackEndTarget = false;
+        this.SetWalkTarget(finishAttackMove);
+    }
 
 
     [SerializeField]

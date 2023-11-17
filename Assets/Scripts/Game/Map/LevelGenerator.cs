@@ -227,4 +227,18 @@ public class LevelGenerator : MonoBehaviour
 		return levelWidth;
 	}
 
+
+	public void UpdateTile(Vector2Int pos, TileComponent tile)
+	{
+		mapReference.UpdateTile(pos, tile);
+	}
+
+	public TileComponent GetTileComponent(Vector2Int pos)
+	{
+		return levelGrid[pos.x, pos.y].tileComponent;
+	}
+	public void GetWorldPosition()
+	{
+		
+	}
 }

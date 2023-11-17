@@ -12,9 +12,10 @@ namespace Game.Enemies
         public int currentIndex;
         public List<Vector2Int> currentPath;
         public bool pathing = false;
-       
+
         private EnemyMapReference currentMap;
         public int weightVariationRange = 5;
+
         public void GoTo(Vector2Int worldPosition, EnemyMapReference map)
         {
             if (!LevelGenerator.Instance.IsWithinWorld(worldPosition))
@@ -22,24 +23,27 @@ namespace Game.Enemies
                 Debug.LogError("Got a position that is outside the world.. ?");
                 return;
             }
-            
+
             currentMap = map;
-            EnemyPathScheduler.MapInfo.TileInfo[] newMapInfo = new EnemyPathScheduler.MapInfo.TileInfo[map.currentMap.Length];
-            
+            EnemyPathScheduler.MapInfo.TileInfo[] newMapInfo =
+                new EnemyPathScheduler.MapInfo.TileInfo[map.currentMap.Length];
+
             for (int i = 0; i < map.currentMap.Length; i++)
             {
                 newMapInfo[i] = map.currentMap[i].Copy();
                 newMapInfo[i].weight += Random.Range(0, weightVariationRange);
             }
-            
+
             EnemyPathScheduler.instance.Schedule(new EnemyPathScheduler.MapInfo()
-            {
-                height = map.height,
-                width = map.width,
-                map = newMapInfo,
-            }, this, LevelGenerator.Instance.ClampGridPositionToBounds(LevelGenerator.Instance.GetGridPosition(target.transform.position)), worldPosition);
+                {
+                    height = map.height,
+                    width = map.width,
+                    map = newMapInfo,
+                }, this,
+                LevelGenerator.Instance.ClampGridPositionToBounds(
+                    LevelGenerator.Instance.GetGridPosition(target.transform.position)), worldPosition);
         }
-        
+
         public void StartPath(List<Vector2Int> path)
         {
             currentIndex = 0;
@@ -60,7 +64,27 @@ namespace Game.Enemies
 
                     if (currentIndex < currentPath.Count)
                     {
-                        target.SetWalkTarget(LevelGenerator.Instance.GetWorldPosition(currentPath[currentIndex]));
+                        // If next target needs to be attacked then we will walk up to it and attack it
+
+                        if (isCurrentTargetAttackable())
+                        {
+                            var attackable = GetCurrentTargetAttackable();
+                            var attackableLocation = attackable.GetWorldPosition();
+                            var currentPosition = LevelGenerator.Instance.GetWorldPosition(target.GetGridPosition());
+
+                            var diff =  currentPosition - attackableLocation;
+                            
+                            diff.Normalize();
+
+                            diff *= 0.5f;
+                            
+                            target.SetAttackTarget(attackable, attackableLocation + diff, LevelGenerator.Instance.GetWorldPosition(LevelGenerator.Instance.GetGridPosition(attackableLocation)));
+                        }
+                        else
+                        {
+                            target.SetWalkTarget(LevelGenerator.Instance.GetWorldPosition(currentPath[currentIndex]));
+                        }
+
                     }
                     else
                     {
@@ -73,7 +97,7 @@ namespace Game.Enemies
                             // De-increment lives?
                         }
                     }
-                } 
+                }
             }
             else
             {
@@ -110,6 +134,23 @@ namespace Game.Enemies
                 // }, this, level.ClampGridPositionToBounds(level.GetGridPosition(target.transform.position)), endPosition);
 
             }
+        }
+
+        public bool isCurrentTargetAttackable()
+        {
+            return GetCurrentTargetAttackable() != null;
+        }
+
+        public IAttackable GetCurrentTargetAttackable()
+        {
+            var tile = LevelGenerator.Instance.GetTileComponent(currentPath[currentIndex]);
+                
+            if (tile)
+            {
+                return tile.GetAttackable(); 
+            }
+
+            return null;
         }
     }
 }

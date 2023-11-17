@@ -57,10 +57,14 @@ namespace Game.Enemies
             mapLoaded = true;
         }
         
-        public void UpdateTilemap()
+        public void UpdateTile(Vector2Int tilePos, TileComponent tile)
         {
                 // Whenever something gets placed update the tilemap
+                // TODO: Update enemy paths that cross this tile position
+                
+                this.currentMap[tilePos.x + (tilePos.y * width)].weight = tile.GetWeight();
         }
+
 
         public Vector2Int GetRandomValidPosition()
         {
