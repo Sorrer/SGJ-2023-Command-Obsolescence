@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using Game.Enemies;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.Serialization;
 using Random = UnityEngine.Random;
 
 public class TileComponent : MonoBehaviour, IPointerDownHandler
@@ -11,17 +12,15 @@ public class TileComponent : MonoBehaviour, IPointerDownHandler
 	public TileType type = TileType.TT_Empty;
 	
 	/**< Tower currently on the tile */
-	[SerializeField]
-	private GameObject towerObj = null;
+	[FormerlySerializedAs("towerObj")] [SerializeField]
+	private TileEntity tileEntity = null;
 	
-	[SerializeField] 
-	private GameObject obstacleObj;
 
 	[Serializable]
 	public struct ObstacleData
 	{
 		public GameObject prefab;
-		public bool isTraversable;
+		//public bool isTraversable;
 	}
 	
 	[SerializeField] public ObstacleData[] obstaclePrefabList;
@@ -31,9 +30,6 @@ public class TileComponent : MonoBehaviour, IPointerDownHandler
 	private SpriteRenderer sr;
 	private bool checkerboardTiles;
 
-	private bool isInteractable = true;
-	private bool isTraversable = true;
-	
 	// Start is called before the first frame update
 	private void Start()
 	{
@@ -74,23 +70,33 @@ public class TileComponent : MonoBehaviour, IPointerDownHandler
 
 		if (isObstacle)
 		{
-			
 			var obstacle = obstaclePrefabList[Random.Range(0, obstaclePrefabList.Length)];
-			
-			this.obstacleObj = Instantiate(obstacle.prefab);
-			this.obstacleObj.transform.position = this.transform.position;
-			isInteractable = false;
-			isTraversable = obstacle.isTraversable;
-		}
-		else
-		{
-			isInteractable = true;
-			isTraversable = true;
+			CreateTileEntity(obstacle.prefab);
 		}
 
 
 	}
-	
+
+
+	public void CreateTileEntity(GameObject prefab)
+	{
+		if (tileEntity != null)
+		{
+			Debug.LogError("Tried to create a tile entity on a tile component when the tile entity already exists");
+			return;
+		}
+		
+		var entity = Instantiate(prefab, this.transform);
+		Vector3 newPos = new Vector3(transform.position.x, transform.position.y, transform.position.z - 0.1f);
+		entity.transform.position = newPos;
+
+		this.tileEntity = entity.GetComponent<TileEntity>();
+		
+		if (tileEntity == null)
+		{
+			Debug.LogError("Tried to create a tile entity on a title component, but not tile entity component on the prefab was found");
+		}
+	}
 
 
 	/**
@@ -99,7 +105,7 @@ public class TileComponent : MonoBehaviour, IPointerDownHandler
 	 */
 	public void OnPointerDown(PointerEventData eventData)
 	{
-		if (!isInteractable) return;
+		if (!tileEntity.isInteractable) return;
 		
 		PointerModes mode = PointerMode.Instance.Mode;
 		int balance = Bank.Instance.CurrentBalance;
@@ -108,9 +114,9 @@ public class TileComponent : MonoBehaviour, IPointerDownHandler
 		{
 			Purchasable p = ShopInventory.Instance.GetCurrentSelectedItem();
 
-			if (towerObj != null) 
+			if (tileEntity != null) 
 			{
-				TileEntity old = towerObj.GetComponent<Building>();
+				TileEntity old = tileEntity.GetComponent<Building>();
 				
 				if (old && old.Replacement.Equals(p.Name)) 
 				{
@@ -125,10 +131,8 @@ public class TileComponent : MonoBehaviour, IPointerDownHandler
 			{
 
 				Debug.Log("Spawning tower");
-				Vector3 newPos = new Vector3(transform.position.x, transform.position.y, transform.position.z - 0.1f);
-				towerObj = Instantiate(p.ItemObject.gameObject, newPos, transform.rotation);
-				towerObj.transform.parent = transform;
-				Building tower = towerObj.GetComponent<Building>();
+				CreateTileEntity(p.ItemObject.gameObject);
+				Building tower = tileEntity.GetComponent<Building>();
 				if (tower)
 				{
 					Debug.Log("Spawned tower");
@@ -136,19 +140,19 @@ public class TileComponent : MonoBehaviour, IPointerDownHandler
 				}
 			}
 		}
-		else if (mode == PointerModes.DESTROY && towerObj != null && balance >= TileEntity.STANDARD_DESTROY_COST)
+		else if (mode == PointerModes.DESTROY && tileEntity != null && balance >= TileEntity.STANDARD_DESTROY_COST)
 		{
-			Building tower = towerObj.GetComponent<Building>();
+			Building tower = tileEntity.GetComponent<Building>();
 			if (tower && tower.CanBeDestroyed)
 			{
 				Bank.Instance.RemoveFromBalance(TileEntity.STANDARD_DESTROY_COST);
-				Destroy(towerObj);
-				towerObj = null;
+				Destroy(tileEntity);
+				tileEntity = null;
 			}
 		}
-		else if (mode == PointerModes.UPGRADE && towerObj != null)
+		else if (mode == PointerModes.UPGRADE && tileEntity != null)
 		{
-			Building tower = towerObj.GetComponent<Building>();
+			Building tower = tileEntity.GetComponent<Building>();
 			if (tower)
 			{
 				tower.TryUpgradeTower();
@@ -179,14 +183,15 @@ public class TileComponent : MonoBehaviour, IPointerDownHandler
 		return 1;
 	}
 
-	public bool IsTraversal() 
+	public bool IsTraversal()
 	{
-		return isTraversable;
+		if (tileEntity == null) return true;
+		return !tileEntity.IsWall;
 	}
 
 	public IAttackable GetAttackable()
 	{
-		if (towerObj == null) return null;
-		return towerObj.GetComponent<IAttackable>(); // Expensive but fuck we ball
+		if (tileEntity == null) return null;
+		return tileEntity.GetComponent<IAttackable>(); // Expensive but fuck we ball
 	}
 }

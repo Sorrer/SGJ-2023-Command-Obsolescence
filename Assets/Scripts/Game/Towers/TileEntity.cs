@@ -33,4 +33,7 @@ public class TileEntity : MonoBehaviour
 	/// The name of the building that can be used to replace this entity.
 	/// </summary>
 	public string Replacement => _replacement;
+
+
+	public bool isInteractable = true;
 }
