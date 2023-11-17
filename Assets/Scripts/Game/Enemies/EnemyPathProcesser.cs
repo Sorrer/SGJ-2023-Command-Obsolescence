@@ -14,7 +14,7 @@ namespace Game.Enemies
         public bool pathing = false;
        
         private EnemyMapReference currentMap;
-
+        public int weightVariationRange = 5;
         public void GoTo(Vector2Int worldPosition, EnemyMapReference map)
         {
             if (!LevelGenerator.Instance.IsWithinWorld(worldPosition))
@@ -24,12 +24,19 @@ namespace Game.Enemies
             }
             
             currentMap = map;
+            EnemyPathScheduler.MapInfo.TileInfo[] newMapInfo = new EnemyPathScheduler.MapInfo.TileInfo[map.currentMap.Length];
+            
+            for (int i = 0; i < map.currentMap.Length; i++)
+            {
+                newMapInfo[i] = map.currentMap[i].Copy();
+                newMapInfo[i].weight += Random.Range(0, weightVariationRange);
+            }
             
             EnemyPathScheduler.instance.Schedule(new EnemyPathScheduler.MapInfo()
             {
                 height = map.height,
                 width = map.width,
-                map = map.currentMap,
+                map = newMapInfo,
             }, this, LevelGenerator.Instance.ClampGridPositionToBounds(LevelGenerator.Instance.GetGridPosition(target.transform.position)), worldPosition);
         }
         

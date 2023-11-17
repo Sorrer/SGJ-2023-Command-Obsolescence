@@ -44,6 +44,16 @@ namespace Game.Enemies
                 public int x;
                 public int y;
                 public int weight;
+
+                public TileInfo Copy()
+                {
+                    return new TileInfo()
+                    {
+                        x = x,
+                        y = y,
+                        weight = weight
+                    };
+                }
             }
 
             public int width;
