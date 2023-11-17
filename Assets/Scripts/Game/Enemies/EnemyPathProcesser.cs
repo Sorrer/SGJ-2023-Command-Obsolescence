@@ -16,7 +16,7 @@ namespace Game.Enemies
         private EnemyMapReference currentMap;
         public int weightVariationRange = 5;
 
-        public void GoTo(Vector2Int worldPosition, EnemyMapReference map)
+        public void GoTo(Vector2Int worldPosition, EnemyMapReference map, bool tryUseNextPath = false)
         {
             if (!LevelGenerator.Instance.IsWithinWorld(worldPosition))
             {
@@ -34,18 +34,31 @@ namespace Game.Enemies
                 newMapInfo[i].weight += newMapInfo[i].weight == -1 ? 0 :Random.Range(0, weightVariationRange);
             }
 
+            var startPosition =
+                LevelGenerator.Instance.ClampGridPositionToBounds(
+                    LevelGenerator.Instance.GetGridPosition(target.transform.position));
+
+
+            if (tryUseNextPath && currentIndex < currentPath.Count)
+            {
+                startPosition = currentPath[currentIndex];
+            }
+            
+
             EnemyPathScheduler.instance.Schedule(new EnemyPathScheduler.MapInfo()
                 {
                     height = map.height,
                     width = map.width,
                     map = newMapInfo,
                 }, this,
-                LevelGenerator.Instance.ClampGridPositionToBounds(
-                    LevelGenerator.Instance.GetGridPosition(target.transform.position)), worldPosition);
+                
+                    startPosition, worldPosition);
         }
 
         public void StartPath(List<Vector2Int> path)
         {
+            if (path.Count == 0) return;
+            
             currentIndex = 0;
             currentPath = path;
             pathing = true;
@@ -68,6 +81,7 @@ namespace Game.Enemies
 
                         if (isCurrentTargetAttackable())
                         {
+                            Debug.LogError("GONNA ATTACK");
                             var attackable = GetCurrentTargetAttackable();
                             var attackableLocation = attackable.GetWorldPosition();
                             var currentPosition = LevelGenerator.Instance.GetWorldPosition(target.GetGridPosition());

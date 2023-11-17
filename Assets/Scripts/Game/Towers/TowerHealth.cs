@@ -16,6 +16,7 @@ namespace Game.Towers
 
             if (isDead())
             {
+                this.transform.parent.gameObject.GetComponent<TileComponent>()?.DestroyEntity();
                 onDeath.Invoke();
             }
         }

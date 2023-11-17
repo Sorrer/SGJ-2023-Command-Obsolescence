@@ -1,8 +1,10 @@
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using Game.Enemies;
 using Unity.VisualScripting;
 using UnityEngine;
+using Debug = UnityEngine.Debug;
 using Random = UnityEngine.Random;
 
 public class EnemyBehaviour : MonoBehaviour
@@ -15,6 +17,8 @@ public class EnemyBehaviour : MonoBehaviour
         Walking,
         Idle
     }
+
+    public EnemyPathProcesser processer;
 
     public Vector3 EndTargetPosition;
     public Transform RootPosition;
@@ -40,17 +44,27 @@ public class EnemyBehaviour : MonoBehaviour
         //this.WalkSpeed = 0.5f + (Random.value * 5);
     }
 
+    public float AttackInterval = 1;
+    private Stopwatch timer = new Stopwatch();
+    
     public void Update()
     {
         switch (state)
         {
             case EnemyStates.Attacking:
+                Debug.Log("ATTACKING");
                 attacking = true;
-
+                
                 if (attackTarget != null && !attackTarget.isDead())
                 {
-                    attackTarget.Attack(damage);
+                    Debug.Log("attacking");
 
+                    if (timer.ElapsedMilliseconds > AttackInterval * 1000)
+                    {
+                        timer.Restart();
+                        attackTarget.Attack(damage);
+                    }
+                    
 
                     if (attackTarget.isDead())
                     {
@@ -76,14 +90,17 @@ public class EnemyBehaviour : MonoBehaviour
                 {
                     // We have finished our walking
                     // TODO: If this enemy wants to attack, then we would have to specify what happens during an attack here
-                    this.reached = true;
+                    
 
                     if (attackEndTarget)
                     {
+                        timer.Start();
+                        this.reached = false;
                         this.state = EnemyStates.Attacking;
                     }
                     else
                     {
+                        this.reached = true;
                         this.state = EnemyStates.Idle;
                     }
                     break;
@@ -117,20 +134,15 @@ public class EnemyBehaviour : MonoBehaviour
 
     public void SetAttackTarget(IAttackable attackable, Vector2 startAttackPosition, Vector2 finishAttackMove)
     {
+        Debug.LogError("Moving to attack");
         // TODO: Set what the end target's entity is so this can attack it properly
-        finishAttackMove = finishAttackMove;
-        EndTargetPosition= attackable.GetWorldPosition(); // TODO: Change this line
-        this.state = EnemyStates.Walking;
+        this.finishAttackMove = finishAttackMove;
+        this.attackTarget = attackable;
         attackEndTarget = true;
+        SetWalkTarget(startAttackPosition);
     }
 
 
-    private int counter = 0;
-    public void SetPath(List<Vector2Int> path)
-    {
-        counter++;
-        Debug.Log("Got new path " + path + " processed " + counter + " jobs");
-    }
 
     public Vector2Int GetGridPosition()
     {
@@ -173,8 +185,17 @@ public class EnemyBehaviour : MonoBehaviour
         this.RootPosition.transform.position = worldPosition;
     }
 
+
+    private string uuid;
+
+    public void SetUUID(string uuid)
+    {
+        this.uuid = uuid;
+    }
+
     public void Kill()
     {
+        SpawnEnemyBehaviour.Instance.enemies.Remove(uuid);
         Destroy(this.RootPosition.gameObject);
     }
     

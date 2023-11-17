@@ -661,14 +661,6 @@ PrefabInstance:
       propertyPath: m_SizeDelta.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1002104009051200837, guid: 1ea4602a0f3a10246aebbb68d06dbb30, type: 3}
-      propertyPath: '_inventory.Array.data[0]'
-      value: 
-      objectReference: {fileID: 11400000, guid: 210183f9806704f4e9ea803693e3af26, type: 2}
-    - target: {fileID: 1002104009051200837, guid: 1ea4602a0f3a10246aebbb68d06dbb30, type: 3}
-      propertyPath: '_inventory.Array.data[1]'
-      value: 
-      objectReference: {fileID: 11400000, guid: 7bac1077ea3bad54c850d38d60904ab2, type: 2}
     - target: {fileID: 1069807476152804834, guid: 1ea4602a0f3a10246aebbb68d06dbb30, type: 3}
       propertyPath: m_Pivot.x
       value: 1

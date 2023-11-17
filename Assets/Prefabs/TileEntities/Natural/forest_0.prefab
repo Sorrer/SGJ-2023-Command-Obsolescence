@@ -105,6 +105,8 @@ MonoBehaviour:
   _canBeDestroyed: 1
   _isWall: 0
   _replacement: 
+  tileComponent: {fileID: 0}
+  weight: 1
   isInteractable: 1
 --- !u!114 &-1552465828924333535
 MonoBehaviour:
@@ -118,5 +120,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d3ab1bfa1044c68ae69aae5bea72907, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SpawnInterval: 10
+  SpawnInterval: 5
   types: 0
