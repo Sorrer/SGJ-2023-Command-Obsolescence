@@ -102,4 +102,10 @@ public class TileComponent : MonoBehaviour, IPointerDownHandler
 		if (physicsRaycaster != null)
 			physicsRaycaster.eventMask = LayerMask.GetMask("Tile");
 	}
+
+
+	public int GetWeight() // Can support negatives up to a point
+	{
+		return 1;
+	}
 }
