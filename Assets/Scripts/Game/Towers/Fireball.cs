@@ -15,6 +15,6 @@ public class Fireball : Projectile
 		base.FixedUpdate();
 		//if (rb != null)
 		//	rb.velocity = transform.up * speed;
-		transform.Translate(Vector3.right * speed * Time.deltaTime);
+		transform.Translate(Vector3.up * speed * Time.deltaTime);
 	}
 }

@@ -101,7 +101,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _entityName: 
   _sr: {fileID: 0}
-  _canBeDestroyed: 0
+  _canBeDestroyed: 1
   _isWall: 1
   _replacement: 
-  isInteractable: 0
+  isInteractable: 1

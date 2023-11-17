@@ -92,9 +92,13 @@ namespace Game.Enemies
                 
                 var bestPath = Pathfinding.GeneratePath(ref copiedMap, startPosition, endPosition);
 
-                for (int i = 0; i < bestPath.path.Count; i++)
+                if (bestPath.path != null)
                 {
-                    pathResults.Add(new Vector2Int(bestPath.path[i].x, bestPath.path[i].y));
+                    for (int i = 0; i < bestPath.path.Count; i++)
+                    {
+                        pathResults.Add(new Vector2Int(bestPath.path[i].x, bestPath.path[i].y));
+                    }
+                    
                 }
 
             }

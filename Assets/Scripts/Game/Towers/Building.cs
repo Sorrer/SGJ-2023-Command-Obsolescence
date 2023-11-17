@@ -7,6 +7,7 @@ using UnityEditor.EditorTools;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
+
 [Serializable]
 public enum TowerState
 {
@@ -127,6 +128,14 @@ public class Building : TileEntity
 	{
 		_towerState = TowerState.TS_Broken;
 		_sr.color = _brokenColor;
+	}
+
+	/**
+	 * @brief Overrideable function proto for an action that can occur when the tower is destroyed.
+	 */
+	public virtual void OnTowerDestroy()
+	{
+		
 	}
 
 	/**

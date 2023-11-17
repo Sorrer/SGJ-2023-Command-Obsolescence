@@ -1,10 +1,16 @@
 fileFormatVersion: 2
-guid: ad89e32000e6d4745ac5a0ccb52ebba6
+guid: 6a4ba8ebb28c86d439d6466d83629039
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -2412314542472455568
-    second: roundtopleft_0
+      213: -673685219653261523
+    second: big_splosion_0
+  - first:
+      213: 637824340767922525
+    second: big_splosion_1
+  - first:
+      213: -3073787325860354530
+    second: big_splosion_2
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -37,7 +43,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -100,13 +106,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: roundtopleft_0
+      name: big_splosion_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 512
-        height: 512
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -114,8 +120,50 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 07a9b6164bcb58ed0800000000000000
-      internalID: -2412314542472455568
+      spriteID: d27e220bcd696a6f0800000000000000
+      internalID: -673685219653261523
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: big_splosion_1
+      rect:
+        serializedVersion: 2
+        x: 56
+        y: 113
+        width: 7
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d59d19ccbd10ad800800000000000000
+      internalID: 637824340767922525
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: big_splosion_2
+      rect:
+        serializedVersion: 2
+        x: 24
+        y: 7
+        width: 6
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e16eef676b6b755d0800000000000000
+      internalID: -3073787325860354530
       vertices: []
       indices: 
       edges: []
@@ -131,7 +179,9 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      roundtopleft_0: -2412314542472455568
+      big_splosion_0: -673685219653261523
+      big_splosion_1: 637824340767922525
+      big_splosion_2: -3073787325860354530
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

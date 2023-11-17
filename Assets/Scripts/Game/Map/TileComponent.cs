@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using Game.Enemies;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -20,7 +21,7 @@ public class TileComponent : MonoBehaviour, IPointerDownHandler
 	public struct ObstacleData
 	{
 		public GameObject prefab;
-		//public bool isTraversable;
+		public int weight;
 	}
 	
 	[SerializeField] public ObstacleData[] obstaclePrefabList;
@@ -70,8 +71,21 @@ public class TileComponent : MonoBehaviour, IPointerDownHandler
 
 		if (isObstacle)
 		{
-			var obstacle = obstaclePrefabList[Random.Range(0, obstaclePrefabList.Length)];
-			CreateTileEntity(obstacle.prefab);
+			int totalWeight = obstaclePrefabList.Sum(e => e.weight);
+
+			int weight = Random.Range(0, totalWeight);
+
+			foreach (var obj in obstaclePrefabList)
+			{
+				weight -= obj.weight;
+
+				if (weight <= 0)
+				{
+					CreateTileEntity(obj.prefab);
+					break;
+				}
+			}
+
 		}
 
 
@@ -146,8 +160,8 @@ public class TileComponent : MonoBehaviour, IPointerDownHandler
 			if (tower && tower.CanBeDestroyed)
 			{
 				Bank.Instance.RemoveFromBalance(TileEntity.STANDARD_DESTROY_COST);
-				//Debug.Log("Destroy tile entity");
-				Destroy(tileEntity.gameObject);
+				tower.OnTowerDestroy();
+				DestroyEntity();
 				tileEntity = null;
 			}
 		}
@@ -194,5 +208,10 @@ public class TileComponent : MonoBehaviour, IPointerDownHandler
 	{
 		if (tileEntity == null) return null;
 		return tileEntity.GetComponent<IAttackable>(); // Expensive but fuck we ball
+	}
+
+	public void DestroyEntity()
+	{
+		Destroy(tileEntity.gameObject);
 	}
 }
