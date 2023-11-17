@@ -226,5 +226,13 @@ public class LevelGenerator : MonoBehaviour
 	{
 		return levelWidth;
 	}
+	public float GetOffsetX()
+	{
+		return offsetX;
+	}
+	public float GetOffsetY()
+	{
+		return offsetY;
+	}
 
 }

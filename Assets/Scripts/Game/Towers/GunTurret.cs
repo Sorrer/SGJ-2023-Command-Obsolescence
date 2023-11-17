@@ -59,7 +59,7 @@ public class GunTurret : Building
 		{
 			for (int i = 0; i < bulletNumberLevels[_towerLevel]; i++)
 			{
-				var q = CurrentDirection switch
+				var rot = CurrentDirection switch
 				{
 					TowerDirection.TD_Up => Quaternion.Euler(0f, 0f, 0f),
 					TowerDirection.TD_Right => Quaternion.Euler(0f, 0f, -90f),
@@ -67,7 +67,7 @@ public class GunTurret : Building
 					TowerDirection.TD_Left => Quaternion.Euler(0f, 0f, 90f),
 					_ => transform.rotation,
 				};
-				GameObject newProjectileObj = Instantiate(_bulletPrefab, transform.position, q);
+				GameObject newProjectileObj = Instantiate(_bulletPrefab, transform.position, rot);
 				if (newProjectileObj.TryGetComponent<Projectile>(out var p))
 					p.SetupProjectile(gameObject, powerLevels[_towerLevel], speedLevels[_towerLevel], rangeLevels[_towerLevel]);
 				yield return new WaitForSeconds(bulletDelayLevels[_towerLevel]);
