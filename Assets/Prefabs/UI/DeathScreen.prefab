@@ -363,6 +363,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _mainMenu: MainMenu
+  _maxHealth: 100
 --- !u!1 &4677829529274909212
 GameObject:
   m_ObjectHideFlags: 0
