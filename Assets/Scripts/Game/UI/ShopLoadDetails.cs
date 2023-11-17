@@ -33,7 +33,7 @@ public class ShopLoadDetails : MonoBehaviour
         ShopInventory.Instance.SetCurrentSelectedItem(item);
 
         int childCount = _priceInfoArea.childCount;
-        Debug.Log(childCount);
+        //Debug.Log(childCount);
         for (int i = 0; i < childCount; i++)
         {
             Destroy(_priceInfoArea.gameObject.transform.GetChild(i).gameObject);
