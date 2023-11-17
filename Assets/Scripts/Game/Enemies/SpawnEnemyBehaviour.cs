@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -8,6 +9,8 @@ namespace Game.Enemies
     {
         public EnemyMapReference mapReference;
         public Transform enemyContainer;
+
+        public float spawnInterval = 1;
         
         [Serializable]
         public class EnemySpawningDetails
@@ -24,11 +27,17 @@ namespace Game.Enemies
             BASIC
         }
 
-        private void FixedUpdate()
+        private void Start()
         {
-            if (mapReference.mapLoaded)
+            StartCoroutine(SpawnEnemyCoroutine());
+        }
+
+        private IEnumerator SpawnEnemyCoroutine()
+        {
+            while (true)
             {
-                for (int i = 0; i < 5; i++)
+                yield return new WaitForSeconds(spawnInterval);
+                if (mapReference.mapLoaded)
                 {
                     SpawnEnemy(mapReference.GetRandomValidPosition(), EnemyTypes.BASIC);
                 }
