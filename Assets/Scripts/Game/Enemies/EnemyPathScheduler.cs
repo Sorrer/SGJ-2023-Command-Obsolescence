@@ -77,6 +77,8 @@ namespace Game.Enemies
             {
                 
                 Pathfinding.TempNode[,] copiedMap = new Pathfinding.TempNode[width, height];
+
+                var random = new Unity.Mathematics.Random();
                 
                 for(int x = 0; x < width; x++)
                 {
@@ -86,7 +88,7 @@ namespace Game.Enemies
                         newNode.x = x;
                         newNode.y = y;
                         newNode.weight = tiles[x + (y * width)].weight;
-                        newNode.weight += newNode.weight == -1 ? 0 : Random.Range(0, weightVariance);
+                        newNode.weight += newNode.weight == -1 ? 0 : random.NextInt(weightVariance);
                         copiedMap[x, y] = newNode;
                     }
                 }
