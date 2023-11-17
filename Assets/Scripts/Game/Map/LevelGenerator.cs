@@ -228,6 +228,14 @@ public class LevelGenerator : MonoBehaviour
 	{
 		return levelWidth;
 	}
+	public float GetOffsetX()
+	{
+		return offsetX;
+	}
+	public float GetOffsetY()
+	{
+		return offsetY;
+	}
 
 
 	public void UpdateTile(Vector2Int pos, TileComponent tile)
