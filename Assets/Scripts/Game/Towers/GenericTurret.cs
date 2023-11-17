@@ -38,9 +38,9 @@ public class GenericTurret : Tower
 		StartCoroutine(FireBulletRally());
 	}
 
-	public override void UpgradeTower()
+	public override void TryUpgradeTower()
 	{
-		base.UpgradeTower();
+		base.TryUpgradeTower();
 		//SetCurrentRaidus();
 	}
 
@@ -52,11 +52,11 @@ public class GenericTurret : Tower
 
 	private IEnumerator FireBulletRally()
 	{
-		if (projectileObj != null)
+		if (_projectileObj != null)
 		{
-			for (int i = 0; i < bulletNumberLevels[towerLevel]; i++)
+			for (int i = 0; i < bulletNumberLevels[_towerLevel]; i++)
 			{
-				var q = currentDirection switch
+				var q = _currentDirection switch
 				{
 					TowerDirection.TD_Up => Quaternion.Euler(0f, 0f, 0f),
 					TowerDirection.TD_Right => Quaternion.Euler(0f, 0f, -90f),
@@ -64,10 +64,10 @@ public class GenericTurret : Tower
 					TowerDirection.TD_Left => Quaternion.Euler(0f, 0f, 90f),
 					_ => transform.rotation,
 				};
-				GameObject newProjectileObj = Instantiate(projectileObj, transform.position, q);
+				GameObject newProjectileObj = Instantiate(_projectileObj, transform.position, q);
 				if (newProjectileObj.TryGetComponent<Projectile>(out var p))
-					p.SetupProjectile(gameObject, powerLevels[towerLevel], speedLevels[towerLevel]);
-				yield return new WaitForSeconds(bulletDelayLevels[towerLevel]);
+					p.SetupProjectile(gameObject, powerLevels[_towerLevel], speedLevels[_towerLevel]);
+				yield return new WaitForSeconds(bulletDelayLevels[_towerLevel]);
 			}
 			BreakTower();
 			//StartCoroutine(ResetTower(2.0f));

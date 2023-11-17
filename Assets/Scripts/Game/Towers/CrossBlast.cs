@@ -33,13 +33,13 @@ public class CrossBlast : Tower
 	{
 		for (int i = 0; i < 3; i++)
 		{
-			if (projectileObj != null)
+			if (_projectileObj != null)
 			{
 				for (int j = 0; j < 4; j++)
 				{
-					GameObject newProjectileObj = Instantiate(projectileObj, transform.position, transform.rotation);
+					GameObject newProjectileObj = Instantiate(_projectileObj, transform.position, transform.rotation);
 					if (newProjectileObj.TryGetComponent<Projectile>(out var p))
-						p.SetupProjectile(gameObject, powerLevels[towerLevel], speedLevels[towerLevel]);
+						p.SetupProjectile(gameObject, powerLevels[_towerLevel], speedLevels[_towerLevel]);
 					newProjectileObj.transform.Rotate(0.0f, 0.0f, 90.0f*j);
 				}
 			}

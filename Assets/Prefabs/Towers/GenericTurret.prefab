@@ -100,25 +100,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61c2825db5c84314cab3d5dc7ba0795a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  towerType: 1
-  towerState: 0
-  idleColor: {r: 1, g: 1, b: 1, a: 1}
-  brokenColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
-  towerTargetPriority: 0
-  currentDirection: 0
-  towerLevel: 1
-  maxTowerLevel: 3
-  projectileObj: {fileID: 3160107558040692346, guid: 9baba51819a4d4049b7e13881e255b21, type: 3}
-  destroyOnBreak: 0
-  powerLevels: 01000000020000000300000004000000
-  speedLevels: 02000000040000000600000008000000
-  rangeLevels: 06000000080000000a0000000c000000
-  bulletNumberLevels: 0a0000000c0000000e00000010000000
+  _towerName: 
+  _towerType: 0
+  _towerState: 0
+  _sr: {fileID: 1496963088884385075}
+  _idleColor: {r: 1, g: 1, b: 1, a: 1}
+  _brokenColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  _towerTargetPriority: 0
+  _currentDirection: 0
+  _towerLevel: 0
+  _maxTowerLevel: 3
+  _projectileObj: {fileID: 3160107558040692346, guid: 9baba51819a4d4049b7e13881e255b21, type: 3}
+  _destroyOnBreak: 0
+  _canBeDestroyed: 1
+  _purchaseInfo: {fileID: 11400000, guid: 210183f9806704f4e9ea803693e3af26, type: 2}
+  powerLevels: 04000000040000000400000004000000
+  speedLevels: 0c0000000c0000000c0000000c000000
+  rangeLevels: 0c0000000c0000000c0000000c000000
+  bulletNumberLevels: 060000000a0000000f00000015000000
   bulletDelayLevels:
-  - 5
-  - 4
-  - 3
-  - 1
+  - 0.5
+  - 0.4
+  - 0.33
+  - 0.3
 --- !u!58 &2431567925679524348
 CircleCollider2D:
   m_ObjectHideFlags: 0

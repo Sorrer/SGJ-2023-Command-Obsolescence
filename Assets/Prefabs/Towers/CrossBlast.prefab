@@ -101,16 +101,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e50caf86e3566a5408904b7b3ef5311b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  towerType: 2
-  towerState: 0
-  idleColor: {r: 1, g: 1, b: 1, a: 1}
-  brokenColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
-  towerTargetPriority: 0
-  currentDirection: 0
-  towerLevel: 0
-  maxTowerLevel: 3
-  projectileObj: {fileID: 7671194827889008353, guid: 9419b9eefaf585347a99c7d54ac0e2e4, type: 3}
-  destroyOnBreak: 0
+  _towerName: 
+  _towerType: 0
+  _towerState: 0
+  _sr: {fileID: 7019128525234271491}
+  _idleColor: {r: 1, g: 1, b: 1, a: 1}
+  _brokenColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  _towerTargetPriority: 0
+  _currentDirection: 0
+  _towerLevel: 0
+  _maxTowerLevel: 3
+  _projectileObj: {fileID: 3160107558040692346, guid: 9baba51819a4d4049b7e13881e255b21, type: 3}
+  _destroyOnBreak: 0
+  _canBeDestroyed: 0
+  _purchaseInfo: {fileID: 11400000, guid: 7bac1077ea3bad54c850d38d60904ab2, type: 2}
   powerLevels: 01000000020000000300000004000000
   speedLevels: 02000000040000000600000008000000
 --- !u!61 &1261522483364193629

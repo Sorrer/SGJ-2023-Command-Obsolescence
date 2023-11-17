@@ -1,6 +1,9 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.InteropServices.WindowsRuntime;
+using Unity.Burst.CompilerServices;
+using UnityEditor.EditorTools;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -45,51 +48,84 @@ public enum TowerDirection
 public class Tower : MonoBehaviour/*, IPointerDownHandler*/
 {
 	[Header("Internal Values")]
-	protected string towerName;		/**< String name of the tower. */
-	[SerializeField]
-	protected TowerType towerType;	/**< Type of tower. */
-	[SerializeField]
-	protected TowerState towerState;	/**< State the tower is currently in. */
-	protected SpriteRenderer sr;
-	[SerializeField]
-	protected Color idleColor = Color.white;
-	[SerializeField]
-	protected Color brokenColor = Color.gray;
+	[Tooltip("The string name of the tower.")]
+	[SerializeField] protected string _towerName;
+	[Tooltip("The type of the tower.")]
+	[SerializeField] protected TowerType _towerType;
+	[Tooltip("The state the tower is currently in.")]
+	[SerializeField] protected TowerState _towerState;
+	[Tooltip("The sprite renderer for this tower.")]
+	[SerializeField] protected SpriteRenderer _sr;
+	[Tooltip("The color to tint this tower when it is idle.")]
+	[SerializeField] protected Color _idleColor = Color.white;
+	[Tooltip("The color to tint this tower when it is broken.")]
+	[SerializeField] protected Color _brokenColor = Color.gray;
 
 	// Tower logic settings
-	protected List<GameObject> currEnemiesInRange = new List<GameObject>();
+	protected List<GameObject> _currEnemiesInRange = new List<GameObject>();
 
 	[Header("Tower Settings")]
-	[SerializeField]
-	protected TowerTargetPriority towerTargetPriority;
-	[SerializeField]
-	protected TowerDirection currentDirection;
-	[SerializeField]
-	protected int towerLevel;	/**< Level of tower, for upgrades. Base is level 0. */
-	[SerializeField]
-	protected int maxTowerLevel = 3; /**< Maximum level the tower can be upgraded to. */
-	[SerializeField]
-	protected GameObject projectileObj;	/**< Projectile spawned by the tower.*/
-	[SerializeField]
-	protected bool destroyOnBreak = false;	/**< Whether or not to delete self after the tower performs an action. */
+	[SerializeField] protected TowerTargetPriority _towerTargetPriority;
+	[Tooltip("The direction this tower is facing.")]
+	[SerializeField] protected TowerDirection _currentDirection;
+	[Tooltip("Level of tower, for upgrades. Base is level 0.")]
+	[SerializeField] protected int _towerLevel;
+	[Tooltip("Maximum level the tower can be upgraded to.")]
+	[SerializeField] protected int _maxTowerLevel = 3;
+	[Tooltip("The projectile spawned by the tower.")]
+	[SerializeField] protected GameObject _projectileObj; // Maybe projectiles should be defined on a per-tower basis? They might not all shoot things
+	[Tooltip("Whether or not the tower should delete itself after the tower performs an action.")]
+	[SerializeField] protected bool _destroyOnBreak = false;
+	[Tooltip("Whether or not this tower can be destroyed.")]
+	[SerializeField] protected bool _canBeDestroyed = true;
+	[Tooltip("The purchasable for this tower.")]
+	[SerializeField] protected Purchasable _purchaseInfo;
+
+	/// <summary>
+	/// The destroy cost for all towers. 
+	/// 
+	/// Wasn't sure where to put this; feel free to move this to a more suitable script if need be.
+	/// </summary>
+	public const int STANDARD_DESTROY_COST = 200;
+
+	/// <summary>
+	/// Whether or not this tower can be destroyed.
+	/// </summary>
+	public bool CanBeDestroyed => _canBeDestroyed;
+	/// <summary>
+	/// The Purchasable tied to this tower, containing its pricing information.
+	/// </summary>
+	public Purchasable PurchaseInfo => _purchaseInfo;
+	/// <summary>
+	/// The state this tower is currently in.
+	/// </summary>
+	public TowerState State => _towerState;
+	/// <summary>
+	/// Level of tower, for upgrades. Base is level 0.
+	/// </summary>
+	public int Level => _towerLevel;
+	/// <summary>
+	/// Maximum level the tower can be upgraded to.
+	/// </summary>
+	public int MaxLevel => _maxTowerLevel;
 	
 	// Start is called before the first frame update
 	protected virtual void Start()
 	{
-		sr = GetComponent<SpriteRenderer>();
-		if (sr)
-			sr.color = idleColor;
-		towerState = TowerState.TS_Idle;
-		towerTargetPriority = TowerTargetPriority.TTP_First;
-		currentDirection = TowerDirection.TD_Right;
-		towerLevel = 0;
+		_sr = GetComponent<SpriteRenderer>();
+		if (_sr)
+			_sr.color = _idleColor;
+		_towerState = TowerState.TS_Idle;
+		_towerTargetPriority = TowerTargetPriority.TTP_First;
+		_currentDirection = TowerDirection.TD_Right;
+		_towerLevel = 0;
 		AddPhysics2DRaycaster();
 	}
 
 	// Update is called once per frame
 	protected virtual void Update()
 	{
-		if (towerState == TowerState.TS_Idle)
+		if (_towerState == TowerState.TS_Idle)
 		{
 			GameObject searchTarget = GetTarget();
 			if (searchTarget != null)
@@ -112,7 +148,7 @@ public class Tower : MonoBehaviour/*, IPointerDownHandler*/
 	 */
 	public virtual void ExecuteTowerAction()
 	{
-		towerState = TowerState.TS_PerformingAction;
+		_towerState = TowerState.TS_PerformingAction;
 	}
 
 	/**
@@ -121,22 +157,31 @@ public class Tower : MonoBehaviour/*, IPointerDownHandler*/
 	 */
 	protected void ResetTower()
 	{
-		towerState = TowerState.TS_Idle;
-		if (sr)
-			sr.color = idleColor;
+		_towerState = TowerState.TS_Idle;
+		if (_sr)
+			_sr.color = _idleColor;
 		ExecuteTowerAction();
 	} 
 
 	/**
 	 * @brief Upgrades the tower by one level. Cannot go past max tower level.
 	 */
-	public virtual void UpgradeTower()
+	public virtual void TryUpgradeTower()
 	{
-		if (towerLevel < maxTowerLevel)
+		if (_towerLevel >= _maxTowerLevel) return;
+
+		int upgradeCost = _purchaseInfo.UpgradePrices[_towerLevel];
+		int balance = Bank.Instance.CurrentBalance;
+
+		if (_towerState != TowerState.TS_PerformingAction && balance >= upgradeCost)
 		{
-			towerLevel++;
-			Debug.Log("Upgraded to level " + towerLevel);
-			if (towerState == TowerState.TS_Broken)
+			Bank.Instance.RemoveFromBalance(upgradeCost);
+
+			_towerLevel++;
+
+			Debug.Log("Upgraded to level " + _towerLevel);
+
+			if (_towerState == TowerState.TS_Broken)
 				ResetTower();
 		}
 	}
@@ -146,10 +191,10 @@ public class Tower : MonoBehaviour/*, IPointerDownHandler*/
 	 */
 	public virtual void BreakTower()
 	{
-		towerState = TowerState.TS_Broken;
-		if (sr)
-			sr.color = brokenColor;
-		if (destroyOnBreak)
+		_towerState = TowerState.TS_Broken;
+		if (_sr)
+			_sr.color = _brokenColor;
+		if (_destroyOnBreak)
 			Destroy(gameObject);
 	}
 
@@ -171,20 +216,20 @@ public class Tower : MonoBehaviour/*, IPointerDownHandler*/
 	{
 		GameObject ret = null;
 		
-		if (currEnemiesInRange.Count == 0)
+		if (_currEnemiesInRange.Count == 0)
 			return null;
-		else if (currEnemiesInRange.Count == 1)
-			return currEnemiesInRange[0];
+		else if (_currEnemiesInRange.Count == 1)
+			return _currEnemiesInRange[0];
 		
-		switch (towerTargetPriority)
+		switch (_towerTargetPriority)
 		{
 			case TowerTargetPriority.TTP_Last:
-				ret = currEnemiesInRange[currEnemiesInRange.Count - 1];
+				ret = _currEnemiesInRange[_currEnemiesInRange.Count - 1];
 				break;
 
 			case TowerTargetPriority.TTP_First:
 			default:
-				ret = currEnemiesInRange[0];
+				ret = _currEnemiesInRange[0];
 				break;
 		}
 
@@ -204,7 +249,7 @@ public class Tower : MonoBehaviour/*, IPointerDownHandler*/
 			//	
 			//}
 			//ExecuteTowerAction(other.gameObject);
-			currEnemiesInRange.Add(other.gameObject);
+			_currEnemiesInRange.Add(other.gameObject);
 		}
 	}
 
@@ -212,7 +257,7 @@ public class Tower : MonoBehaviour/*, IPointerDownHandler*/
 	{
 		if (other.CompareTag("Enemy"))
 		{
-			currEnemiesInRange.Remove(other.gameObject);
+			_currEnemiesInRange.Remove(other.gameObject);
 		}
 	}
 }
