@@ -8,14 +8,14 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 
 [Serializable]
-public enum TowerType
+public enum EntityType // Do we need these and name at the same time?
 {
-	TowT_Unknown = 0,
-	TowT_GenericTurret = 1,
-	TowT_BombermanBlast = 2,
-	TowT_BigSucc = 3,
-	TowT_Pickaxe = 4,
-	TowT_MissleLauncher = 5
+	Unknown = 0,
+	GunTurret = 1,
+	Flamethrower = 2,
+	BigSucc = 3,
+	Pickaxe = 4,
+	MissleLauncher = 5
 };
 
 [Serializable]
@@ -45,17 +45,11 @@ public enum TowerDirection
 	TD_Left = 4
 }
 
-public class Tower : MonoBehaviour/*, IPointerDownHandler*/
+public class Building : TileEntity
 {
-	[Header("Internal Values")]
-	[Tooltip("The string name of the tower.")]
-	[SerializeField] protected string _towerName;
-	[Tooltip("The type of the tower.")]
-	[SerializeField] protected TowerType _towerType;
+	[Header("Building Values")]
 	[Tooltip("The state the tower is currently in.")]
 	[SerializeField] protected TowerState _towerState;
-	[Tooltip("The sprite renderer for this tower.")]
-	[SerializeField] protected SpriteRenderer _sr;
 	[Tooltip("The color to tint this tower when it is idle.")]
 	[SerializeField] protected Color _idleColor = Color.white;
 	[Tooltip("The color to tint this tower when it is broken.")]
@@ -72,42 +66,22 @@ public class Tower : MonoBehaviour/*, IPointerDownHandler*/
 	[SerializeField] protected int _towerLevel;
 	[Tooltip("Maximum level the tower can be upgraded to.")]
 	[SerializeField] protected int _maxTowerLevel = 3;
-	[Tooltip("The projectile spawned by the tower.")]
-	[SerializeField] protected GameObject _projectileObj; // Maybe projectiles should be defined on a per-tower basis? They might not all shoot things
-	[Tooltip("Whether or not the tower should delete itself after the tower performs an action.")]
-	[SerializeField] protected bool _destroyOnBreak = false;
-	[Tooltip("Whether or not this tower can be destroyed.")]
-	[SerializeField] protected bool _canBeDestroyed = true;
 	[Tooltip("The purchasable for this tower.")]
 	[SerializeField] protected Purchasable _purchaseInfo;
 
-	/// <summary>
-	/// The destroy cost for all towers. 
-	/// 
-	/// Wasn't sure where to put this; feel free to move this to a more suitable script if need be.
-	/// </summary>
-	public const int STANDARD_DESTROY_COST = 200;
+	[Tooltip("The sprite to use when facing upward.")]
+	[SerializeField] protected Sprite _upSprite;
+	[Tooltip("The sprite to use when facing downward.")]
+	[SerializeField] protected Sprite _downSprite;
+	[Tooltip("The sprite to use when facing leftward.")]
+	[SerializeField] protected Sprite _leftSprite;
+	[Tooltip("The sprite to use when facing rightward.")]
+	[SerializeField] protected Sprite _rightSprite;
 
 	/// <summary>
-	/// Whether or not this tower can be destroyed.
+	/// The sprites for all four directions of the tower. The array is orderered up, right, down, left.
 	/// </summary>
-	public bool CanBeDestroyed => _canBeDestroyed;
-	/// <summary>
-	/// The Purchasable tied to this tower, containing its pricing information.
-	/// </summary>
-	public Purchasable PurchaseInfo => _purchaseInfo;
-	/// <summary>
-	/// The state this tower is currently in.
-	/// </summary>
-	public TowerState State => _towerState;
-	/// <summary>
-	/// Level of tower, for upgrades. Base is level 0.
-	/// </summary>
-	public int Level => _towerLevel;
-	/// <summary>
-	/// Maximum level the tower can be upgraded to.
-	/// </summary>
-	public int MaxLevel => _maxTowerLevel;
+	public Sprite[] DirectionalSprites => new Sprite[] {_upSprite, _rightSprite, _downSprite, _leftSprite, };
 	
 	// Start is called before the first frame update
 	protected virtual void Start()
@@ -134,16 +108,6 @@ public class Tower : MonoBehaviour/*, IPointerDownHandler*/
 	}
 
 	/**
-	 * @brief Function that gets fired when the mouse clicks on this object.
-	 * @param eventData Idk man!
-	 */
-	/*public virtual void OnPointerDown(PointerEventData eventData)
-	{
-		Debug.Log("Clicked on name:" + gameObject.name);
-		// maybe remove these on click functions... they might interfere with the on click functions fired by the tiles
-	}*/
-
-	/**
 	 * @brief Overrideable function proto for executing the action of a tower. Such as firing a bullet, etc.
 	 */
 	public virtual void ExecuteTowerAction()
@@ -158,8 +122,8 @@ public class Tower : MonoBehaviour/*, IPointerDownHandler*/
 	protected void ResetTower()
 	{
 		_towerState = TowerState.TS_Idle;
-		if (_sr)
-			_sr.color = _idleColor;
+		if (_sr) _sr.color = _idleColor;
+
 		ExecuteTowerAction();
 	} 
 
@@ -192,10 +156,7 @@ public class Tower : MonoBehaviour/*, IPointerDownHandler*/
 	public virtual void BreakTower()
 	{
 		_towerState = TowerState.TS_Broken;
-		if (_sr)
-			_sr.color = _brokenColor;
-		if (_destroyOnBreak)
-			Destroy(gameObject);
+		if (_sr) _sr.color = _brokenColor;
 	}
 
 	/**

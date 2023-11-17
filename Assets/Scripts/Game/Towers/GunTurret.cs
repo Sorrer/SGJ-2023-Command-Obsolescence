@@ -2,18 +2,21 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GenericTurret : Tower
+public class GunTurret : Building
 {
-	[SerializeField]
-	private int[] powerLevels = new int[] {1, 2, 3, 4};	/**< Power of the spawned projectile, index is the tower's current level. */
-	[SerializeField]
-	private int[] speedLevels = new int[] {2, 4, 6, 8}; /**< Speed of the spawned projectile, index is the tower's current level. */
-	[SerializeField]
-	private int[] rangeLevels = new int[] {6, 8, 10, 12}; /**< Range of the tower, index is the tower's current level. */
-	[SerializeField]
-	private int[] bulletNumberLevels = new int[] {10, 12, 14, 16}; /**< Number of times the turret will fire before it breaks. */
-	[SerializeField]
-	private float[] bulletDelayLevels = new float[] {5f, 4f, 3f, 1f}; /**< Seconds wait before each bullet fires */
+	[Header("Gun Turret Values")]
+	[Tooltip("The prefab representing the bullet.")]
+	[SerializeField] private GameObject _bulletPrefab;
+	[Tooltip("Power of the spawned projectile, index is the tower's current level.")]
+	[SerializeField] private int[] powerLevels = new int[] {1, 2, 3, 4};
+	[Tooltip("Speed of the spawned projectile, index is the tower's current level.")]
+	[SerializeField] private int[] speedLevels = new int[] {2, 4, 6, 8};
+	[Tooltip("Range of the tower, index is the tower's current level.")]
+	[SerializeField] private int[] rangeLevels = new int[] {6, 8, 10, 12};
+	[Tooltip("Number of times the turret will fire before it breaks.")]
+	[SerializeField] private int[] bulletNumberLevels = new int[] {10, 12, 14, 16};
+	[Tooltip("Seconds to wait before each bullet fires.")]
+	[SerializeField] private float[] bulletDelayLevels = new float[] {5f, 4f, 3f, 1f};
 
 	private CircleCollider2D col;
 
@@ -52,7 +55,7 @@ public class GenericTurret : Tower
 
 	private IEnumerator FireBulletRally()
 	{
-		if (_projectileObj != null)
+		if (_bulletPrefab != null)
 		{
 			for (int i = 0; i < bulletNumberLevels[_towerLevel]; i++)
 			{
@@ -64,9 +67,9 @@ public class GenericTurret : Tower
 					TowerDirection.TD_Left => Quaternion.Euler(0f, 0f, 90f),
 					_ => transform.rotation,
 				};
-				GameObject newProjectileObj = Instantiate(_projectileObj, transform.position, q);
+				GameObject newProjectileObj = Instantiate(_bulletPrefab, transform.position, q);
 				if (newProjectileObj.TryGetComponent<Projectile>(out var p))
-					p.SetupProjectile(gameObject, powerLevels[_towerLevel], speedLevels[_towerLevel]);
+					p.SetupProjectile(gameObject, powerLevels[_towerLevel], speedLevels[_towerLevel], rangeLevels[_towerLevel]);
 				yield return new WaitForSeconds(bulletDelayLevels[_towerLevel]);
 			}
 			BreakTower();
