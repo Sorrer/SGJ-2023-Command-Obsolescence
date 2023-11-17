@@ -1,10 +1,12 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Game.Enemies;
 using UnityEngine;
 
 public class LevelGenerator : MonoBehaviour
 {
+	public EnemyMapReference mapReference;
 	//get the LevelGenerator instance
 	private static LevelGenerator instance;
 	public static LevelGenerator Instance
@@ -69,6 +71,7 @@ public class LevelGenerator : MonoBehaviour
 
 		LevelGridInit();
 		SpawnTileObjects();
+		if(mapReference != null) mapReference.LoadMap(levelGrid);
 	}
 
 	// Update is called once per frame
@@ -140,6 +143,13 @@ public class LevelGenerator : MonoBehaviour
 			{
 				//if (levelGrid[i, j].type == TileType.TT_Floor || levelGrid[i, j].type == TileType.TT_Wall)
 				//{
+					BoxCollider2D box2d = tileObj.GetComponent<BoxCollider2D>();
+					float offsetX = 1.0f, offsetY = 1.0f;
+					if (box2d != null)
+					{
+						offsetX = box2d.size.x/* * 2*/;
+						offsetY = box2d.size.y;
+					}
 					//Vector3 newPos = new Vector3(i+tileObj.GetComponent<SpriteRenderer>().sprite.rect.width, 
 					//	j+tileObj.GetComponent<SpriteRenderer>().sprite.rect.height, 0);
 					Vector3 newPos = new Vector3(i*offsetX /*+ offsetSpawnXStart*/, j*offsetY /*+ offsetSpawnYStart*/, 0);
@@ -179,7 +189,8 @@ public class LevelGenerator : MonoBehaviour
 	 */
 	public Vector2Int GetGridPosition(Vector3 worldPosition)
 	{
-		Vector2Int value = new((int)(worldPosition.x * 100) / (int)(offsetX * 100), (int)(worldPosition.y * 100) / (int)(offsetY * 100));
+		Vector2Int value = new(Mathf.FloorToInt((worldPosition.x + (offsetX/2)) / offsetX),
+			Mathf.FloorToInt((worldPosition.y+ (offsetY/2)) / offsetY));
 		return value;
 	}
 
@@ -193,4 +204,27 @@ public class LevelGenerator : MonoBehaviour
 		Vector3 value = new(gridPosition.x * offsetX, gridPosition.y * offsetY, 0);
 		return value;
 	}
+
+	public Vector2Int ClampGridPositionToBounds(Vector2Int gridPosition)
+	{
+		gridPosition.x = Math.Clamp(gridPosition.x, 0, levelWidth - 1);
+		gridPosition.y = Math.Clamp(gridPosition.y, 0, levelHeight - 1);
+		return gridPosition;
+	}
+
+	public bool IsWithinWorld(Vector2Int position)
+	{
+		return position.x >= 0 && position.x < levelWidth && position.y >= 0 && position.y <= levelHeight;
+	}
+
+
+	public int GetWidth()
+	{
+		return levelWidth;
+	}
+	public int GetHeight()
+	{
+		return levelWidth;
+	}
+
 }
