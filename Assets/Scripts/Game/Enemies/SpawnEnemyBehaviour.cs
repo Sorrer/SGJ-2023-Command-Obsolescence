@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = Unity.Mathematics.Random;
 
 namespace Game.Enemies
 {
@@ -10,6 +11,8 @@ namespace Game.Enemies
         public EnemyMapReference mapReference;
         public Transform enemyContainer;
 
+        public Dictionary<string, EnemyBehaviour> enemies = new Dictionary<string, EnemyBehaviour>();
+        
         public float spawnInterval = 1;
 
         public static SpawnEnemyBehaviour Instance;
@@ -85,6 +88,15 @@ namespace Game.Enemies
             var spawnPosition = LevelGenerator.Instance.GetWorldPosition(gridPosition);
             var spawnedEnemy = Instantiate(foundEnemy.enemyPrefab, enemyContainer);
             var enemyBehaviour = spawnedEnemy.GetComponent<EnemyBehaviour>();
+
+            var uuid = Guid.NewGuid().ToString();
+            while (enemies.ContainsKey(uuid))
+            {
+                uuid = Guid.NewGuid().ToString();
+            }
+            
+            enemies.Add(uuid, enemyBehaviour);
+            enemyBehaviour.SetUUID(uuid);
                 
             enemyBehaviour.SetPosition(spawnPosition);
             enemyBehaviour.SetHealth(foundEnemy.health);

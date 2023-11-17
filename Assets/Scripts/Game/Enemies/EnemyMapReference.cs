@@ -69,18 +69,26 @@ namespace Game.Enemies
         
         public void UpdateTile(Vector2Int tilePos, TileComponent tile)
         {
-                // Whenever something gets placed update the tilemap
-                // TODO: Update enemy paths that cross this tile position
-                
+            // Whenever something gets placed update the tilemap
+            // TODO: Update enemy paths that cross this tile position
+            int previousWeight = this.currentMap[tilePos.x + (tilePos.y * width)].weight;
 
-                if (tile.IsTraversal())
-                {
-                    this.currentMap[tilePos.x + (tilePos.y * width)].weight = tile.GetWeight() + baseWeight;
-                }
-                else
-                {
-                    this.currentMap[tilePos.x + (tilePos.y * width)].weight = -1;
-                }
+            if (tile.IsTraversal())
+            {
+                this.currentMap[tilePos.x + (tilePos.y * width)].weight = tile.GetWeight() + baseWeight;
+            }
+            else
+            {
+                this.currentMap[tilePos.x + (tilePos.y * width)].weight = -1;
+            }
+
+            // Don't need to update if nothing changed
+            if (previousWeight == this.currentMap[tilePos.x + (tilePos.y * width)].weight) return;
+
+            foreach (var enemy in SpawnEnemyBehaviour.Instance.enemies)
+            {
+                enemy.Value.processer.GoTo(goal, this, true);
+            }
         }
 
 

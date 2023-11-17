@@ -14,7 +14,7 @@ public class TileComponent : MonoBehaviour, IPointerDownHandler
 	
 	/**< Tower currently on the tile */
 	[FormerlySerializedAs("towerObj")] [SerializeField]
-	private TileEntity tileEntity = null;
+	public TileEntity tileEntity = null;
 	
 
 	[Serializable]
@@ -195,7 +195,7 @@ public class TileComponent : MonoBehaviour, IPointerDownHandler
 
 	public int GetWeight() // Can support negatives up to a point
 	{
-		return 1;
+		return tileEntity ? tileEntity.weight : 1;
 	}
 
 	public bool IsTraversal()

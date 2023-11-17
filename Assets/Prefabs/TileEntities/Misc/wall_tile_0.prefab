@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 6499036983488816008}
   - component: {fileID: 8174877782217620824}
   - component: {fileID: -1325605320155022832}
+  - component: {fileID: -8374781095072065475}
   m_Layer: 0
   m_Name: wall_tile_0
   m_TagString: Untagged
@@ -102,9 +103,10 @@ MonoBehaviour:
   _entityName: wall
   _sr: {fileID: 8174877782217620824}
   _canBeDestroyed: 1
-  _isWall: 1
+  _isWall: 0
   _replacement: 
   tileComponent: {fileID: 0}
+  weight: 1000000
   isInteractable: 1
   _towerState: 0
   _idleColor: {r: 1, g: 1, b: 1, a: 1}
@@ -116,3 +118,31 @@ MonoBehaviour:
   _downSprite: {fileID: 8494637627259261307, guid: 29d3307300d3f34488f468df7fdd0b8f, type: 3}
   _leftSprite: {fileID: 8494637627259261307, guid: 29d3307300d3f34488f468df7fdd0b8f, type: 3}
   _rightSprite: {fileID: 8494637627259261307, guid: 29d3307300d3f34488f468df7fdd0b8f, type: 3}
+--- !u!114 &-8374781095072065475
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 59086563791993363}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2b14075bb6d5464493e764ea588ed76a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 25
+  onDeath:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: -1325605320155022832}
+        m_TargetAssemblyTypeName: 
+        m_MethodName: 
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2

@@ -36,6 +36,7 @@ public class TileEntity : MonoBehaviour
 	/// </summary>
 	public string Replacement => _replacement;
 
+	public int weight = 1;
 
 	public bool isInteractable = true;
 

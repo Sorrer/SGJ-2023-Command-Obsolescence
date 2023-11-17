@@ -5,6 +5,7 @@ using Unity.Collections;
 using Unity.Jobs;
 using UnityEngine;
 using UnityEngine.Serialization;
+using Random = UnityEngine.Random;
 
 namespace Game.Enemies
 {
@@ -56,6 +57,7 @@ namespace Game.Enemies
                 }
             }
 
+            
             public int width;
             public int height;
             public TileInfo[] map;
@@ -68,13 +70,15 @@ namespace Game.Enemies
             public int width;
             public int height;
             public NativeArray<MapInfo.TileInfo> tiles;
-
+            public int weightVariance;
             public NativeList<Vector2Int> pathResults;
 
             public void Execute()
             {
                 
                 Pathfinding.TempNode[,] copiedMap = new Pathfinding.TempNode[width, height];
+
+                var random = new Unity.Mathematics.Random();
                 
                 for(int x = 0; x < width; x++)
                 {
@@ -84,7 +88,7 @@ namespace Game.Enemies
                         newNode.x = x;
                         newNode.y = y;
                         newNode.weight = tiles[x + (y * width)].weight;
-
+                        newNode.weight += newNode.weight == -1 ? 0 : random.NextInt(weightVariance);
                         copiedMap[x, y] = newNode;
                     }
                 }
@@ -104,7 +108,7 @@ namespace Game.Enemies
             }
         }
 
-        public void Schedule(MapInfo map, EnemyPathProcesser enemy, Vector2Int startPosition, Vector2Int endPosition)
+        public void Schedule(MapInfo map, EnemyPathProcesser enemy, Vector2Int startPosition, Vector2Int endPosition, int weightVariance = 0)
         {
             
             ScheduledJob schedule = new ScheduledJob()
@@ -122,7 +126,8 @@ namespace Game.Enemies
                 tiles = schedule.tiles,
                 pathResults = schedule.results,
                 width = map.width,
-                height = map.height
+                height = map.height,
+                weightVariance = weightVariance
             };
 
             schedule.job = job;

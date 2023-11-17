@@ -16,7 +16,7 @@ namespace Game.Enemies
         private EnemyMapReference currentMap;
         public int weightVariationRange = 5;
 
-        public void GoTo(Vector2Int worldPosition, EnemyMapReference map)
+        public void GoTo(Vector2Int worldPosition, EnemyMapReference map, bool tryUseNextPath = false)
         {
             if (!LevelGenerator.Instance.IsWithinWorld(worldPosition))
             {
@@ -25,27 +25,32 @@ namespace Game.Enemies
             }
 
             currentMap = map;
-            EnemyPathScheduler.MapInfo.TileInfo[] newMapInfo =
-                new EnemyPathScheduler.MapInfo.TileInfo[map.currentMap.Length];
 
-            for (int i = 0; i < map.currentMap.Length; i++)
+            var startPosition =
+                LevelGenerator.Instance.ClampGridPositionToBounds(
+                    LevelGenerator.Instance.GetGridPosition(target.transform.position));
+
+
+            if (tryUseNextPath && currentIndex < currentPath.Count)
             {
-                newMapInfo[i] = map.currentMap[i].Copy();
-                newMapInfo[i].weight += newMapInfo[i].weight == -1 ? 0 :Random.Range(0, weightVariationRange);
+                startPosition = currentPath[currentIndex];
             }
+            
 
             EnemyPathScheduler.instance.Schedule(new EnemyPathScheduler.MapInfo()
                 {
                     height = map.height,
                     width = map.width,
-                    map = newMapInfo,
+                    map = map.currentMap,
                 }, this,
-                LevelGenerator.Instance.ClampGridPositionToBounds(
-                    LevelGenerator.Instance.GetGridPosition(target.transform.position)), worldPosition);
+                
+                    startPosition, worldPosition, weightVariationRange);
         }
 
         public void StartPath(List<Vector2Int> path)
         {
+            if (path.Count == 0) return;
+            
             currentIndex = 0;
             currentPath = path;
             pathing = true;
@@ -68,6 +73,7 @@ namespace Game.Enemies
 
                         if (isCurrentTargetAttackable())
                         {
+                            Debug.LogError("GONNA ATTACK");
                             var attackable = GetCurrentTargetAttackable();
                             var attackableLocation = attackable.GetWorldPosition();
                             var currentPosition = LevelGenerator.Instance.GetWorldPosition(target.GetGridPosition());
