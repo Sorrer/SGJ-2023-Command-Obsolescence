@@ -25,13 +25,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1713540999716369761}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.5, y: -0.5, z: -0.5, w: 0.5}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.5, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3953949182754566830}
-  m_LocalEulerAnglesHint: {x: 180, y: 90, z: 90}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &2374121002232674683
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -95,7 +95,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3953949182754566830}
-  - component: {fileID: 5622202826498839842}
+  - component: {fileID: -577577532937781973}
   m_Layer: 0
   m_Name: TestProjectile
   m_TagString: Untagged
@@ -119,7 +119,7 @@ Transform:
   - {fileID: 1931077945688622935}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5622202826498839842
+--- !u!114 &-577577532937781973
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -128,8 +128,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 3160107558040692346}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9d6795511a3d3734da540f66c554bd76, type: 3}
+  m_Script: {fileID: 11500000, guid: ff9d0d0c044a7d74192d60ec70d6570b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 0}
   timeAlive: 5

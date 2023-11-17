@@ -17,4 +17,4 @@ MonoBehaviour:
   UpgradePrices: 96000000
   Description: Hi.
   StoreSprite: {fileID: -2427832084704946237, guid: 71b3af72e0f774e418956de5c0ff9aaf, type: 3}
-  ItemObject: {fileID: 7068201394523979774, guid: f93e15aa2ce971f4a9f17feddcaa445f, type: 3}
+  ItemObject: {fileID: 9189846024293449987, guid: 9e1040150a5a43b49b8c4680fca5d76a, type: 3}

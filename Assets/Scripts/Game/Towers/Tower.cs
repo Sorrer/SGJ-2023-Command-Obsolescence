@@ -32,10 +32,20 @@ public enum TowerTargetPriority
 	TTP_Close = 3
 }
 
+[Serializable]
+public enum TowerDirection
+{
+	TD_AllCardinal = 0,
+	TD_Up = 1,
+	TD_Right = 2,
+	TD_Down = 3,
+	TD_Left = 4
+}
+
 public class Tower : MonoBehaviour/*, IPointerDownHandler*/
 {
 	[Header("Internal Values")]
-	public string towerName;		/**< String name of the tower. */
+	protected string towerName;		/**< String name of the tower. */
 	[SerializeField]
 	protected TowerType towerType;	/**< Type of tower. */
 	[SerializeField]
@@ -53,6 +63,8 @@ public class Tower : MonoBehaviour/*, IPointerDownHandler*/
 	[SerializeField]
 	protected TowerTargetPriority towerTargetPriority;
 	[SerializeField]
+	protected TowerDirection currentDirection;
+	[SerializeField]
 	protected int towerLevel;	/**< Level of tower, for upgrades. Base is level 0. */
 	[SerializeField]
 	protected int maxTowerLevel = 3; /**< Maximum level the tower can be upgraded to. */
@@ -69,6 +81,7 @@ public class Tower : MonoBehaviour/*, IPointerDownHandler*/
 			sr.color = idleColor;
 		towerState = TowerState.TS_Idle;
 		towerTargetPriority = TowerTargetPriority.TTP_First;
+		currentDirection = TowerDirection.TD_Right;
 		towerLevel = 0;
 		AddPhysics2DRaycaster();
 	}
@@ -103,6 +116,18 @@ public class Tower : MonoBehaviour/*, IPointerDownHandler*/
 	}
 
 	/**
+	 * @brief Resets a tower back to the "TS_Idle" state after a delay.
+	 * @param waitTime Time to wait before going to the "TS_Idle" state, in seconds.
+	 */
+	protected void ResetTower()
+	{
+		towerState = TowerState.TS_Idle;
+		if (sr)
+			sr.color = idleColor;
+		ExecuteTowerAction();
+	} 
+
+	/**
 	 * @brief Upgrades the tower by one level. Cannot go past max tower level.
 	 */
 	public virtual void UpgradeTower()
@@ -111,6 +136,8 @@ public class Tower : MonoBehaviour/*, IPointerDownHandler*/
 		{
 			towerLevel++;
 			Debug.Log("Upgraded to level " + towerLevel);
+			if (towerState == TowerState.TS_Broken)
+				ResetTower();
 		}
 	}
 

@@ -28,7 +28,7 @@ public class ShopInventory : MonoBehaviour
     [Tooltip("The script responsible for loading the details of an item in the details section.")]
     [SerializeField] private ShopLoadDetails _shopLoader;
     
-    private Purchasable _currentSelectedItem;
+    [SerializeField] private Purchasable _currentSelectedItem;
 
     void Start()
     {

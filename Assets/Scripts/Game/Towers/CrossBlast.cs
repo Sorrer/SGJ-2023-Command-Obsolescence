@@ -23,9 +23,9 @@ public class CrossBlast : Tower
 		base.Update();
 	}
 
-	public override void ExecuteTowerAction(GameObject target)
+	public override void ExecuteTowerAction()
 	{
-		base.ExecuteTowerAction(target);
+		base.ExecuteTowerAction();
 		StartCoroutine(ExecuteCrossBlast());
 	}
 
@@ -39,7 +39,7 @@ public class CrossBlast : Tower
 				{
 					GameObject newProjectileObj = Instantiate(projectileObj, transform.position, transform.rotation);
 					if (newProjectileObj.TryGetComponent<Projectile>(out var p))
-						p.SetupProjectile(null, powerLevels[towerLevel], speedLevels[towerLevel]);
+						p.SetupProjectile(gameObject, powerLevels[towerLevel], speedLevels[towerLevel]);
 					newProjectileObj.transform.Rotate(0.0f, 0.0f, 90.0f*j);
 				}
 			}
