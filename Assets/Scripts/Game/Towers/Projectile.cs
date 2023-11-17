@@ -51,6 +51,7 @@ public class Projectile : MonoBehaviour
 	{
 		if (other.gameObject.TryGetComponent<EnemyBehaviour>(out var enemy))
 		{
+			Debug.Log("Hit enemy " + other.gameObject.name);
 			enemy.Damage(power);
 			if (destroyOnCollideWithEnemy)
 				Destroy(gameObject);
