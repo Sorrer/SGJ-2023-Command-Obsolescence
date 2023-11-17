@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 3285977950373240270}
   - component: {fileID: 379592111282468293}
   - component: {fileID: 418219707220140473}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: cave_tile_0
   m_TagString: Untagged
   m_Icon: {fileID: 0}

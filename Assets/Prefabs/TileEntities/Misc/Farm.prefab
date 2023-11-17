@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: -4327937900591400969}
   - component: {fileID: 971884856666952449}
   - component: {fileID: 7712290462435086477}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Farm
   m_TagString: Untagged
   m_Icon: {fileID: 0}

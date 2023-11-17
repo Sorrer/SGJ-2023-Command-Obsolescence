@@ -46,7 +46,6 @@ public class Flamethrower : Building
 					if (newProjectileObj.TryGetComponent<Projectile>(out var p))
 						p.SetupProjectile(gameObject, powerLevels[_towerLevel], speedLevels[_towerLevel], rangeLevels[_towerLevel]);
 					newProjectileObj.transform.Rotate(0.0f, 0.0f, 90.0f*j);
-					newProjectileObj.transform.localScale = new Vector3(1f, 1f, 1f);
 				}
 			}
 			yield return new WaitForSeconds(bulletDelayLevels[_towerLevel]);
