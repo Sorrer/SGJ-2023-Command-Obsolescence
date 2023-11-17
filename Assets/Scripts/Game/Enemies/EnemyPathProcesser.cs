@@ -25,14 +25,6 @@ namespace Game.Enemies
             }
 
             currentMap = map;
-            EnemyPathScheduler.MapInfo.TileInfo[] newMapInfo =
-                new EnemyPathScheduler.MapInfo.TileInfo[map.currentMap.Length];
-
-            for (int i = 0; i < map.currentMap.Length; i++)
-            {
-                newMapInfo[i] = map.currentMap[i].Copy();
-                newMapInfo[i].weight += newMapInfo[i].weight == -1 ? 0 :Random.Range(0, weightVariationRange);
-            }
 
             var startPosition =
                 LevelGenerator.Instance.ClampGridPositionToBounds(
@@ -49,10 +41,10 @@ namespace Game.Enemies
                 {
                     height = map.height,
                     width = map.width,
-                    map = newMapInfo,
+                    map = map.currentMap,
                 }, this,
                 
-                    startPosition, worldPosition);
+                    startPosition, worldPosition, weightVariationRange);
         }
 
         public void StartPath(List<Vector2Int> path)

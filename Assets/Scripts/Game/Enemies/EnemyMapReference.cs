@@ -71,7 +71,7 @@ namespace Game.Enemies
         {
             // Whenever something gets placed update the tilemap
             // TODO: Update enemy paths that cross this tile position
-            
+            int previousWeight = this.currentMap[tilePos.x + (tilePos.y * width)].weight;
 
             if (tile.IsTraversal())
             {
@@ -82,6 +82,8 @@ namespace Game.Enemies
                 this.currentMap[tilePos.x + (tilePos.y * width)].weight = -1;
             }
 
+            // Don't need to update if nothing changed
+            if (previousWeight == this.currentMap[tilePos.x + (tilePos.y * width)].weight) return;
 
             foreach (var enemy in SpawnEnemyBehaviour.Instance.enemies)
             {
