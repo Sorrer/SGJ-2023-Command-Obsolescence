@@ -11,7 +11,7 @@ public class BigBlaster : Building
 	[SerializeField] private int[] powerLevels = new int[] {1, 2, 3, 4};
 	[Tooltip("Size of the spawned projectile, index is the tower's current level.")]
 	[SerializeField] private int[] sizeLevels = new int[] {2, 4, 6, 8};
-	[Tooltip("Range of the tower, index is the tower's current level.")]
+	[Tooltip("Time the spawned projectile will live for, index is the tower's current level.")]
 	[SerializeField] private int[] timeAliveLevels = new int[] {3, 5, 7, 9};
 
 	private BoxCollider2D col;

@@ -130,7 +130,10 @@ public class Building : TileEntity
 		_sr.color = _brokenColor;
 	}
 
-	public virtual void DestroyTower()
+	/**
+	 * @brief Overrideable function proto for an action that can occur when the tower is destroyed.
+	 */
+	public virtual void OnTowerDestroy()
 	{
 		
 	}
