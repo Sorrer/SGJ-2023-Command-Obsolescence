@@ -105,8 +105,7 @@ public class TileComponent : MonoBehaviour, IPointerDownHandler
 	 */
 	public void OnPointerDown(PointerEventData eventData)
 	{
-		if (tileEntity == null) return;
-		if (!tileEntity.isInteractable) return;
+		if (tileEntity != null &&!tileEntity.isInteractable) return;
 		
 		PointerModes mode = PointerMode.Instance.Mode;
 		int balance = Bank.Instance.CurrentBalance;
