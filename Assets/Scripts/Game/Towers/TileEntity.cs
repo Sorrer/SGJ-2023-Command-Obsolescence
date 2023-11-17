@@ -38,4 +38,12 @@ public class TileEntity : MonoBehaviour
 
 
 	public bool isInteractable = true;
+
+	/**
+	 * @brief Overrideable function proto for an action that can occur when the tower is destroyed.
+	 */
+	public virtual void OnTowerDestroy()
+	{
+		
+	}
 }

@@ -110,7 +110,7 @@ MonoBehaviour:
   _idleColor: {r: 1, g: 1, b: 1, a: 1}
   _brokenColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
   _towerLevel: 0
-  _maxTowerLevel: 3
+  _maxTowerLevel: 0
   _purchaseInfo: {fileID: 11400000, guid: e81700174079d954d88b638f97fb9005, type: 2}
   _upSprite: {fileID: 8494637627259261307, guid: 29d3307300d3f34488f468df7fdd0b8f, type: 3}
   _downSprite: {fileID: 8494637627259261307, guid: 29d3307300d3f34488f468df7fdd0b8f, type: 3}

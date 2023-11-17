@@ -1,13 +1,10 @@
 fileFormatVersion: 2
-guid: a2baccbf015996245a327b10655e1246
+guid: 3d500472bccfce742b06e20ac982144c
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -3966044189379602213
-    second: base_0
-  - first:
-      213: 5214576322002826026
-    second: base_1
+      213: 8623272615763423323
+    second: rainforest_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -103,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: base_0
+      name: rainforest_0
       rect:
         serializedVersion: 2
-        x: 41
-        y: 100
-        width: 30
-        height: 25
+        x: 0
+        y: 0
+        width: 1920
+        height: 1200
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -117,29 +114,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: bd8d680a2d7c5f8c0800000000000000
-      internalID: -3966044189379602213
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: base_1
-      rect:
-        serializedVersion: 2
-        x: 21
-        y: 3
-        width: 83
-        height: 93
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: a23342f6985ed5840800000000000000
-      internalID: 5214576322002826026
+      spriteID: b50bee781c40ca770800000000000000
+      internalID: 8623272615763423323
       vertices: []
       indices: 
       edges: []
@@ -154,9 +130,7 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable:
-      base_0: -3966044189379602213
-      base_1: 5214576322002826026
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

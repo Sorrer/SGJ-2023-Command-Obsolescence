@@ -130,13 +130,13 @@ public class TileComponent : MonoBehaviour, IPointerDownHandler
 
 			if (tileEntity != null) 
 			{
-				TileEntity old = tileEntity.GetComponent<Building>();
-				
-				if (old && old.Replacement.Equals(p.Name)) 
+				if (tileEntity.Replacement.Equals(p.Name)) 
 				{
-					Debug.Log("Cannot replace");
-					return;
+					tileEntity.OnTowerDestroy();
+					Destroy(tileEntity.gameObject);
+					tileEntity = null;
 				}
+				else return;
 			}
 
 			ShopInventory.Instance.PurchaseCurrentSelectedItem();

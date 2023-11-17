@@ -99,9 +99,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca42395981565d647b6df9c8e988fb65, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _entityName: cave
-  _sr: {fileID: 0}
+  _entityName: Cave
+  _sr: {fileID: 5128770526739699283}
   _canBeDestroyed: 0
   _isWall: 1
-  _replacement: mine
+  _replacement: Mine
+  tileComponent: {fileID: 0}
   isInteractable: 1

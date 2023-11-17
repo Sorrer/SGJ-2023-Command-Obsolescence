@@ -3070,8 +3070,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _inventory:
-  - {fileID: 11400000, guid: 8f7a419b303a4f944955e0edd413a1f9, type: 2}
-  - {fileID: 11400000, guid: 7faa807176e93cc459d8861a2f2f97c2, type: 2}
+  - {fileID: 11400000, guid: 210183f9806704f4e9ea803693e3af26, type: 2}
+  - {fileID: 11400000, guid: 4f842f6fa828609419fd71bca4d92f92, type: 2}
+  - {fileID: 11400000, guid: 7bac1077ea3bad54c850d38d60904ab2, type: 2}
+  - {fileID: 11400000, guid: 236c4b2e9e28b6d4583423993ddf6ccc, type: 2}
+  - {fileID: 11400000, guid: 048373112b32c6e44a568ba7f7d84e68, type: 2}
+  - {fileID: 11400000, guid: e81700174079d954d88b638f97fb9005, type: 2}
   _listItemPrefab: {fileID: 228965678972481593, guid: afe61f60241cda247895bae7ff537bf5, type: 3}
   _shopLoader: {fileID: 742599851254057198}
   _currentSelectedItem: {fileID: 0}
