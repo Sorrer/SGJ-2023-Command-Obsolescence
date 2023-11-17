@@ -34,10 +34,10 @@ public class EnemyBehaviour : MonoBehaviour
         var sprite = this.GetComponent<SpriteRenderer>();
         if (sprite)
         {
-            sprite.color = Random.ColorHSV();
+            //sprite.color = Random.ColorHSV();
         }
 
-        this.WalkSpeed = 0.5f + (Random.value * 5);
+        //this.WalkSpeed = 0.5f + (Random.value * 5);
     }
 
     public void Update()

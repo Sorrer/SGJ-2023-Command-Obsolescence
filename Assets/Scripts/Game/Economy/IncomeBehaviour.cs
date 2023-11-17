@@ -22,5 +22,7 @@ namespace Game.Economy
                 Bank.Instance.AddToBalance(amount);
             }
         }
+        
+        
     }
 }

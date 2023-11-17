@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 2903803408586157953}
   - component: {fileID: 5958145893319782799}
   - component: {fileID: -3267105468210258308}
+  - component: {fileID: -6673009571907649415}
   m_Layer: 0
   m_Name: EnemyManager
   m_TagString: Untagged
@@ -63,3 +64,35 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a6cf092159e41f5bbab2fa0122e72d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &-6673009571907649415
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8759322046558690104}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 39d18368f6884794a0e5fe95a80969c5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mapReference: {fileID: 5958145893319782799}
+  enemyContainer: {fileID: 2903803408586157953}
+  spawnInterval: 1
+  spawnEnemies: 0
+  spawnList:
+  - type: 0
+    health: 10
+    enemyPrefab: {fileID: 8509407593462821115, guid: b4023ad7f3df7c342b7d4210d2c41a4a, type: 3}
+  - type: 1
+    health: 10
+    enemyPrefab: {fileID: 7026129606544149071, guid: abf3f5c932782224d98f394a7a3f0559, type: 3}
+  - type: 2
+    health: 10
+    enemyPrefab: {fileID: 4587741297401579232, guid: fa3e9f25573e46247be2c0500ae69e64, type: 3}
+  - type: 3
+    health: 10
+    enemyPrefab: {fileID: 2763549653692787435, guid: 86b4f4a11ad9aaa4384010f8b09cb49a, type: 3}
+  - type: 4
+    health: 10
+    enemyPrefab: {fileID: 3655714096419731220, guid: cf8ba3ba88440ae49b706fe4d267460f, type: 3}
