@@ -92,7 +92,7 @@ namespace Game.Enemies
                         // Reached end of the path
                         if (currentPath[currentIndex - 1] == currentMap.goal)
                         {
-                            // Reached goal.. doo something?
+                            DeathScreen.Instance.TakeDamage();
                             target.Kill();
                             // De-increment lives?
                         }

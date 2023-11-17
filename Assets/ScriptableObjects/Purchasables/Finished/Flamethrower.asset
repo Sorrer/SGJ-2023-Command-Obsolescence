@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: af2870f903b8f754e9cbdd48ef954816, type: 3}
-  m_Name: PurchaseBigBlast
+  m_Name: Flamethrower
   m_EditorClassIdentifier: 
-  Name: Big Boy Blaster
-  BasePrice: 100
-  UpgradePrices: c80000002c01000090010000
-  Description: Fires a BIG blast!
-  StoreSprite: {fileID: 8791539599514056937, guid: cb1c599b1531a994eaa7d237a3bd00a6, type: 3}
-  ItemObject: {fileID: 7501146054962545587, guid: 23d110fe65e74f74092ad42fbfb84951, type: 3}
+  Name: Flamethrower
+  BasePrice: 50
+  UpgradePrices: 96000000c8000000fa000000
+  Description: Burns all 4 cardinal directions!
+  StoreSprite: {fileID: 2800715737579632502, guid: af5ac44de05d3d24780e992b660c8d49, type: 3}
+  ItemObject: {fileID: 4185365289232125854, guid: 9e1040150a5a43b49b8c4680fca5d76a, type: 3}
