@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8199804920580341864}
   - component: {fileID: 282270721500397966}
   - component: {fileID: 7501146054962545587}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: BigBlastTurret
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -100,13 +100,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _entityName: BigBlaster
-  _entityType: 0
   _sr: {fileID: 282270721500397966}
   _canBeDestroyed: 1
+  _isWall: 0
+  _replacement: 
+  isInteractable: 1
   _towerState: 0
   _idleColor: {r: 0.41117835, g: 0.8301887, b: 0.80481786, a: 1}
   _brokenColor: {r: 0.08810965, g: 0.33962262, b: 0.3359775, a: 1}
-  _towerTargetPriority: 0
   _towerLevel: 0
   _maxTowerLevel: 3
   _purchaseInfo: {fileID: 11400000, guid: 4f842f6fa828609419fd71bca4d92f92, type: 2}
@@ -117,4 +118,4 @@ MonoBehaviour:
   _bulletPrefab: {fileID: 7350913003881305737, guid: 3cc2717e738a38a4e8789de326282e52, type: 3}
   powerLevels: 01000000020000000300000004000000
   sizeLevels: 03000000050000000700000009000000
-  rangeLevels: 06000000080000000a0000000c000000
+  timeAliveLevels: 03000000050000000700000009000000

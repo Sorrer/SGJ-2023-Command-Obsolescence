@@ -129,6 +129,11 @@ public class Building : TileEntity
 		_sr.color = _brokenColor;
 	}
 
+	public virtual void DestroyTower()
+	{
+		
+	}
+
 	/**
 	 * @brief Needed for IPointerDownHandler related functions. Find the Physics2DRaycaster component that
 	 * exists in the world, or add one to the main camera GameObject if one does not exist.

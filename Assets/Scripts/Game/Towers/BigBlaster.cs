@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class BigBlaster : Building
 {
-	[Header("Gun Turret Values")]
+	[Header("Big Blaster Turret Values")]
 	[Tooltip("The prefab representing the bullet.")]
 	[SerializeField] private GameObject _bulletPrefab;
 	[Tooltip("Power of the spawned projectile, index is the tower's current level.")]
