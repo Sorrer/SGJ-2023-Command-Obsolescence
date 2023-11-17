@@ -184,6 +184,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d331bc707b86bfe419932fff8ffff1b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  obstacleDensity: 0.2
   mapReference: {fileID: 375253524}
   levelGenerator: {fileID: 969946341}
   tileObj: {fileID: 1742074848930562816, guid: 16b161a5f9cc0da428f8453c3931196f, type: 3}
@@ -301,6 +302,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ece74a0a3014264da7940ce47daff16, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damage: 5
   EndTargetPosition: {x: 0, y: 0, z: 0}
   RootPosition: {fileID: 0}
   StopRadius: 0

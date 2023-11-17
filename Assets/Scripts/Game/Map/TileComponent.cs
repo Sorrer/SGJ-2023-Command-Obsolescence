@@ -17,7 +17,14 @@ public class TileComponent : MonoBehaviour, IPointerDownHandler
 	[SerializeField] 
 	private GameObject obstacleObj;
 
-	[SerializeField] public GameObject[] obstaclePrefabList;
+	[Serializable]
+	public struct ObstacleData
+	{
+		public GameObject prefab;
+		public bool isTraversable;
+	}
+	
+	[SerializeField] public ObstacleData[] obstaclePrefabList;
 	
 	public int xPos;
 	public int yPos;
@@ -67,11 +74,13 @@ public class TileComponent : MonoBehaviour, IPointerDownHandler
 
 		if (isObstacle)
 		{
-			isInteractable = false;
-			isTraversable = false;
 			
-			this.obstacleObj = Instantiate(obstaclePrefabList[Random.Range(0, obstaclePrefabList.Length)]);
+			var obstacle = obstaclePrefabList[Random.Range(0, obstaclePrefabList.Length)];
+			
+			this.obstacleObj = Instantiate(obstacle.prefab);
 			this.obstacleObj.transform.position = this.transform.position;
+			isInteractable = false;
+			isTraversable = obstacle.isTraversable;
 		}
 		else
 		{

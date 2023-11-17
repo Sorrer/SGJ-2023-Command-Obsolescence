@@ -44,7 +44,7 @@ namespace Game.Enemies
                         tileInfo.weight = -1; // unwalkable
                         currentMap[x + (y *width)] = tileInfo;
                         continue;
-                    }
+                    }   
                     
                     validMapLocations.Add(new Vector2Int(x,y));
                     
@@ -60,6 +60,7 @@ namespace Game.Enemies
                     }
                     
                     currentMap[x + (y *width)] = tileInfo;
+
                 }
             }
 
@@ -71,14 +72,40 @@ namespace Game.Enemies
                 // Whenever something gets placed update the tilemap
                 // TODO: Update enemy paths that cross this tile position
                 
-                this.currentMap[tilePos.x + (tilePos.y * width)].weight = tile.GetWeight();
+
+                if (tile.IsTraversal())
+                {
+                    this.currentMap[tilePos.x + (tilePos.y * width)].weight = tile.GetWeight() + baseWeight;
+                }
+                else
+                {
+                    this.currentMap[tilePos.x + (tilePos.y * width)].weight = -1;
+                }
         }
+
 
 
         public Vector2Int GetRandomValidPosition()
         {
             return validMapLocations[Random.Range(0, validMapLocations.Count)];
         }
-        
+
+
+        private void OnDrawGizmosSelected()
+        {
+            if (LevelGenerator.Instance == null) return;
+            for (int x = 0; x < width; x++)
+            {
+                for (int y = 0; y < height; y++)
+                {
+
+                    if (currentMap[x + (y * width)].weight == -1)
+                    {
+                        Gizmos.color = Color.red;
+                        Gizmos.DrawSphere(LevelGenerator.Instance.GetWorldPosition(new Vector2Int(x, y)), 0.5f);
+                    }
+                }
+            }
+        }
     }
 }

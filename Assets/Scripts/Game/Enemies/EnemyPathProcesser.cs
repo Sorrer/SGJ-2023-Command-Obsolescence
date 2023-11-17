@@ -31,7 +31,7 @@ namespace Game.Enemies
             for (int i = 0; i < map.currentMap.Length; i++)
             {
                 newMapInfo[i] = map.currentMap[i].Copy();
-                newMapInfo[i].weight += Random.Range(0, weightVariationRange);
+                newMapInfo[i].weight += newMapInfo[i].weight == -1 ? 0 :Random.Range(0, weightVariationRange);
             }
 
             EnemyPathScheduler.instance.Schedule(new EnemyPathScheduler.MapInfo()
@@ -151,6 +151,16 @@ namespace Game.Enemies
             }
 
             return null;
+        }
+
+        private void OnDrawGizmosSelected()
+        {
+            if (LevelGenerator.Instance == null) return;
+            foreach (var path in currentPath)
+            {
+                Gizmos.color = Color.yellow;
+                Gizmos.DrawSphere(LevelGenerator.Instance.GetWorldPosition(path), 0.2f);
+            }
         }
     }
 }
