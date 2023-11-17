@@ -102,7 +102,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SpawnInterval: 15
-  types: 0
+  types: 1
 --- !u!114 &3275992136210290189
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -121,6 +121,7 @@ MonoBehaviour:
   _isWall: 0
   _replacement: 
   tileComponent: {fileID: 0}
+  weight: 1
   isInteractable: 1
   _towerState: 0
   _idleColor: {r: 1, g: 1, b: 1, a: 1}
