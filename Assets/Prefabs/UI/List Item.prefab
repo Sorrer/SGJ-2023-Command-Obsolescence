@@ -74,8 +74,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4279045939
+  m_fontColor: {r: 0.1981132, g: 0.060375527, b: 0.051397298, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -327,11 +327,11 @@ MonoBehaviour:
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 1, g: 0, b: 0.96657753, a: 1}
-    m_HighlightedColor: {r: 1, g: 0, b: 0, a: 1}
-    m_PressedColor: {r: 1, g: 0.9315591, b: 0, a: 1}
-    m_SelectedColor: {r: 0, g: 1, b: 0.04619026, a: 1}
-    m_DisabledColor: {r: 0.34901953, g: 0, b: 1, a: 1}
+    m_NormalColor: {r: 0.9528302, g: 0.9528302, b: 0.9528302, a: 1}
+    m_HighlightedColor: {r: 0.8490566, g: 0.7969918, b: 0.7969918, a: 1}
+    m_PressedColor: {r: 0.8490566, g: 0.7969918, b: 0.7969918, a: 1}
+    m_SelectedColor: {r: 0.8490566, g: 0.7969918, b: 0.7969918, a: 1}
+    m_DisabledColor: {r: 0.5754717, g: 0.54018337, b: 0.54018337, a: 1}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
@@ -429,15 +429,15 @@ MonoBehaviour:
       m_Calls: []
   m_text: Tower Name
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 90fdc1e552ccac44cbb30a9910fc9715, type: 2}
+  m_sharedMaterial: {fileID: -1869088326023237170, guid: 90fdc1e552ccac44cbb30a9910fc9715, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4279045939
+  m_fontColor: {r: 0.1981132, g: 0.060375527, b: 0.051397298, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -460,7 +460,7 @@ MonoBehaviour:
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 1
+  m_fontStyle: 0
   m_HorizontalAlignment: 1
   m_VerticalAlignment: 512
   m_textAlignment: 65535

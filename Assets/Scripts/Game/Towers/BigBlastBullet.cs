@@ -20,12 +20,13 @@ public class BigBlastBullet : Projectile
 		//transform.Translate(Vector3.up * speed * Time.deltaTime);
 	}
 
-	public void SetupBigBlastBullet(GameObject _owner, int _power, float _scale)
+	public void SetupBigBlastBullet(GameObject _owner, int _power, float _scale, float _timeAlive)
 	{
 		Debug.Log("Setup big blast");
 		owner = _owner;
 		power = _power;
 		scale = _scale;
+		timeAlive = _timeAlive;
 		transform.localScale = new Vector3(scale, scale, 1f);
 	}
 }
