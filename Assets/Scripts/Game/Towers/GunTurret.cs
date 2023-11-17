@@ -29,12 +29,6 @@ public class GunTurret : Building
 		//SetCurrentRaidus();
 	}
 
-	// Update is called once per frame
-	protected override void Update()
-	{
-		base.Update();
-	}
-
 	public override void ExecuteTowerAction()
 	{
 		base.ExecuteTowerAction();

@@ -8,31 +8,11 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 
 [Serializable]
-public enum EntityType // Do we need these and name at the same time?
-{
-	Unknown = 0,
-	GunTurret = 1,
-	Flamethrower = 2,
-	BigSucc = 3,
-	Pickaxe = 4,
-	MissleLauncher = 5
-};
-
-[Serializable]
 public enum TowerState
 {
 	TS_Idle = 0,
 	TS_PerformingAction = 1,
 	TS_Broken = 2
-}
-
-[Serializable]
-public enum TowerTargetPriority
-{
-	TTP_First = 0,
-	TTP_Last = 1,
-	TTP_Strong = 2,
-	TTP_Close = 3
 }
 
 [Serializable]
@@ -58,7 +38,6 @@ public class Building : TileEntity
 	protected List<GameObject> _currEnemiesInRange = new List<GameObject>();
 
 	[Header("Tower Settings")]
-	[SerializeField] protected TowerTargetPriority _towerTargetPriority;
 	[Tooltip("Level of tower, for upgrades. Base is level 0.")]
 	[SerializeField] protected int _towerLevel;
 	[Tooltip("Maximum level the tower can be upgraded to.")]
@@ -94,20 +73,8 @@ public class Building : TileEntity
 		_sr.color = _idleColor;
 
 		_towerState = TowerState.TS_Idle;
-		_towerTargetPriority = TowerTargetPriority.TTP_First;
 		_towerLevel = 0;
 		AddPhysics2DRaycaster();
-	}
-
-	// Update is called once per frame
-	protected virtual void Update()
-	{
-		if (_towerState == TowerState.TS_Idle)
-		{
-			GameObject searchTarget = GetTarget();
-			if (searchTarget != null)
-				ExecuteTowerAction();
-		}
 	}
 
 	/**
@@ -173,31 +140,6 @@ public class Building : TileEntity
 		{
 			Camera.main.gameObject.AddComponent<Physics2DRaycaster>();
 		}
-	}
-
-	// Thinking of moving this to a specific Tower class that has targeting (like the missiles)
-	protected GameObject GetTarget()
-	{
-		GameObject ret = null;
-		
-		if (_currEnemiesInRange.Count == 0)
-			return null;
-		else if (_currEnemiesInRange.Count == 1)
-			return _currEnemiesInRange[0];
-		
-		switch (_towerTargetPriority)
-		{
-			case TowerTargetPriority.TTP_Last:
-				ret = _currEnemiesInRange[_currEnemiesInRange.Count - 1];
-				break;
-
-			case TowerTargetPriority.TTP_First:
-			default:
-				ret = _currEnemiesInRange[0];
-				break;
-		}
-
-		return ret;
 	}
 
 	private void OnTriggerEnter2D(Collider2D other)
