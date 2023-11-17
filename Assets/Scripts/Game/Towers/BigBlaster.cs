@@ -25,7 +25,6 @@ public class BigBlaster : Building
 		//SetCurrentRaidus();
 	}
 
-
 	public override void ExecuteTowerAction()
 	{
 		base.ExecuteTowerAction();

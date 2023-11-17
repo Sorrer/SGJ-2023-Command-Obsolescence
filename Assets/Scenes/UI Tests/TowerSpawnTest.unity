@@ -422,53 +422,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
---- !u!1 &913280919
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 913280921}
-  - component: {fileID: 913280920}
-  m_Layer: 0
-  m_Name: TowerManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &913280920
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 913280919}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 41f5d4e195105734a83b5ea7f594134b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  towerList:
-  - type: 1
-    towerPrefab: {fileID: 3150720847394188103, guid: 0666e210c7beaac4ba5800afcb49b2ca, type: 3}
---- !u!4 &913280921
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 913280919}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1018312626
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -704,6 +657,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d331bc707b86bfe419932fff8ffff1b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  obstacleDensity: 0.1
   mapReference: {fileID: 0}
   levelGenerator: {fileID: 1643012283}
   tileObj: {fileID: 1742074848930562816, guid: 16b161a5f9cc0da428f8453c3931196f, type: 3}
@@ -1440,6 +1394,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: BigBlastTurret
       objectReference: {fileID: 0}
+    - target: {fileID: 5851744357143394530, guid: 23d110fe65e74f74092ad42fbfb84951, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8199804920580341864, guid: 23d110fe65e74f74092ad42fbfb84951, type: 3}
       propertyPath: m_LocalPosition.x
       value: -3.09
@@ -1590,7 +1548,6 @@ SceneRoots:
   - {fileID: 842077774}
   - {fileID: 1432937887}
   - {fileID: 2064593706}
-  - {fileID: 913280921}
   - {fileID: 1643012285}
   - {fileID: 1018312626}
   - {fileID: 1965793771}

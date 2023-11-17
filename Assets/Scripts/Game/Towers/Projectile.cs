@@ -13,6 +13,10 @@ public class Projectile : MonoBehaviour
 	protected float speed;
 	[SerializeField]
 	protected float timeAlive;
+	[SerializeField]
+	protected bool destroyOnCollideWithEnemy;
+	[SerializeField]
+	protected bool destroyOnCollideWithWall;
 
 	// Start is called before the first frame update
 	protected virtual void Start()
@@ -41,5 +45,15 @@ public class Projectile : MonoBehaviour
 		power = _power;
 		speed = _speed;
 		timeAlive = _range / speed;
+	}
+
+	protected void OnTriggerEnter2D(Collider2D other)
+	{
+		if (other.gameObject.TryGetComponent<EnemyBehaviour>(out var enemy))
+		{
+			enemy.Damage(power);
+			if (destroyOnCollideWithEnemy)
+				Destroy(gameObject);
+		}
 	}
 }
