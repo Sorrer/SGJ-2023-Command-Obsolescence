@@ -1,5 +1,6 @@
 using UnityEngine;
 
+[RequireComponent(typeof(SpriteRenderer), typeof(Collider2D), typeof(Rigidbody2D))]
 public class TileEntity : MonoBehaviour
 {
 	[Header("General Entity Values")]

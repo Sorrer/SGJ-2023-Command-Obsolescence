@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 4020832507954626955}
   - component: {fileID: 7019128525234271491}
   - component: {fileID: 4185365289232125854}
-  - component: {fileID: 1261522483364193629}
   - component: {fileID: 6390399952366363858}
+  - component: {fileID: 6415870646818261097}
   m_Layer: 7
   m_Name: Flamethrower
   m_TagString: Untagged
@@ -102,13 +102,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _entityName: Flamethrower
-  _entityType: 2
   _sr: {fileID: 7019128525234271491}
   _canBeDestroyed: 1
+  _isWall: 0
+  _replacement: 
+  tileComponent: {fileID: 0}
+  weight: 1
+  isInteractable: 1
   _towerState: 0
   _idleColor: {r: 1, g: 1, b: 1, a: 1}
   _brokenColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
-  _towerTargetPriority: 0
   _towerLevel: 0
   _maxTowerLevel: 3
   _purchaseInfo: {fileID: 11400000, guid: 7bac1077ea3bad54c850d38d60904ab2, type: 2}
@@ -134,52 +137,6 @@ MonoBehaviour:
   - 0.16
   - 0.13
   - 0.1
---- !u!61 &1261522483364193629
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9189846024293449987}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_CompositeOperation: 0
-  m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1.28, y: 1.28}
-    newSize: {x: 2.44, y: 2.4}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  m_Size: {x: 1, y: 14.4}
-  m_EdgeRadius: 0
 --- !u!61 &6390399952366363858
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -224,5 +181,32 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 14.64, y: 1}
+  m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!50 &6415870646818261097
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9189846024293449987}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 1
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 1
+  m_Constraints: 0
