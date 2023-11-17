@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2903803408586157953}
   - component: {fileID: 5958145893319782799}
+  - component: {fileID: -3267105468210258308}
   m_Layer: 0
   m_Name: EnemyManager
   m_TagString: Untagged
@@ -45,6 +46,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   goal: {x: 0, y: 0}
+  width: 0
+  height: 0
   validMapLocations: []
   baseWeight: 1000
   mapLoaded: 0
+--- !u!114 &-3267105468210258308
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8759322046558690104}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2a6cf092159e41f5bbab2fa0122e72d5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
