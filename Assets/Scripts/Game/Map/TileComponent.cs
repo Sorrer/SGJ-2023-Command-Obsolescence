@@ -132,6 +132,7 @@ public class TileComponent : MonoBehaviour, IPointerDownHandler
 
 	public IAttackable GetAttackable()
 	{
+		if (towerObj == null) return null;
 		return towerObj.GetComponent<IAttackable>(); // Expensive but fuck we ball
 	}
 }
