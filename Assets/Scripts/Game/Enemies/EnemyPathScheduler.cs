@@ -72,13 +72,13 @@ namespace Game.Enemies
             public NativeArray<MapInfo.TileInfo> tiles;
             public int weightVariance;
             public NativeList<Vector2Int> pathResults;
-
+            public uint seed;
             public void Execute()
             {
                 
                 Pathfinding.TempNode[,] copiedMap = new Pathfinding.TempNode[width, height];
 
-                var random = new Unity.Mathematics.Random();
+                var random = new Unity.Mathematics.Random(seed);
                 
                 for(int x = 0; x < width; x++)
                 {
@@ -127,7 +127,8 @@ namespace Game.Enemies
                 pathResults = schedule.results,
                 width = map.width,
                 height = map.height,
-                weightVariance = weightVariance
+                weightVariance = weightVariance,
+                seed = (uint) UnityEngine.Random.Range(int.MinValue, int.MaxValue)
             };
 
             schedule.job = job;
