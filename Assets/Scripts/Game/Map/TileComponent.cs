@@ -58,32 +58,36 @@ public class TileComponent : MonoBehaviour, IPointerDownHandler
 	 */
 	public void OnPointerDown(PointerEventData eventData)
 	{
-		Debug.Log("Clicked tile x:" + xPos.ToString() + " y:" + yPos.ToString());
-		
 		PointerModes mode = PointerMode.Instance.Mode;
+		int balance = Bank.Instance.CurrentBalance;
 
 		if (mode == PointerModes.ADD && towerObj == null)
 		{
-			// Find which tower is currently selected
 			Purchasable p = ShopInventory.Instance.PurchaseCurrentSelectedItem();
+
 			if (p != null && p.ItemObject != null)
 			{
 				Vector3 newPos = new Vector3(transform.position.x, transform.position.y, transform.position.z - 0.1f);
-				towerObj = Instantiate(p.ItemObject, /*TowerManager.Instance.towerDictionary[TowerType.TowT_GenericTurret],*/ newPos, transform.rotation);
+				towerObj = Instantiate(p.ItemObject, newPos, transform.rotation);
 				towerObj.transform.parent = transform;
 			}
 		}
-		else if (mode == PointerModes.DESTROY && towerObj != null)
+		else if (mode == PointerModes.DESTROY && towerObj != null && balance >= Tower.STANDARD_DESTROY_COST)
 		{
-			Destroy(towerObj);
-			towerObj = null;
+			Tower tower = towerObj.GetComponent<Tower>();
+			if (tower && tower.CanBeDestroyed)
+			{
+				Bank.Instance.RemoveFromBalance(Tower.STANDARD_DESTROY_COST);
+				Destroy(towerObj);
+				towerObj = null;
+			}
 		}
 		else if (mode == PointerModes.UPGRADE && towerObj != null)
 		{
 			Tower tower = towerObj.GetComponent<Tower>();
 			if (tower)
 			{
-				tower.UpgradeTower();
+				tower.TryUpgradeTower();
 			} 
 		}
 	}
