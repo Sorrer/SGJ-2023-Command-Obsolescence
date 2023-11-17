@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -67,9 +68,17 @@ public class TileComponent : MonoBehaviour, IPointerDownHandler
 
 			if (p != null && p.ItemObject != null)
 			{
+
+				Debug.Log("Spawning tower");
 				Vector3 newPos = new Vector3(transform.position.x, transform.position.y, transform.position.z - 0.1f);
-				towerObj = Instantiate(p.ItemObject, newPos, transform.rotation);
+				towerObj = Instantiate(p.ItemObject.gameObject, newPos, transform.rotation);
 				towerObj.transform.parent = transform;
+				Building tower = towerObj.GetComponent<Building>();
+				if (tower)
+				{
+					Debug.Log("Spawned tower");
+					tower.CurrentDirection = PointerMode.Instance.Direction;
+				}
 			}
 		}
 		else if (mode == PointerModes.DESTROY && towerObj != null && balance >= TileEntity.STANDARD_DESTROY_COST)

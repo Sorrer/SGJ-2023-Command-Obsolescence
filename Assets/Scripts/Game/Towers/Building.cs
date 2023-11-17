@@ -38,11 +38,10 @@ public enum TowerTargetPriority
 [Serializable]
 public enum TowerDirection
 {
-	TD_AllCardinal = 0,
-	TD_Up = 1,
-	TD_Right = 2,
-	TD_Down = 3,
-	TD_Left = 4
+	TD_Up = 0,
+	TD_Right = 1,
+	TD_Down = 2,
+	TD_Left = 3
 }
 
 public class Building : TileEntity
@@ -60,8 +59,6 @@ public class Building : TileEntity
 
 	[Header("Tower Settings")]
 	[SerializeField] protected TowerTargetPriority _towerTargetPriority;
-	[Tooltip("The direction this tower is facing.")]
-	[SerializeField] protected TowerDirection _currentDirection;
 	[Tooltip("Level of tower, for upgrades. Base is level 0.")]
 	[SerializeField] protected int _towerLevel;
 	[Tooltip("Maximum level the tower can be upgraded to.")]
@@ -82,16 +79,22 @@ public class Building : TileEntity
 	/// The sprites for all four directions of the tower. The array is orderered up, right, down, left.
 	/// </summary>
 	public Sprite[] DirectionalSprites => new Sprite[] {_upSprite, _rightSprite, _downSprite, _leftSprite, };
+	[Tooltip("The direction this tower is facing.")]
+	public TowerDirection CurrentDirection {get { return _currentDirection; } set 
+	{
+		_currentDirection = value;
+		_sr.sprite = DirectionalSprites[(int) _currentDirection];
+	}}
+
+	private TowerDirection _currentDirection = TowerDirection.TD_Up;
 	
 	// Start is called before the first frame update
 	protected virtual void Start()
 	{
-		_sr = GetComponent<SpriteRenderer>();
-		if (_sr)
-			_sr.color = _idleColor;
+		_sr.color = _idleColor;
+
 		_towerState = TowerState.TS_Idle;
 		_towerTargetPriority = TowerTargetPriority.TTP_First;
-		_currentDirection = TowerDirection.TD_Right;
 		_towerLevel = 0;
 		AddPhysics2DRaycaster();
 	}
@@ -122,7 +125,7 @@ public class Building : TileEntity
 	protected void ResetTower()
 	{
 		_towerState = TowerState.TS_Idle;
-		if (_sr) _sr.color = _idleColor;
+		_sr.color = _idleColor;
 
 		ExecuteTowerAction();
 	} 
@@ -156,7 +159,7 @@ public class Building : TileEntity
 	public virtual void BreakTower()
 	{
 		_towerState = TowerState.TS_Broken;
-		if (_sr) _sr.color = _brokenColor;
+		_sr.color = _brokenColor;
 	}
 
 	/**
