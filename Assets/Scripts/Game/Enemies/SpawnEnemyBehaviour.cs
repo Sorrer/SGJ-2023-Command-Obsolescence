@@ -39,7 +39,11 @@ namespace Game.Enemies
 
         public enum EnemyTypes
         {
-            BASIC
+            BASIC,
+            SHNURB,
+            REACTIVITY,
+            LEGACY,
+            CTREE
         }
 
         private void Start()

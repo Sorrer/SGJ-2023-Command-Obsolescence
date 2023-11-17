@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 90fd7b54666cb2247900697899939e75
+guid: a8aa63a4909f0b5418dd5116cbb4cdb6
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -4597152085468900127
-    second: tntower_0
+      213: -8394987474774865275
+    second: legacy_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: tntower_0
+      name: legacy_0
       rect:
         serializedVersion: 2
         x: 15
         y: 0
         width: 98
-        height: 123
+        height: 124
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -114,8 +114,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 1e41e27f882a330c0800000000000000
-      internalID: -4597152085468900127
+      spriteID: 58ac038ce530f7b80800000000000000
+      internalID: -8394987474774865275
       vertices: []
       indices: 
       edges: []
@@ -130,8 +130,7 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable:
-      tntower_0: -4597152085468900127
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
