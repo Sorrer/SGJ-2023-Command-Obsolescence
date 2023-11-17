@@ -10,11 +10,32 @@ public class TileComponent : MonoBehaviour, IPointerDownHandler
 	private GameObject towerObj = null; /**< Tower currently on the tile */
 	public int xPos;
 	public int yPos;
+	private SpriteRenderer sr;
+	private bool checkerboardTiles;
 	
 	// Start is called before the first frame update
 	private void Start()
 	{
+		sr = GetComponent<SpriteRenderer>();
 		AddPhysics2DRaycaster();
+
+		if (checkerboardTiles && sr != null)
+		{
+			if (yPos % 2 == 0)
+			{
+				if (xPos % 2 == 1)
+					sr.color = Color.gray;
+				else
+					sr.color = Color.white;
+			}
+			else
+			{
+				if (xPos % 2 == 0)
+					sr.color = Color.gray;
+				else
+					sr.color = Color.white;
+			}
+		}
 	}
 
 	// Update is called once per frame
@@ -23,11 +44,12 @@ public class TileComponent : MonoBehaviour, IPointerDownHandler
 		
 	}
 
-	public void SetupTileComponent(TileType tt, int x, int y)
+	public void SetupTileComponent(TileType tt, int x, int y, bool _checkerboardTiles)
 	{
 		type = tt;
 		xPos = x;
 		yPos = y;
+		checkerboardTiles = _checkerboardTiles;
 	}
 
 	/**
@@ -38,11 +60,31 @@ public class TileComponent : MonoBehaviour, IPointerDownHandler
 	{
 		Debug.Log("Clicked tile x:" + xPos.ToString() + " y:" + yPos.ToString());
 		
-		if (towerObj == null)
+		PointerModes mode = PointerMode.Instance.Mode;
+
+		if (mode == PointerModes.ADD && towerObj == null)
 		{
-			Vector3 newPos = new Vector3(transform.position.x, transform.position.y, transform.position.z - 0.1f);
-			towerObj = Instantiate(TowerManager.Instance.towerDictionary[TowerType.TowT_GenericTurret], newPos, transform.rotation);
-			towerObj.transform.parent = transform;
+			// Find which tower is currently selected
+			Purchasable p = ShopInventory.Instance.PurchaseCurrentSelectedItem();
+			if (p != null && p.ItemObject != null)
+			{
+				Vector3 newPos = new Vector3(transform.position.x, transform.position.y, transform.position.z - 0.1f);
+				towerObj = Instantiate(p.ItemObject, /*TowerManager.Instance.towerDictionary[TowerType.TowT_GenericTurret],*/ newPos, transform.rotation);
+				towerObj.transform.parent = transform;
+			}
+		}
+		else if (mode == PointerModes.DESTROY && towerObj != null)
+		{
+			Destroy(towerObj);
+			towerObj = null;
+		}
+		else if (mode == PointerModes.UPGRADE && towerObj != null)
+		{
+			Tower tower = towerObj.GetComponent<Tower>();
+			if (tower)
+			{
+				tower.UpgradeTower();
+			} 
 		}
 	}
 
@@ -57,5 +99,7 @@ public class TileComponent : MonoBehaviour, IPointerDownHandler
 		{
 			Camera.main.gameObject.AddComponent<Physics2DRaycaster>();
 		}
+		if (physicsRaycaster != null)
+			physicsRaycaster.eventMask = LayerMask.GetMask("Tile");
 	}
 }

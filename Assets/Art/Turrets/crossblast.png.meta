@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 27b4244210a40a649840b4fb771f06af
+guid: c2da1c672d8aae340ad3ad054ea99316
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -3851514788226692069
-    second: betatower_copy_0
+      213: 8651211070494264209
+    second: crossblast_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: betatower_copy_0
+      name: crossblast_0
       rect:
         serializedVersion: 2
-        x: 28
-        y: 16
-        width: 213
-        height: 230
+        x: 5
+        y: 2
+        width: 244
+        height: 240
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -114,8 +114,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: b1c8590d4bbac8ac0800000000000000
-      internalID: -3851514788226692069
+      spriteID: 19bccbde1a64f0870800000000000000
+      internalID: 8651211070494264209
       vertices: []
       indices: 
       edges: []
@@ -131,7 +131,7 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      betatower_copy_0: -3851514788226692069
+      crossblast_0: 8651211070494264209
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

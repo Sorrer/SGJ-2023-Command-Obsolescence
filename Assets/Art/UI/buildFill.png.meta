@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 27b4244210a40a649840b4fb771f06af
+guid: 155d719d4040c5d4da1e8ad2223a48d4
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -3851514788226692069
-    second: betatower_copy_0
+      213: 5015456520243859069
+    second: buildFill_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -37,7 +37,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -100,22 +100,22 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: betatower_copy_0
+      name: buildFill_0
       rect:
         serializedVersion: 2
-        x: 28
-        y: 16
-        width: 213
-        height: 230
+        x: 0
+        y: 0
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: b1c8590d4bbac8ac0800000000000000
-      internalID: -3851514788226692069
+      spriteID: d7e4d83d12b7a9540800000000000000
+      internalID: 5015456520243859069
       vertices: []
       indices: 
       edges: []
@@ -123,7 +123,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: bdb014bf7eba4cd4e942662898280c08
     internalID: 0
     vertices: []
     indices: 
@@ -131,7 +131,7 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      betatower_copy_0: -3851514788226692069
+      buildFill_0: 5015456520243859069
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

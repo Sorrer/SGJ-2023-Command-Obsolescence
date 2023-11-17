@@ -47,6 +47,8 @@ public class LevelGenerator : MonoBehaviour
 	[SerializeField]
 	private TilemapEntry[] testTilemap;
 	public Dictionary<TileType, Sprite> testTilemapDict;
+	[SerializeField]
+	private bool checkerboardTiles = true;
 
 	// Start is called before the first frame update
 	void Start()
@@ -163,7 +165,7 @@ public class LevelGenerator : MonoBehaviour
 					else
 						col.enabled = false;*/
 					TileComponent _tile = _tileObj.GetComponent<TileComponent>();
-					_tile.SetupTileComponent(levelGrid[i, j].type, i, j);
+					_tile.SetupTileComponent(levelGrid[i, j].type, i, j, checkerboardTiles);
 					levelGrid[i, j].tileComponent = _tile;
 
 					// Test functions
