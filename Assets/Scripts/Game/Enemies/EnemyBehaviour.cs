@@ -116,4 +116,40 @@ public class EnemyBehaviour : MonoBehaviour
     {
         return new Vector2Int(Mathf.FloorToInt(this.transform.position.x), Mathf.FloorToInt(this.transform.position.y));
     }
+
+
+
+    [SerializeField]
+    private int health;
+    [SerializeField]
+    private int maxHealth;
+
+    public void SetHealth(int health)
+    {
+        this.health = health;
+    }
+    public float GetHealth()
+    {
+        return health;
+    }
+
+    public void Damage(int amount)
+    {
+        health -= amount;
+        
+        // Kill
+        if(health <= 0) Kill();
+    }
+
+    public void SetPosition(Vector3 worldPosition)
+    {
+        this.RootPosition.transform.position = worldPosition;
+    }
+
+    public void Kill()
+    {
+        Destroy(this.RootPosition.gameObject);
+    }
+    
+    
 }
