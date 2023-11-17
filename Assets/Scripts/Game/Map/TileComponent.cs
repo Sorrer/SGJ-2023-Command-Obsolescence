@@ -63,9 +63,18 @@ public class TileComponent : MonoBehaviour, IPointerDownHandler
 		PointerModes mode = PointerMode.Instance.Mode;
 		int balance = Bank.Instance.CurrentBalance;
 
-		if (mode == PointerModes.ADD && towerObj == null)
+		if (mode == PointerModes.ADD)
 		{
-			Purchasable p = ShopInventory.Instance.PurchaseCurrentSelectedItem();
+			Purchasable p = ShopInventory.Instance.GetCurrentSelectedItem();
+
+			if (towerObj != null) 
+			{
+				TileEntity old = towerObj.GetComponent<Building>();
+				
+				if (old && old.Replacement != p.Name) return;
+			}
+
+			ShopInventory.Instance.PurchaseCurrentSelectedItem();
 
 			if (p != null && p.ItemObject != null)
 			{
