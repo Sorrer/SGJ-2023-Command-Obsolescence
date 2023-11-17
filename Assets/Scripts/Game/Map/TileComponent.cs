@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Game.Enemies;
@@ -68,24 +69,32 @@ public class TileComponent : MonoBehaviour, IPointerDownHandler
 
 			if (p != null && p.ItemObject != null)
 			{
+
+				Debug.Log("Spawning tower");
 				Vector3 newPos = new Vector3(transform.position.x, transform.position.y, transform.position.z - 0.1f);
-				towerObj = Instantiate(p.ItemObject, newPos, transform.rotation);
+				towerObj = Instantiate(p.ItemObject.gameObject, newPos, transform.rotation);
 				towerObj.transform.parent = transform;
+				Building tower = towerObj.GetComponent<Building>();
+				if (tower)
+				{
+					Debug.Log("Spawned tower");
+					tower.CurrentDirection = PointerMode.Instance.Direction;
+				}
 			}
 		}
-		else if (mode == PointerModes.DESTROY && towerObj != null && balance >= Tower.STANDARD_DESTROY_COST)
+		else if (mode == PointerModes.DESTROY && towerObj != null && balance >= TileEntity.STANDARD_DESTROY_COST)
 		{
-			Tower tower = towerObj.GetComponent<Tower>();
+			Building tower = towerObj.GetComponent<Building>();
 			if (tower && tower.CanBeDestroyed)
 			{
-				Bank.Instance.RemoveFromBalance(Tower.STANDARD_DESTROY_COST);
+				Bank.Instance.RemoveFromBalance(TileEntity.STANDARD_DESTROY_COST);
 				Destroy(towerObj);
 				towerObj = null;
 			}
 		}
 		else if (mode == PointerModes.UPGRADE && towerObj != null)
 		{
-			Tower tower = towerObj.GetComponent<Tower>();
+			Building tower = towerObj.GetComponent<Building>();
 			if (tower)
 			{
 				tower.TryUpgradeTower();

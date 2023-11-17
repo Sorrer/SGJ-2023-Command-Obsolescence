@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 5462816880846830745}
   - component: {fileID: 2431567925679524348}
   m_Layer: 7
-  m_Name: GenericTurret
+  m_Name: GunTurret
   m_TagString: Turret
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -29,7 +29,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -7.9, y: -0.06, z: 0}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -77,7 +77,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -3851514788226692069, guid: 27b4244210a40a649840b4fb771f06af, type: 3}
+  m_Sprite: {fileID: -7907994857523766305, guid: 64cfddfa15dce594d9cf208f2fafeddc, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -100,20 +100,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61c2825db5c84314cab3d5dc7ba0795a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _towerName: 
-  _towerType: 0
-  _towerState: 0
+  _entityName: GunTurret
+  _entityType: 1
   _sr: {fileID: 1496963088884385075}
+  _canBeDestroyed: 1
+  _towerState: 0
   _idleColor: {r: 1, g: 1, b: 1, a: 1}
   _brokenColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
   _towerTargetPriority: 0
-  _currentDirection: 0
   _towerLevel: 0
   _maxTowerLevel: 3
-  _projectileObj: {fileID: 3160107558040692346, guid: 9baba51819a4d4049b7e13881e255b21, type: 3}
-  _destroyOnBreak: 0
-  _canBeDestroyed: 1
   _purchaseInfo: {fileID: 11400000, guid: 210183f9806704f4e9ea803693e3af26, type: 2}
+  _upSprite: {fileID: -5461121649556915646, guid: 0d1f126bed973b0488dad833bcac5731, type: 3}
+  _downSprite: {fileID: -7907994857523766305, guid: 64cfddfa15dce594d9cf208f2fafeddc, type: 3}
+  _leftSprite: {fileID: 564618130336498970, guid: a8c8518241894134d96a66d5353a2cc1, type: 3}
+  _rightSprite: {fileID: 9152297428566660960, guid: 71b9726b1d3f45c4ebccc13c9cd97c02, type: 3}
+  _bulletPrefab: {fileID: 3160107558040692346, guid: 9baba51819a4d4049b7e13881e255b21, type: 3}
   powerLevels: 04000000040000000400000004000000
   speedLevels: 0c0000000c0000000c0000000c000000
   rangeLevels: 0c0000000c0000000c0000000c000000

@@ -34,11 +34,12 @@ public class Projectile : MonoBehaviour
 			Destroy(gameObject);
 	}
 
-	public void SetupProjectile(GameObject _owner, int _power, float _speed)
+	public void SetupProjectile(GameObject _owner, int _power, float _speed, float _range)
 	{
 		//target = _target;
 		owner = _owner;
 		power = _power;
 		speed = _speed;
+		timeAlive = _range / speed;
 	}
 }

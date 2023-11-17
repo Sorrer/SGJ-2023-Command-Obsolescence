@@ -48,6 +48,7 @@ public class ShopInventory : MonoBehaviour
     public void SetCurrentSelectedItem(Purchasable purchasable)
     {
         _currentSelectedItem = purchasable;
+        PointerMode.Instance.RefreshPreview();
     }
 
     public Purchasable GetCurrentSelectedItem()

@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 1261522483364193629}
   - component: {fileID: 6390399952366363858}
   m_Layer: 7
-  m_Name: CrossBlast
+  m_Name: Flamethrower
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -30,7 +30,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -6.280712, y: -1.4207523, z: 0}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -78,7 +78,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 8651211070494264209, guid: c2da1c672d8aae340ad3ad054ea99316, type: 3}
+  m_Sprite: {fileID: 2800715737579632502, guid: af5ac44de05d3d24780e992b660c8d49, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -101,22 +101,39 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e50caf86e3566a5408904b7b3ef5311b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _towerName: 
-  _towerType: 0
-  _towerState: 0
+  _entityName: Flamethrower
+  _entityType: 2
   _sr: {fileID: 7019128525234271491}
+  _canBeDestroyed: 1
+  _towerState: 0
   _idleColor: {r: 1, g: 1, b: 1, a: 1}
   _brokenColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
   _towerTargetPriority: 0
-  _currentDirection: 0
   _towerLevel: 0
   _maxTowerLevel: 3
-  _projectileObj: {fileID: 3160107558040692346, guid: 9baba51819a4d4049b7e13881e255b21, type: 3}
-  _destroyOnBreak: 0
-  _canBeDestroyed: 0
   _purchaseInfo: {fileID: 11400000, guid: 7bac1077ea3bad54c850d38d60904ab2, type: 2}
-  powerLevels: 01000000020000000300000004000000
-  speedLevels: 02000000040000000600000008000000
+  _upSprite: {fileID: 2800715737579632502, guid: af5ac44de05d3d24780e992b660c8d49, type: 3}
+  _downSprite: {fileID: 2800715737579632502, guid: af5ac44de05d3d24780e992b660c8d49, type: 3}
+  _leftSprite: {fileID: 2800715737579632502, guid: af5ac44de05d3d24780e992b660c8d49, type: 3}
+  _rightSprite: {fileID: 2800715737579632502, guid: af5ac44de05d3d24780e992b660c8d49, type: 3}
+  _flamePrefab: {fileID: 7671194827889008353, guid: 9419b9eefaf585347a99c7d54ac0e2e4, type: 3}
+  powerLevels: 01000000010000000100000001000000
+  speedLevels:
+  - 5
+  - 5
+  - 5
+  - 5
+  rangeLevels:
+  - 2
+  - 2.5
+  - 3
+  - 3.5
+  bulletNumberLevels: 0a000000140000001e00000028000000
+  bulletDelayLevels:
+  - 0.2
+  - 0.16
+  - 0.13
+  - 0.1
 --- !u!61 &1261522483364193629
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -155,7 +172,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 2.44, y: 2.4}
+    oldSize: {x: 1.28, y: 1.28}
     newSize: {x: 2.44, y: 2.4}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -201,7 +218,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 2.44, y: 2.4}
+    oldSize: {x: 1.28, y: 1.28}
     newSize: {x: 2.44, y: 2.4}
     adaptiveTilingThreshold: 0.5
     drawMode: 0

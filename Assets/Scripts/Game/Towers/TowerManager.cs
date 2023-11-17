@@ -22,17 +22,17 @@ public class TowerManager : MonoBehaviour
 	[Serializable]
 	public struct TowermapEntry
 	{
-		public TowerType type;
+		public EntityType type;
 		public GameObject towerPrefab;
 	}
 	[SerializeField]
 	private TowermapEntry[] towerList;
-	public Dictionary<TowerType, GameObject> towerDictionary;
+	public Dictionary<EntityType, GameObject> towerDictionary;
 
 	// Start is called before the first frame update
 	void Start()
 	{
-		towerDictionary = new Dictionary<TowerType, GameObject>();
+		towerDictionary = new Dictionary<EntityType, GameObject>();
 		foreach (TowermapEntry te in towerList)
 		{
 			towerDictionary.Add(te.type, te.towerPrefab);
