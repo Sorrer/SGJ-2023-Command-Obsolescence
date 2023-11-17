@@ -125,6 +125,11 @@ public class TileComponent : MonoBehaviour, IPointerDownHandler
 		return 1;
 	}
 
+	public bool IsTraversal() 
+	{
+		return true;
+	}
+
 	public IAttackable GetAttackable()
 	{
 		return towerObj.GetComponent<IAttackable>(); // Expensive but fuck we ball

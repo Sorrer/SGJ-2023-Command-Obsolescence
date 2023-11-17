@@ -47,8 +47,17 @@ namespace Game.Enemies
                     }
                     
                     validMapLocations.Add(new Vector2Int(x,y));
+                    
+                    var tileWeight = tile.tileComponent.GetWeight();
 
-                    tileInfo.weight = tile.tileComponent.GetWeight() + baseWeight;
+                    if (tile.tileComponent.IsTraversal())
+                    {
+                        tileInfo.weight = tileWeight + baseWeight;
+                    }
+                    else
+                    {
+                        tileInfo.weight = -1;
+                    }
                     
                     currentMap[x + (y *width)] = tileInfo;
                 }
