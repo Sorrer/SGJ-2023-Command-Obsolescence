@@ -28,12 +28,6 @@ public class Flamethrower : Building
 		ExecuteTowerAction();
 	}
 
-	// Update is called once per frame
-	protected override void Update()
-	{
-		base.Update();
-	}
-
 	public override void ExecuteTowerAction()
 	{
 		base.ExecuteTowerAction();
