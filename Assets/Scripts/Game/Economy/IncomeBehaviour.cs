@@ -6,20 +6,25 @@ namespace Game.Economy
 {
     public class IncomeBehaviour : MonoBehaviour
     {
-        public int amount;
-        public int interval;
+        public int Amount;
+        public float Interval;
+        public float Duration;
+
+        private float _duration;
         
         private void Start()
         {
-            StartCoroutine(SpawnEnemyCoroutine());
+            _duration = Duration;
+            StartCoroutine(EarnIncome());
         }
 
-        private IEnumerator SpawnEnemyCoroutine()
+        private IEnumerator EarnIncome()
         {
-            while (true)
+            while (_duration >= Interval)
             {
-                yield return new WaitForSeconds(interval);
-                Bank.Instance.AddToBalance(amount);
+                yield return new WaitForSeconds(Interval);
+                _duration -= Interval;
+                Bank.Instance.AddToBalance(Amount);
             }
         }
         

@@ -100,7 +100,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca42395981565d647b6df9c8e988fb65, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _entityName: 
+  _entityName: Forest
   _sr: {fileID: 0}
   _canBeDestroyed: 1
   _isWall: 0

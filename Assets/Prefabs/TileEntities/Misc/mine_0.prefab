@@ -101,8 +101,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d3ab1bfa1044c68ae69aae5bea72907, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SpawnInterval: 15
-  types: 1
+  SpawnInterval: 5
+  types: 0
 --- !u!114 &3275992136210290189
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -115,7 +115,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d95ce61c07648c644b14b7f16f65abc7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _entityName: mine
+  _entityName: Mine
   _sr: {fileID: 718886664801638167}
   _canBeDestroyed: 1
   _isWall: 0
@@ -127,8 +127,8 @@ MonoBehaviour:
   _idleColor: {r: 1, g: 1, b: 1, a: 1}
   _brokenColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
   _towerLevel: 0
-  _maxTowerLevel: 3
-  _purchaseInfo: {fileID: 0}
+  _maxTowerLevel: 0
+  _purchaseInfo: {fileID: 11400000, guid: 048373112b32c6e44a568ba7f7d84e68, type: 2}
   _upSprite: {fileID: -5933715298724706184, guid: 35754941ce8a58f46af6320695ed4e40, type: 3}
   _downSprite: {fileID: -5933715298724706184, guid: 35754941ce8a58f46af6320695ed4e40, type: 3}
   _leftSprite: {fileID: -5933715298724706184, guid: 35754941ce8a58f46af6320695ed4e40, type: 3}
@@ -145,5 +145,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f16375a92fb043cca6874756cb884c74, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  amount: 50
-  interval: 5
+  Amount: 5
+  Interval: 0.5
+  Duration: 30

@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 230d72166fe452749b017059c5673c80
+guid: 3d500472bccfce742b06e20ac982144c
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 6247621181359329435
-    second: ctree_0
+      213: 8623272615763423323
+    second: rainforest_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: ctree_0
+      name: rainforest_0
       rect:
         serializedVersion: 2
-        x: 4
+        x: 0
         y: 0
-        width: 122
-        height: 128
+        width: 1920
+        height: 1200
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -114,8 +114,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: b901126fc5204b650800000000000000
-      internalID: 6247621181359329435
+      spriteID: b50bee781c40ca770800000000000000
+      internalID: 8623272615763423323
       vertices: []
       indices: 
       edges: []
@@ -130,8 +130,7 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable:
-      ctree_0: 6247621181359329435
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

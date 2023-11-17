@@ -131,14 +131,6 @@ public class Building : TileEntity
 	}
 
 	/**
-	 * @brief Overrideable function proto for an action that can occur when the tower is destroyed.
-	 */
-	public virtual void OnTowerDestroy()
-	{
-		
-	}
-
-	/**
 	 * @brief Needed for IPointerDownHandler related functions. Find the Physics2DRaycaster component that
 	 * exists in the world, or add one to the main camera GameObject if one does not exist.
 	 */

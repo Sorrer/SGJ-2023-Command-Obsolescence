@@ -12,9 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af2870f903b8f754e9cbdd48ef954816, type: 3}
   m_Name: Wall
   m_EditorClassIdentifier: 
-  Name: wall
-  BasePrice: 0
+  Name: Wall
+  BasePrice: 50
   UpgradePrices: 
-  Description: 
+  Description: Prevents enemies from moving through it! If they can't make it around
+    the walls, though, they will eventually chew through.
   StoreSprite: {fileID: 8494637627259261307, guid: 29d3307300d3f34488f468df7fdd0b8f, type: 3}
   ItemObject: {fileID: -1325605320155022832, guid: 8159cc4ec824a914bac59a8e8346fc4f, type: 3}

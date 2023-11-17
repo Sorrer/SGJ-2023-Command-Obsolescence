@@ -15,6 +15,7 @@ MonoBehaviour:
   Name: Basic Turret
   BasePrice: 25
   UpgradePrices: 320000006400000096000000
-  Description: When placed, slowly fires a volley of 10 bullets.
+  Description: When placed, slowly fires a volley of bullets. Upgrades increase the
+    fire speed and number of bullets.
   StoreSprite: {fileID: -7907994857523766305, guid: 64cfddfa15dce594d9cf208f2fafeddc, type: 3}
   ItemObject: {fileID: 5462816880846830745, guid: 0666e210c7beaac4ba5800afcb49b2ca, type: 3}
