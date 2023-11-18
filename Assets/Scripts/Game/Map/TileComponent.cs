@@ -110,6 +110,10 @@ public class TileComponent : MonoBehaviour, IPointerDownHandler
 		{
 			Debug.LogError("Tried to create a tile entity on a title component, but not tile entity component on the prefab was found");
 		}
+		else
+		{
+			this.tileEntity.OnTowerPlaced();
+		}
 	}
 
 
@@ -127,6 +131,7 @@ public class TileComponent : MonoBehaviour, IPointerDownHandler
 		if (mode == PointerModes.ADD)
 		{
 			Purchasable p = ShopInventory.Instance.GetCurrentSelectedItem();
+			if (balance < p.BasePrice) return;
 
 			if (tileEntity != null) 
 			{

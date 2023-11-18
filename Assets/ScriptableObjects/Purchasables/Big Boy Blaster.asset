@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: Big Boy Blaster
   BasePrice: 100
-  UpgradePrices: c80000002c01000090010000
+  UpgradePrices: 96000000c8000000fa000000
   Description: Fires a BIG blast! Destroys enemies, walls, towers, and landmarks.
   StoreSprite: {fileID: 8791539599514056937, guid: cb1c599b1531a994eaa7d237a3bd00a6, type: 3}
   ItemObject: {fileID: 7501146054962545587, guid: 23d110fe65e74f74092ad42fbfb84951, type: 3}

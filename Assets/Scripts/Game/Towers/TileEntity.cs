@@ -48,4 +48,9 @@ public class TileEntity : MonoBehaviour
 	{
 		
 	}
+
+	public virtual void OnTowerPlaced()
+	{
+		
+	}
 }

@@ -151,17 +151,17 @@ public class LevelGenerator : MonoBehaviour
 			int rand = Random.Range(0, 10);
 			Tile chosenTile = levelGrid[randomX, randomY];
 			TileComponent tc = chosenTile.tileComponent;
-			_tc.DestroyEntity();
+			tc.DestroyEntity();
 
 			if (rand % 2 == 0)
 			{
 				// spawn a goal
-				_tile.CreateTileEntity(goalObj);
+				tc.CreateTileEntity(goalObj);
 			}
 			else
 			{
 				// spawn a hole
-				_tile.CreateTileEntity(spawnerObj);
+				tc.CreateTileEntity(spawnerObj);
 			}
 		}
 	}
