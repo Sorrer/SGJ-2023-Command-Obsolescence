@@ -131,6 +131,7 @@ public class TileComponent : MonoBehaviour, IPointerDownHandler
 		if (mode == PointerModes.ADD)
 		{
 			Purchasable p = ShopInventory.Instance.GetCurrentSelectedItem();
+			if (balance < p.BasePrice) return;
 
 			if (tileEntity != null) 
 			{
@@ -216,6 +217,8 @@ public class TileComponent : MonoBehaviour, IPointerDownHandler
 
 	public void DestroyEntity()
 	{
+		if (tileEntity == null)
+			return;
 		Destroy(tileEntity.gameObject);
 	}
 }

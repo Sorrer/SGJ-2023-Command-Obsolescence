@@ -30,6 +30,12 @@ public class LevelGenerator : MonoBehaviour
 	private GameObject levelGenerator;
 	[SerializeField]
 	private GameObject tileObj;
+	[SerializeField]
+	private GameObject goalObj;
+	[SerializeField]
+	private GameObject spawnerObj;
+	[SerializeField]
+	private float spawnDelay = 2.5f;
 
 	private Tile[,] levelGrid; /**<The main level grid*/
 	[SerializeField]
@@ -74,6 +80,7 @@ public class LevelGenerator : MonoBehaviour
 		LevelGridInit();
 		SpawnTileObjects();
 		if(mapReference != null) mapReference.LoadMap(levelGrid);
+		StartCoroutine(GenerateMoreGoalsAndHoles());
 	}
 
 	// Update is called once per frame
@@ -134,6 +141,31 @@ public class LevelGenerator : MonoBehaviour
 		LevelGridClear();
 	}
 
+	private IEnumerator GenerateMoreGoalsAndHoles()
+	{
+		while (true) // oh god it wont stop!!!
+		{
+			yield return new WaitForSeconds(spawnDelay);
+			int randomX = Random.Range(0, levelWidth - 1);
+			int randomY = Random.Range(0, levelHeight - 1);
+			int rand = Random.Range(0, 10);
+			Tile chosenTile = levelGrid[randomX, randomY];
+			TileComponent tc = chosenTile.tileComponent;
+			_tc.DestroyEntity();
+
+			if (rand % 2 == 0)
+			{
+				// spawn a goal
+				_tile.CreateTileEntity(goalObj);
+			}
+			else
+			{
+				// spawn a hole
+				_tile.CreateTileEntity(spawnerObj);
+			}
+		}
+	}
+
 	/**
 	 * @brief Instantiates tile GameObjects after chosen level generator completes.
 	 */
@@ -171,7 +203,21 @@ public class LevelGenerator : MonoBehaviour
 						col.enabled = false;*/
 					TileComponent _tile = _tileObj.GetComponent<TileComponent>();
 					_tile.SetupTileComponent(levelGrid[i, j].type, i, j, checkerboardTiles, Random.value < obstacleDensity);
+					_tile.DestroyEntity();
 					levelGrid[i, j].tileComponent = _tile;
+
+					// if j is 0, spawn goals
+					// if j is height - 1, spawn enemy spawners
+					if (i == 0 && j == 0)
+					{
+						//GameObject newGoalObj = Instantiate(goalObj, newPos, transform.rotation);
+						_tile.CreateTileEntity(goalObj);
+					}
+					else if (i + 1 == levelWidth && j + 1 == levelHeight)
+					{
+						//GameObject newSpawnerObj = Instantiate(spawnerObj, newPos, transform.rotation);
+						_tile.CreateTileEntity(spawnerObj);
+					}
 
 					// Test functions
 					//Debug.Log("Testing tile i:" + i.ToString() + " j:" + j.ToString() + " at pos:" + _tile.transform.position.ToString());

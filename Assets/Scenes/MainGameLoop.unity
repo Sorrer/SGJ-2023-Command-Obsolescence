@@ -631,6 +631,8 @@ MonoBehaviour:
   mapReference: {fileID: 1496008628}
   levelGenerator: {fileID: 1643012283}
   tileObj: {fileID: 1742074848930562816, guid: 16b161a5f9cc0da428f8453c3931196f, type: 3}
+  goalObj: {fileID: 7845860859601726680, guid: b734e1dba57324e4084e5e29a5274bc5, type: 3}
+  spawnerObj: {fileID: 7538971716997726966, guid: ae16924e356c6454d8a93e26f0a1d4f8, type: 3}
   levelWidth: 15
   levelHeight: 15
   testTilemap:
@@ -1443,9 +1445,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6725c284883668e428294f9697f8c70f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _startingBalance: 1000
-  _passiveIncomeAmount: 10
-  _passiveIncomeRate: 1
+  _startingBalance: 100
+  _passiveIncomeAmount: 5
+  _passiveIncomeRate: 2
   OnBalanceIncrease:
     m_PersistentCalls:
       m_Calls: []

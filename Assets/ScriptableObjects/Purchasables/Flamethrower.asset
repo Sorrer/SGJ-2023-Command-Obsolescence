@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: Flamethrower
   m_EditorClassIdentifier: 
   Name: Flamethrower
-  BasePrice: 50
-  UpgradePrices: 96000000c8000000fa000000
+  BasePrice: 60
+  UpgradePrices: 500000006400000078000000
   Description: Shoots fire in all 4 cardinal directions! These flames pierce enemies.
     Further upgrades increase the distance and duration of the flames.
   StoreSprite: {fileID: 2800715737579632502, guid: af5ac44de05d3d24780e992b660c8d49, type: 3}

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: TNT
   m_EditorClassIdentifier: 
   Name: TNT
-  BasePrice: 200
+  BasePrice: 60
   UpgradePrices: fa0000002c01000090010000
   Description: Primed and ready to blow shit up! It will explode after it's destroyed,
     either by you or the enemies.
