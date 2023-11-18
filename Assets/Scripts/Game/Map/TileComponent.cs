@@ -110,6 +110,10 @@ public class TileComponent : MonoBehaviour, IPointerDownHandler
 		{
 			Debug.LogError("Tried to create a tile entity on a title component, but not tile entity component on the prefab was found");
 		}
+		else
+		{
+			this.tileEntity.OnTowerPlaced();
+		}
 	}
 
 

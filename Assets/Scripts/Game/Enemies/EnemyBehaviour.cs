@@ -10,6 +10,8 @@ using Random = UnityEngine.Random;
 public class EnemyBehaviour : MonoBehaviour
 {
     public int damage = 5;
+
+    public int goalIndex = 0;
     // States on how exactly our enemies will go forward (Attack, walking)
     public enum EnemyStates
     {
