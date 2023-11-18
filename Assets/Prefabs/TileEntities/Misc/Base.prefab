@@ -10,9 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 6319959829458769113}
   - component: {fileID: 718886664801638167}
-  - component: {fileID: 3275992136210290189}
   - component: {fileID: 2017455987003164766}
   - component: {fileID: 6210189583634994394}
+  - component: {fileID: -8742523189279081748}
   m_Layer: 7
   m_Name: Base
   m_TagString: Untagged
@@ -89,36 +89,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &3275992136210290189
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7845860859601726680}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d95ce61c07648c644b14b7f16f65abc7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _entityName: Mine
-  _sr: {fileID: 718886664801638167}
-  _canBeDestroyed: 0
-  _isWall: 0
-  _replacement: 
-  tileComponent: {fileID: 0}
-  weight: 1
-  isInteractable: 0
-  _towerState: 0
-  _idleColor: {r: 1, g: 1, b: 1, a: 1}
-  _brokenColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
-  _towerLevel: 0
-  _maxTowerLevel: 0
-  _purchaseInfo: {fileID: 0}
-  _upSprite: {fileID: -5933715298724706184, guid: 35754941ce8a58f46af6320695ed4e40, type: 3}
-  _downSprite: {fileID: -5933715298724706184, guid: 35754941ce8a58f46af6320695ed4e40, type: 3}
-  _leftSprite: {fileID: -5933715298724706184, guid: 35754941ce8a58f46af6320695ed4e40, type: 3}
-  _rightSprite: {fileID: -5933715298724706184, guid: 35754941ce8a58f46af6320695ed4e40, type: 3}
 --- !u!61 &2017455987003164766
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -192,3 +162,23 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 0
+--- !u!114 &-8742523189279081748
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7845860859601726680}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b279149165e84c50b24855e8be1056fa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _entityName: Base
+  _sr: {fileID: 718886664801638167}
+  _canBeDestroyed: 0
+  _isWall: 0
+  _replacement: 
+  tileComponent: {fileID: 0}
+  weight: 1
+  isInteractable: 0

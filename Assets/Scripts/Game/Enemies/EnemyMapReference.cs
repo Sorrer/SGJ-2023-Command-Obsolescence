@@ -148,7 +148,7 @@ namespace Game.Enemies
                 }
             }
 
-            goals.removeAt(i);
+            goals.RemoveAt(i);
         }
     }
 }
