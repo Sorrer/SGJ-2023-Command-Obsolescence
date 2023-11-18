@@ -115,5 +115,40 @@ namespace Game.Enemies
                 }
             }
         }
+
+
+        public List<Vector2Int> goals = new List<Vector2Int>();
+        public Vector2Int GetGoalPosition(int i)
+        {
+            if (goals.Count == 0) return new Vector2Int(0, 0);
+
+            if (i < 0 || i >= goals.Count)
+            {
+                return goals[0];
+            }
+            else
+            {
+                return goals[i];
+            }
+        }
+
+        public void AddGoalPost(Vector2Int position)
+        {
+            goals.Add(position);
+        }
+
+        public void RemoveGoalPost(Vector2Int position)
+        {
+            int i = 0;
+            for (i = 0; i < goals.Count; i++)
+            {
+                if (goals[i] == position)
+                {
+                    break;
+                }
+            }
+
+            goals.removeAt(i);
+        }
     }
 }

@@ -97,10 +97,11 @@ namespace Game.Enemies
             
             enemies.Add(uuid, enemyBehaviour);
             enemyBehaviour.SetUUID(uuid);
-                
+
+            enemyBehaviour.goalIndex = Random.Range(0, mapReference.goals.Count);
             enemyBehaviour.SetPosition(spawnPosition);
             enemyBehaviour.SetHealth(foundEnemy.health);
-            spawnedEnemy.GetComponent<EnemyPathProcesser>().GoTo(mapReference.goal, mapReference);
+            spawnedEnemy.GetComponent<EnemyPathProcesser>().GoTo(mapReference.goals[enemyBehaviour.goalIndex], mapReference);
         }
         
 
