@@ -30,6 +30,10 @@ public class LevelGenerator : MonoBehaviour
 	private GameObject levelGenerator;
 	[SerializeField]
 	private GameObject tileObj;
+	[SerializeField]
+	private GameObject goalObj;
+	[SerializeField]
+	private GameObject spawnerObj;
 
 	private Tile[,] levelGrid; /**<The main level grid*/
 	[SerializeField]
@@ -172,6 +176,19 @@ public class LevelGenerator : MonoBehaviour
 					TileComponent _tile = _tileObj.GetComponent<TileComponent>();
 					_tile.SetupTileComponent(levelGrid[i, j].type, i, j, checkerboardTiles, Random.value < obstacleDensity);
 					levelGrid[i, j].tileComponent = _tile;
+
+					// if j is 0, spawn goals
+					// if j is height - 1, spawn enemy spawners
+					if (i == 0 && j == 0)
+					{
+						//GameObject newGoalObj = Instantiate(goalObj, newPos, transform.rotation);
+						_tile.CreateTileEntity(goalObj);
+					}
+					else if (i + 1 == levelWidth && j + 1 == levelHeight)
+					{
+						//GameObject newSpawnerObj = Instantiate(spawnerObj, newPos, transform.rotation);
+						_tile.CreateTileEntity(spawnerObj);
+					}
 
 					// Test functions
 					//Debug.Log("Testing tile i:" + i.ToString() + " j:" + j.ToString() + " at pos:" + _tile.transform.position.ToString());
