@@ -203,7 +203,6 @@ public class LevelGenerator : MonoBehaviour
 						col.enabled = false;*/
 					TileComponent _tile = _tileObj.GetComponent<TileComponent>();
 					_tile.SetupTileComponent(levelGrid[i, j].type, i, j, checkerboardTiles, Random.value < obstacleDensity);
-					_tile.DestroyEntity();
 					levelGrid[i, j].tileComponent = _tile;
 
 					// if j is 0, spawn goals
@@ -211,11 +210,13 @@ public class LevelGenerator : MonoBehaviour
 					if (i == 0 && j == 0)
 					{
 						//GameObject newGoalObj = Instantiate(goalObj, newPos, transform.rotation);
+						_tile.DestroyEntity();
 						_tile.CreateTileEntity(goalObj);
 					}
 					else if (i + 1 == levelWidth && j + 1 == levelHeight)
 					{
 						//GameObject newSpawnerObj = Instantiate(spawnerObj, newPos, transform.rotation);
+						_tile.DestroyEntity();
 						_tile.CreateTileEntity(spawnerObj);
 					}
 
