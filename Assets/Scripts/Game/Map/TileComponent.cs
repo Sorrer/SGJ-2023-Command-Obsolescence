@@ -127,6 +127,7 @@ public class TileComponent : MonoBehaviour, IPointerDownHandler
 		if (mode == PointerModes.ADD)
 		{
 			Purchasable p = ShopInventory.Instance.GetCurrentSelectedItem();
+			if (balance < p.BasePrice) return;
 
 			if (tileEntity != null) 
 			{

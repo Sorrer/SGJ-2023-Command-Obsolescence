@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Wall
   m_EditorClassIdentifier: 
   Name: Wall
-  BasePrice: 50
+  BasePrice: 20
   UpgradePrices: 
   Description: Prevents enemies from moving through it! If they can't make it around
     the walls, though, they will eventually chew through.
